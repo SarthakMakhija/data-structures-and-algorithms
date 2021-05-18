@@ -109,3 +109,46 @@ func Is_Palindrome_2(str string) bool {
 	}
 	return palindrome_inner(0)
 }
+
+func Permutate(str string) []string {
+
+	var permutate_inner func(string) []string
+
+	swap := func(str string, first_index, second_index int) string {
+
+		characters := []rune(str)
+		var copied = make([]rune, len(characters))
+
+		copy(copied, characters)
+
+		copied[first_index], copied[second_index] = copied[second_index], copied[first_index]
+		return string(copied)
+	}
+
+	permutate_inner = func(partial string) []string {
+		if len(partial) == 1 {
+			return []string{partial}
+		}
+		if len(partial) == 2 {
+			swapped := swap(partial, 0, 1)
+			return []string{partial, swapped}
+		} else {
+			var final_permutations []string
+			var swapped string
+
+			for count := 0; count < len(partial); count++ {
+				if count == 0 {
+					swapped = partial
+				} else {
+					swapped = swap(partial, 0, count)
+				}
+				permutations := permutate_inner(swapped[1:])
+				for p := 0; p < len(permutations); p++ {
+					final_permutations = append(final_permutations, string(swapped[0])+permutations[p])
+				}
+			}
+			return final_permutations
+		}
+	}
+	return permutate_inner(str)
+}

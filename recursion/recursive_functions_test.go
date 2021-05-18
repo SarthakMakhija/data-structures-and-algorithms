@@ -175,3 +175,37 @@ func TestIsNotPalindromeWithEvenCharactersUsingImplementation2(t *testing.T) {
 		t.Fatalf(`Expected true but found %v`, is_palindrome)
 	}
 }
+
+func TestPermutationsOf2CharacterString(t *testing.T) {
+
+	var expected = []string{"12", "21"}
+	permutations := recursion.Permutate("12")
+
+	if !reflect.DeepEqual(expected, permutations) {
+		t.Fatalf(`Expected %v but found %v`, expected, permutations)
+	}
+}
+
+func TestPermutationsOf3CharacterString(t *testing.T) {
+
+	var expected = []string{"123", "132", "213", "231", "321", "312"}
+	permutations := recursion.Permutate("123")
+
+	if !reflect.DeepEqual(expected, permutations) {
+		t.Fatalf(`Expected %v but found %v`, expected, permutations)
+	}
+}
+
+func TestPermutationsOf4CharacterString(t *testing.T) {
+
+	var expected = []string{"1234", "1243", "1324", "1342", "1432", "1423",
+		"2134", "2143", "2314", "2341", "2431", "2413",
+		"3214", "3241", "3124", "3142", "3412", "3421",
+		"4231", "4213", "4321", "4312", "4132", "4123"}
+
+	permutations := recursion.Permutate("1234")
+
+	if !reflect.DeepEqual(expected, permutations) {
+		t.Fatalf(`Expected %v but found %v`, expected, permutations)
+	}
+}
