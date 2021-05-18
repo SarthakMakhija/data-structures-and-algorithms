@@ -90,7 +90,7 @@ func Is_Palindrome_2(str string) bool {
 	}
 
 	var palindrome_inner func(int) bool
-	var is_palindrone bool = false
+	var is_palindrome bool = false
 
 	length := len(str)
 	mid := length / 2
@@ -98,14 +98,14 @@ func Is_Palindrome_2(str string) bool {
 	palindrome_inner = func(index int) bool {
 		if index < mid {
 			if str[index] == str[length-1-index] {
-				is_palindrone = true
+				is_palindrome = true
 				return palindrome_inner(index + 1)
 			} else {
-				is_palindrone = false
-				return is_palindrone
+				is_palindrome = false
+				return is_palindrome
 			}
 		}
-		return is_palindrone
+		return is_palindrome
 	}
 	return palindrome_inner(0)
 }

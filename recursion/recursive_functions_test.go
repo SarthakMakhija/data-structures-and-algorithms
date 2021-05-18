@@ -112,66 +112,66 @@ func TestFactorialNonZero(t *testing.T) {
 	}
 }
 
-func TestIsPalindroneWithEmptyStringUsingImplementation1(t *testing.T) {
+func TestIsPalindromeWithEmptyStringUsingImplementation1(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_1("")
-	if is_palindone != false {
-		t.Fatalf(`Expected false but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_1("")
+	if is_palindrome != false {
+		t.Fatalf(`Expected false but found %v`, is_palindrome)
 	}
 }
 
-func TestIsPalindroneWithOddCharactersUsingImplementation1(t *testing.T) {
+func TestIsPalindromeWithOddCharactersUsingImplementation1(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_1("MALAYALAM")
-	if is_palindone != true {
-		t.Fatalf(`Expected true but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_1("MALAYALAM")
+	if is_palindrome != true {
+		t.Fatalf(`Expected true but found %v`, is_palindrome)
 	}
 }
 
-func TestIsPalindroneWithEvenCharactersUsingImplementation1(t *testing.T) {
+func TestIsPalindromeWithEvenCharactersUsingImplementation1(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_1("ABBA")
-	if is_palindone != true {
-		t.Fatalf(`Expected true but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_1("ABBA")
+	if is_palindrome != true {
+		t.Fatalf(`Expected true but found %v`, is_palindrome)
 	}
 }
 
-func TestIsNotPalindroneWithEvenCharactersUsingImplementation1(t *testing.T) {
+func TestIsNotPalindromeWithEvenCharactersUsingImplementation1(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_1("ABCFBA")
-	if is_palindone != false {
-		t.Fatalf(`Expected true but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_1("ABCFBA")
+	if is_palindrome != false {
+		t.Fatalf(`Expected true but found %v`, is_palindrome)
 	}
 }
 
-func TestIsPalindroneWithEmptyStringUsingImplementation2(t *testing.T) {
+func TestIsPalindromeWithEmptyStringUsingImplementation2(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_2("")
-	if is_palindone != false {
-		t.Fatalf(`Expected false but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_2("")
+	if is_palindrome != false {
+		t.Fatalf(`Expected false but found %v`, is_palindrome)
 	}
 }
 
-func TestIsPalindroneWithOddCharactersUsingImplementation2(t *testing.T) {
+func TestIsPalindromeWithOddCharactersUsingImplementation2(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_2("MALAYALAM")
-	if is_palindone != true {
-		t.Fatalf(`Expected true but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_2("MALAYALAM")
+	if is_palindrome != true {
+		t.Fatalf(`Expected true but found %v`, is_palindrome)
 	}
 }
 
-func TestIsPalindroneWithEvenCharactersUsingImplementation2(t *testing.T) {
+func TestIsPalindromeWithEvenCharactersUsingImplementation2(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_2("ABBA")
-	if is_palindone != true {
-		t.Fatalf(`Expected true but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_2("ABBA")
+	if is_palindrome != true {
+		t.Fatalf(`Expected true but found %v`, is_palindrome)
 	}
 }
 
-func TestIsNotPalindroneWithEvenCharactersUsingImplementation2(t *testing.T) {
+func TestIsNotPalindromeWithEvenCharactersUsingImplementation2(t *testing.T) {
 
-	is_palindone := recursion.Is_Palindrome_2("ABCFBA")
-	if is_palindone != false {
-		t.Fatalf(`Expected true but found %v`, is_palindone)
+	is_palindrome := recursion.Is_Palindrome_2("ABCFBA")
+	if is_palindrome != false {
+		t.Fatalf(`Expected true but found %v`, is_palindrome)
 	}
 }
