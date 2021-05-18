@@ -112,7 +112,7 @@ func TestFactorialNonZero(t *testing.T) {
 	}
 }
 
-func TestIsPalindroneWithEmptyString(t *testing.T) {
+func TestIsPalindroneWithEmptyStringUsingImplementation1(t *testing.T) {
 
 	is_palindone := recursion.Is_Palindrome_1("")
 	if is_palindone != false {
@@ -120,7 +120,7 @@ func TestIsPalindroneWithEmptyString(t *testing.T) {
 	}
 }
 
-func TestIsPalindroneWithOddCharacters(t *testing.T) {
+func TestIsPalindroneWithOddCharactersUsingImplementation1(t *testing.T) {
 
 	is_palindone := recursion.Is_Palindrome_1("MALAYALAM")
 	if is_palindone != true {
@@ -128,10 +128,50 @@ func TestIsPalindroneWithOddCharacters(t *testing.T) {
 	}
 }
 
-func TestIsPalindroneWithEvenCharacters(t *testing.T) {
+func TestIsPalindroneWithEvenCharactersUsingImplementation1(t *testing.T) {
 
 	is_palindone := recursion.Is_Palindrome_1("ABBA")
 	if is_palindone != true {
+		t.Fatalf(`Expected true but found %v`, is_palindone)
+	}
+}
+
+func TestIsNotPalindroneWithEvenCharactersUsingImplementation1(t *testing.T) {
+
+	is_palindone := recursion.Is_Palindrome_1("ABCFBA")
+	if is_palindone != false {
+		t.Fatalf(`Expected true but found %v`, is_palindone)
+	}
+}
+
+func TestIsPalindroneWithEmptyStringUsingImplementation2(t *testing.T) {
+
+	is_palindone := recursion.Is_Palindrome_2("")
+	if is_palindone != false {
+		t.Fatalf(`Expected false but found %v`, is_palindone)
+	}
+}
+
+func TestIsPalindroneWithOddCharactersUsingImplementation2(t *testing.T) {
+
+	is_palindone := recursion.Is_Palindrome_2("MALAYALAM")
+	if is_palindone != true {
+		t.Fatalf(`Expected true but found %v`, is_palindone)
+	}
+}
+
+func TestIsPalindroneWithEvenCharactersUsingImplementation2(t *testing.T) {
+
+	is_palindone := recursion.Is_Palindrome_2("ABBA")
+	if is_palindone != true {
+		t.Fatalf(`Expected true but found %v`, is_palindone)
+	}
+}
+
+func TestIsNotPalindroneWithEvenCharactersUsingImplementation2(t *testing.T) {
+
+	is_palindone := recursion.Is_Palindrome_2("ABCFBA")
+	if is_palindone != false {
 		t.Fatalf(`Expected true but found %v`, is_palindone)
 	}
 }

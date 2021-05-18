@@ -83,3 +83,29 @@ func Is_Palindrome_1(str string) bool {
 	}
 	return palindrome_inner(0)
 }
+
+func Is_Palindrome_2(str string) bool {
+	if len(str) == 0 {
+		return false
+	}
+
+	var palindrome_inner func(int) bool
+	var is_palindrone bool = false
+
+	length := len(str)
+	mid := length / 2
+
+	palindrome_inner = func(index int) bool {
+		if index < mid {
+			if str[index] == str[length-1-index] {
+				is_palindrone = true
+				return palindrome_inner(index + 1)
+			} else {
+				is_palindrone = false
+				return is_palindrone
+			}
+		}
+		return is_palindrone
+	}
+	return palindrome_inner(0)
+}
