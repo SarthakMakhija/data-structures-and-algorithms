@@ -29,7 +29,7 @@ func Reverse(elements []int) []int {
 	return reverse_internal(0)
 }
 
-func Power(x int, y int) int {
+func Power_1(x int, y int) int {
 	initial := 1
 	var power_inner func(int, int) int
 
@@ -40,6 +40,13 @@ func Power(x int, y int) int {
 		return power_inner(output*x, y-1)
 	}
 	return power_inner(initial, y)
+}
+
+func Power_2(x int, y int) int {
+	if y == 0 {
+		return 1
+	}
+	return Power_2(x, y-1) * x
 }
 
 func Factorial(n int) int {

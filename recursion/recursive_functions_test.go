@@ -48,25 +48,49 @@ func TestReverseSlice(t *testing.T) {
 	}
 }
 
-func TestPowerWithYAsZero(t *testing.T) {
+func TestPowerWithYAsZeroUsingImplementation1(t *testing.T) {
 
-	powered := recursion.Power(2, 0)
+	powered := recursion.Power_1(2, 0)
 	if powered != 1 {
 		t.Fatalf(`Expected 1 but found %v`, powered)
 	}
 }
 
-func TestPowerWithYAs3(t *testing.T) {
+func TestPowerWithYAs3UsingImplementation1(t *testing.T) {
 
-	powered := recursion.Power(2, 3)
+	powered := recursion.Power_1(2, 3)
 	if powered != 8 {
 		t.Fatalf(`Expected 8 but found %v`, powered)
 	}
 }
 
-func TestPowerWithYAs10(t *testing.T) {
+func TestPowerWithYAs10UsingImplementation2(t *testing.T) {
 
-	powered := recursion.Power(2, 10)
+	powered := recursion.Power_2(2, 10)
+	if powered != 1024 {
+		t.Fatalf(`Expected 1024 but found %v`, powered)
+	}
+}
+
+func TestPowerWithYAsZeroUsingImplementation2(t *testing.T) {
+
+	powered := recursion.Power_2(2, 0)
+	if powered != 1 {
+		t.Fatalf(`Expected 1 but found %v`, powered)
+	}
+}
+
+func TestPowerWithYAs3UsingImplementation2(t *testing.T) {
+
+	powered := recursion.Power_2(2, 3)
+	if powered != 8 {
+		t.Fatalf(`Expected 8 but found %v`, powered)
+	}
+}
+
+func TestPowerWithYAs10UsingImplementation1(t *testing.T) {
+
+	powered := recursion.Power_1(2, 10)
 	if powered != 1024 {
 		t.Fatalf(`Expected 1024 but found %v`, powered)
 	}
