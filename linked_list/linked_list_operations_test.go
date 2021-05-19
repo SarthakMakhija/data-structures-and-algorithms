@@ -72,3 +72,47 @@ func TestElementIsNotContained(t *testing.T) {
 		t.Fatalf("Expected false received %v", contains)
 	}
 }
+
+func TestNonEmptyLinkedListElementsInSortedManner_1(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add_Sorted(10)
+	list.Add_Sorted(20)
+	list.Add_Sorted(3)
+	list.Add_Sorted(4)
+	list.Add_Sorted(1)
+
+	output := list.All_As_String()
+	if output != "1341020" {
+		t.Fatalf("Expected 1341020 received %v", output)
+	}
+}
+
+func TestNonEmptyLinkedListElementsInSortedManner_2(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add_Sorted(10)
+	list.Add_Sorted(20)
+	list.Add_Sorted(30)
+	list.Add_Sorted(40)
+
+	output := list.All_As_String()
+	if output != "10203040" {
+		t.Fatalf("Expected 10203040 received %v", output)
+	}
+}
+
+func TestNonEmptyLinkedListElementsInSortedManner_3(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add_Sorted(10)
+	list.Add_Sorted(20)
+	list.Add_Sorted(30)
+	list.Add_Sorted(40)
+	list.Add_Sorted(0)
+
+	output := list.All_As_String()
+	if output != "010203040" {
+		t.Fatalf("Expected 010203040 received %v", output)
+	}
+}

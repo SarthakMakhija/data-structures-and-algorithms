@@ -30,6 +30,43 @@ func (l *LinkedList) Add(element int) {
 	}
 }
 
+func (l *LinkedList) Add_Sorted(element int) {
+
+	node := Node{
+		value: element,
+		next:  nil,
+	}
+	if l.first == nil {
+		l.first = &node
+		l.current = l.first
+	} else {
+		if element <= l.first.value {
+			node.next = l.first
+			l.first = &node
+		} else if element >= l.current.value {
+			l.current.next = &node
+			l.current = &node
+		} else {
+			newFirst := l.first
+			var add func(*Node)
+
+			add = func(p *Node) {
+				if p == nil || p.next == nil {
+					return
+				}
+				if element >= p.value && element <= p.next.value {
+					previous_next := p.next
+					p.next = &node
+					node.next = previous_next
+				} else {
+					add(p.next)
+				}
+			}
+			add(newFirst)
+		}
+	}
+}
+
 func (l *LinkedList) All_As_String() string {
 	if l.first == nil {
 		return ""
