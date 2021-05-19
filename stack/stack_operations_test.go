@@ -101,3 +101,59 @@ func TestEvaluateInvalidPostfixExpression(t *testing.T) {
 		t.Fatal("Expected error but did not have any error")
 	}
 }
+
+func TestInfixToPostfix_1(t *testing.T) {
+
+	postfix := stack.InFixToPostFix("1+2")
+	if postfix != "12+" {
+		t.Fatalf("Expected 12+ but received %v", postfix)
+	}
+}
+
+func TestInfixToPostfix_2(t *testing.T) {
+
+	postfix := stack.InFixToPostFix("1+2+3")
+	if postfix != "12+3+" {
+		t.Fatalf("Expected 12+3+ but received %v", postfix)
+	}
+}
+
+func TestInfixToPostfix_3(t *testing.T) {
+
+	postfix := stack.InFixToPostFix("2+2*5")
+	if postfix != "225*+" {
+		t.Fatalf("Expected 225*+ but received %v", postfix)
+	}
+}
+
+func TestInfixToPostfix_4(t *testing.T) {
+
+	postfix := stack.InFixToPostFix("2+2*5/2")
+	if postfix != "225*2/+" {
+		t.Fatalf("Expected 225*2/+ but received %v", postfix)
+	}
+}
+
+func TestInfixToPostfix_5(t *testing.T) {
+
+	postfix := stack.InFixToPostFix("5*2*6")
+	if postfix != "52*6*" {
+		t.Fatalf("Expected 52*6* but received %v", postfix)
+	}
+}
+
+func TestInfixToPostfix_6(t *testing.T) {
+
+	postfix := stack.InFixToPostFix("5*2+6")
+	if postfix != "52*6+" {
+		t.Fatalf("Expected 52*6+ but received %v", postfix)
+	}
+}
+
+func TestInfixToPostfix_7(t *testing.T) {
+
+	postfix := stack.InFixToPostFix("5/2+6")
+	if postfix != "52/6+" {
+		t.Fatalf("Expected 52/6+ but received %v", postfix)
+	}
+}
