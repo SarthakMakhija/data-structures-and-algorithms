@@ -10,37 +10,17 @@ func MatchParentheses(expression string) bool {
 		return false
 	}
 
-	var stack_push func(string)
-	var stack_pop func() string
-
-	var stack_top = 0
-	var stack []string
-
-	stack_push = func(element string) {
-		stack = append(stack, element)
-		stack_top = stack_top + 1
-	}
-
-	stack_pop = func() string {
-		stack_top = stack_top - 1
-		if stack_top < 0 {
-			return ""
-		}
-		top := stack[stack_top]
-		stack = stack[0:stack_top]
-		return top
-	}
-
+	stack := StringStack{}
 	for index := 0; index < len(expression); index++ {
 		element := string(expression[index])
 		if element == "(" {
-			stack_push(element)
+			stack.push(element)
 		} else if element == ")" {
-			stack_pop()
+			stack.pop()
 		}
 	}
 
-	if stack_top == 0 {
+	if stack.stack_top == 0 {
 		return true
 	} else {
 		return false
@@ -52,49 +32,70 @@ func PostFixEvaluate(expression string) (int, error) {
 		return 0, nil
 	}
 
-	var stack_push func(int)
-	var stack_pop func() int
-
-	var stack_top = 0
-	var stack []int
-
-	stack_push = func(element int) {
-		stack = append(stack, element)
-		stack_top = stack_top + 1
-	}
-
-	stack_pop = func() int {
-		stack_top = stack_top - 1
-		if stack_top < 0 {
-			return -1
-		}
-		top := stack[stack_top]
-		stack = stack[0:stack_top]
-		return top
-	}
-
+	stack := IntStack{}
 	for index := 0; index < len(expression); index++ {
 		element := string(expression[index])
 		if v, err := strconv.Atoi(element); err == nil {
-			stack_push(v)
+			stack.push(v)
 		}
 		if element == "+" || element == "*" || element == "-" || element == "/" {
-			operand1 := stack_pop()
-			operand2 := stack_pop()
+			operand1 := stack.pop()
+			operand2 := stack.pop()
+
 			if operand1 == -1 || operand2 == -1 {
 				return -1, errors.New("incorrect postfix expressions")
 			}
 
 			if element == "+" {
-				stack_push(operand1 + operand2)
+				stack.push(operand1 + operand2)
 			} else if element == "*" {
-				stack_push(operand1 * operand2)
+				stack.push(operand1 * operand2)
 			} else if element == "-" {
-				stack_push(operand2 - operand1)
+				stack.push(operand2 - operand1)
 			} else if element == "/" {
-				stack_push(operand2 / operand1)
+				stack.push(operand2 / operand1)
 			}
 		}
 	}
-	return stack[0], nil
+	return stack.stack[0], nil
+}
+
+type IntStack struct {
+	stack     []int
+	stack_top int
+}
+
+func (s *IntStack) push(element int) {
+	s.stack = append(s.stack, element)
+	s.stack_top = s.stack_top + 1
+}
+
+func (s *IntStack) pop() int {
+	s.stack_top = s.stack_top - 1
+	if s.stack_top < 0 {
+		return -1
+	}
+	top := s.stack[s.stack_top]
+	s.stack = s.stack[0:s.stack_top]
+	return top
+}
+
+type StringStack struct {
+	stack     []string
+	stack_top int
+}
+
+func (s *StringStack) push(element string) {
+	s.stack = append(s.stack, element)
+	s.stack_top = s.stack_top + 1
+}
+
+func (s *StringStack) pop() string {
+	s.stack_top = s.stack_top - 1
+	if s.stack_top < 0 {
+		return ""
+	}
+	top := s.stack[s.stack_top]
+	s.stack = s.stack[0:s.stack_top]
+	return top
 }
