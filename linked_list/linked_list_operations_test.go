@@ -116,3 +116,32 @@ func TestNonEmptyLinkedListElementsInSortedManner_3(t *testing.T) {
 		t.Fatalf("Expected 010203040 received %v", output)
 	}
 }
+
+func TestLinkedListDoesNotContainCycle(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(10)
+	list.Add(20)
+	list.Add(30)
+	list.Add(40)
+	list.Add(0)
+
+	contains_cycle := list.Contains_Cycle()
+	if contains_cycle != false {
+		t.Fatalf("Expected false received %v", contains_cycle)
+	}
+}
+
+func TestLinkedListContainsCycle(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+
+	list.Add(10)
+	node2 := list.Add(20)
+	list.Add_With_Next(30, node2)
+
+	contains_cycle := list.Contains_Cycle()
+	if contains_cycle != true {
+		t.Fatalf("Expected true received %v", contains_cycle)
+	}
+}

@@ -11,15 +11,17 @@ type LinkedList struct {
 }
 
 type Node struct {
-	value int
-	next  *Node
+	value   int
+	next    *Node
+	visited bool
 }
 
-func (l *LinkedList) Add(element int) {
+func (l *LinkedList) Add(element int) *Node {
 
 	node := Node{
-		value: element,
-		next:  nil,
+		value:   element,
+		next:    nil,
+		visited: false,
 	}
 	if l.first == nil {
 		l.first = &node
@@ -28,13 +30,31 @@ func (l *LinkedList) Add(element int) {
 		l.current.next = &node
 		l.current = &node
 	}
+	return &node
+}
+
+func (l *LinkedList) Add_With_Next(element int, next *Node) {
+
+	node := Node{
+		value:   element,
+		next:    nil,
+		visited: false,
+	}
+	if l.first == nil {
+		l.first = &node
+		l.current = l.first
+	} else {
+		l.current.next = next
+		l.current = &node
+	}
 }
 
 func (l *LinkedList) Add_Sorted(element int) {
 
 	node := Node{
-		value: element,
-		next:  nil,
+		value:   element,
+		next:    nil,
+		visited: false,
 	}
 	if l.first == nil {
 		l.first = &node
@@ -125,4 +145,26 @@ func (l *LinkedList) Contains(element int) bool {
 		}
 	}
 	return contains_inner(l.first)
+}
+
+func (l *LinkedList) Contains_Cycle() bool {
+
+	if l.first == nil {
+		return false
+	}
+
+	var visit func(*Node) bool
+
+	visit = func(p *Node) bool {
+		if p == nil {
+			return false
+		}
+		if p.visited {
+			return true
+		} else {
+			p.visited = true
+			return visit(p.next)
+		}
+	}
+	return visit(l.first)
 }
