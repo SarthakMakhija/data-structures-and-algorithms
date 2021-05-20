@@ -160,3 +160,55 @@ func TestLinkedListReverse(t *testing.T) {
 		t.Fatalf("Expected 302010 received %v", output)
 	}
 }
+
+func TestLinkedListRemoveDuplicatesIfThereAreNoDuplicates(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+
+	list.Add(10)
+	list.Add(20)
+	list.Add(30)
+
+	list.RemoveDuplicatesFromSorted()
+	output := list.All_As_String()
+	if output != "102030" {
+		t.Fatalf("Expected 102030 received %v", output)
+	}
+}
+
+func TestLinkedListRemoveDuplicatesIfThereAreDuplicates_1(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+
+	list.Add(10)
+	list.Add(10)
+	list.Add(10)
+	list.Add(10)
+	list.Add(10)
+	list.Add(20)
+	list.Add(30)
+
+	list.RemoveDuplicatesFromSorted()
+	output := list.All_As_String()
+	if output != "102030" {
+		t.Fatalf("Expected 102030 received %v", output)
+	}
+}
+
+func TestLinkedListRemoveDuplicatesIfThereAreDuplicates_2(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+
+	list.Add(10)
+	list.Add(20)
+	list.Add(30)
+	list.Add(30)
+	list.Add(30)
+	list.Add(30)
+
+	list.RemoveDuplicatesFromSorted()
+	output := list.All_As_String()
+	if output != "102030" {
+		t.Fatalf("Expected 102030 received %v", output)
+	}
+}

@@ -200,3 +200,27 @@ func (l *LinkedList) Reverse() *LinkedList {
 	reverse_inner(l.first)
 	return &list
 }
+
+func (l *LinkedList) RemoveDuplicatesFromSorted() {
+
+	if l.first == nil {
+		return
+	}
+
+	current_value := l.first.value
+	previous := l.first
+
+	for head := l.first.next; head != nil; head = head.next {
+
+		for head.next != nil && head.value == current_value {
+			head = head.next
+		}
+		if head.value == current_value {
+			previous.next = head.next
+		} else {
+			previous.next = head
+		}
+		previous = previous.next
+		current_value = head.value
+	}
+}
