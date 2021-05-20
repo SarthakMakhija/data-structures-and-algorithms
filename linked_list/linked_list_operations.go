@@ -168,3 +168,35 @@ func (l *LinkedList) Contains_Cycle() bool {
 	}
 	return visit(l.first)
 }
+
+func (l *LinkedList) Reverse() *LinkedList {
+
+	if l.first == nil {
+		return nil
+	}
+
+	var list LinkedList = LinkedList{}
+	var reverse_inner func(head *Node)
+
+	reverse_inner = func(head *Node) {
+		if head == nil {
+			return
+		} else {
+			reverse_inner(head.next)
+			node := Node{
+				value:   head.value,
+				visited: false,
+				next:    nil,
+			}
+			if list.first == nil {
+				list.first = &node
+				list.current = &node
+			} else {
+				list.current.next = &node
+				list.current = &node
+			}
+		}
+	}
+	reverse_inner(l.first)
+	return &list
+}

@@ -145,3 +145,18 @@ func TestLinkedListContainsCycle(t *testing.T) {
 		t.Fatalf("Expected true received %v", contains_cycle)
 	}
 }
+
+func TestLinkedListReverse(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+
+	list.Add(10)
+	list.Add(20)
+	list.Add(30)
+
+	reversed := list.Reverse()
+	output := reversed.All_As_String()
+	if output != "302010" {
+		t.Fatalf("Expected 302010 received %v", output)
+	}
+}
