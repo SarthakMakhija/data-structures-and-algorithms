@@ -247,3 +247,72 @@ func TestLinkedListMidElement_2(t *testing.T) {
 		t.Fatalf("Expected 2 received %v", mid_value)
 	}
 }
+
+func TestNoIntersectionBetweeLinkedList(t *testing.T) {
+
+	list1 := linkedlist.LinkedList{}
+	list2 := linkedlist.LinkedList{}
+
+	list1.Add(1)
+	list1.Add(2)
+	list1.Add(3)
+	list1.Add(4)
+
+	list2.Add(1)
+	list2.Add(2)
+
+	intersection_value := linkedlist.Intersection(&list1, &list2)
+
+	if intersection_value != -1 {
+		t.Fatalf("Expected -1 received %v", intersection_value)
+	}
+}
+
+func TestIntersectionBetweeLinkedList_1(t *testing.T) {
+
+	list1 := linkedlist.LinkedList{}
+	list2 := linkedlist.LinkedList{}
+
+	list1.Add(1)
+	list1.Add(2)
+	list1.Add(3)
+	node := list1.Add(4)
+	list1.Add(5)
+	list1.Add(6)
+	list1.Add(7)
+
+	list2.Add(50)
+	list2.Add(40)
+	list2.Add(10)
+	list2.Add(2)
+	list2.Add(8)
+	list2.Add_With_Next(4, node)
+
+	intersection_value := linkedlist.Intersection(&list1, &list2)
+
+	if intersection_value != 4 {
+		t.Fatalf("Expected 4 received %v", intersection_value)
+	}
+}
+
+func TestIntersectionBetweeLinkedList_2(t *testing.T) {
+
+	list1 := linkedlist.LinkedList{}
+	list2 := linkedlist.LinkedList{}
+
+	list1.Add(1)
+	list1.Add(2)
+	list1.Add(3)
+	node := list1.Add(4)
+
+	list2.Add(50)
+	list2.Add(40)
+	list2.Add(10)
+	list2.Add_With_Next(4, node)
+
+	intersection_value := linkedlist.Intersection(&list1, &list2)
+
+	if intersection_value != 4 {
+		t.Fatalf("Expected 4 received %v", intersection_value)
+	}
+}

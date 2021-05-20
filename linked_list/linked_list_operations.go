@@ -245,3 +245,37 @@ func (l *LinkedList) Mid_Value() int {
 	}
 	return follower.value
 }
+
+/**
+this implementation relies on an additional property visited to be presented in the list
+other option is iterate through both the lists one by one and collect all the elements
+(not the element values but nodes itself) in stack1 and stack2
+let's consider 2 lists :
+	1->2->3->4->5
+	6->7->3 (here 3 means the node 3 from list1)
+which means once we have created 2 stacks, if there is an intersection we can compare stack top of both the stacks
+and keep repeating it until there is no match
+This means extra space and extra iterations
+**/
+func Intersection(first_list *LinkedList, second_list *LinkedList) int {
+
+	head1 := first_list.first
+	head2 := second_list.first
+
+	var intersection_value int = -1
+
+	for head1 != nil {
+		head1.visited = true
+		head1 = head1.next
+	}
+	for head2 != nil {
+		if head2.visited {
+			intersection_value = head2.value
+			break
+		}
+		head2.visited = true
+		head2 = head2.next
+	}
+
+	return intersection_value
+}
