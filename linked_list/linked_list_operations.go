@@ -224,3 +224,24 @@ func (l *LinkedList) RemoveDuplicatesFromSorted() {
 		current_value = head.value
 	}
 }
+
+func (l *LinkedList) Mid_Value() int {
+
+	if l.first == nil {
+		return 0
+	}
+
+	follower := l.first
+	head := l.first
+
+	for head.next != nil {
+		head = head.next
+		if head.next != nil {
+			head = head.next
+			follower = follower.next
+		} else {
+			break
+		}
+	}
+	return follower.value
+}

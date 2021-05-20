@@ -212,3 +212,38 @@ func TestLinkedListRemoveDuplicatesIfThereAreDuplicates_2(t *testing.T) {
 		t.Fatalf("Expected 102030 received %v", output)
 	}
 }
+
+func TestLinkedListMidElement_1(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+
+	mid_value := list.Mid_Value()
+
+	if mid_value != 4 {
+		t.Fatalf("Expected 4 received %v", mid_value)
+	}
+}
+
+func TestLinkedListMidElement_2(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+
+	mid_value := list.Mid_Value()
+
+	if mid_value != 2 {
+		t.Fatalf("Expected 2 received %v", mid_value)
+	}
+}
