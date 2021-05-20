@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-//Assume lists are of the same size
+//Assume lists are of the same size || One of the naive implementations, other than sorting both and comparing
 func Compare(list1 *LinkedList, list2 *LinkedList) bool {
 
 	if list1.first == nil || list2.first == nil {
