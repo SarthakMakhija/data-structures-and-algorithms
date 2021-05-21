@@ -10,20 +10,20 @@ import (
 func TestSearchElementFound(t *testing.T) {
 
 	elements := []int{1, 2, 3, 4, 5}
-	index := recursion.Search(elements, 5, 0)
+	found := recursion.Search(elements, 5)
 
-	if index != 4 {
-		t.Fatalf(`Expected index to be 4 found %v`, index)
+	if found != true {
+		t.Fatalf(`Expected element 5 to be found but was %v`, found)
 	}
 }
 
 func TestSearchElementNotFound(t *testing.T) {
 
 	elements := []int{1, 2, 3, 4, 5}
-	index := recursion.Search(elements, 30, 0)
+	found := recursion.Search(elements, 30)
 
-	if index != -1 {
-		t.Fatalf(`Expected index to be -1 found %v`, index)
+	if found != false {
+		t.Fatalf(`Expected element 30 to be missing but was %v`, found)
 	}
 }
 

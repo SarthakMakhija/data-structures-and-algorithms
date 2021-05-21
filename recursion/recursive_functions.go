@@ -5,14 +5,14 @@ import (
 	"reflect"
 )
 
-func Search(elements []int, element int, index int) int {
-	if index < len(elements) {
-		if elements[index] == element {
-			return index
-		}
-		return Search(elements, element, index+1)
+func Search(elements []int, element int) bool {
+	if len(elements) == 0 {
+		return false
 	}
-	return -1
+	if elements[0] == element {
+		return true
+	}
+	return Search(elements[1:], element)
 }
 
 func Reverse(elements []int) []int {
