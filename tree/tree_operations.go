@@ -55,3 +55,21 @@ func (tree *IntBinaryTree) Sum() int {
 	}
 	return traverse_inner(tree.Root)
 }
+
+func (tree *IntBinaryTree) Count_Nodes() int {
+	if tree.Root == nil {
+		return 0
+	}
+
+	var count_inner func(t *IntNode) int
+	count_inner = func(t *IntNode) int {
+		if t == nil {
+			return 0
+		} else if t.Left == nil && t.Right == nil {
+			return 1
+		} else {
+			return count_inner(t.Left) + 1 + count_inner(t.Right)
+		}
+	}
+	return count_inner(tree.Root)
+}
