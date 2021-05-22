@@ -36,6 +36,14 @@ func TestTreeTraversal_3(t *testing.T) {
 	}
 }
 
+func TestTreeTraversal_4(t *testing.T) {
+	tree := binary_tree_3()
+	output := tree.Sum()
+	if output != 36 {
+		t.Fatalf("Expected 36, received %v", output)
+	}
+}
+
 func binary_tree_1() *tree.StringBinaryTree {
 
 	leaf_D := tree.StringNode{
@@ -109,5 +117,45 @@ func binary_tree_2() *tree.StringBinaryTree {
 	}
 	return &tree.StringBinaryTree{
 		Root: &leaf_A,
+	}
+}
+
+func binary_tree_3() *tree.IntBinaryTree {
+
+	leaf_8 := tree.IntNode{
+		Value: 8,
+	}
+	leaf_4 := tree.IntNode{
+		Value: 4,
+		Left:  &leaf_8,
+	}
+	leaf_5 := tree.IntNode{
+		Value: 5,
+	}
+	leaf_2 := tree.IntNode{
+		Value: 2,
+		Left:  &leaf_4,
+		Right: &leaf_5,
+	}
+
+	leaf_6 := tree.IntNode{
+		Value: 6,
+	}
+	leaf_7 := tree.IntNode{
+		Value: 7,
+	}
+	leaf_3 := tree.IntNode{
+		Value: 3,
+		Left:  &leaf_6,
+		Right: &leaf_7,
+	}
+
+	leaf_1 := tree.IntNode{
+		Value: 1,
+		Left:  &leaf_2,
+		Right: &leaf_3,
+	}
+	return &tree.IntBinaryTree{
+		Root: &leaf_1,
 	}
 }
