@@ -91,3 +91,25 @@ func (tree *IntBinaryTree) Count_Leaf_Nodes() int {
 	}
 	return count_inner(tree.Root)
 }
+
+func (tree *IntBinaryTree) Height() int {
+	if tree.Root == nil {
+		return 0
+	}
+	var max_height int = 0
+	var height_inner func(*IntNode, int)
+
+	height_inner = func(t *IntNode, height int) {
+		if t == nil {
+		} else if t.Left == nil && t.Right == nil {
+			if height > max_height {
+				max_height = height
+			}
+		} else {
+			height_inner(t.Left, height+1)
+			height_inner(t.Right, height+1)
+		}
+	}
+	height_inner(tree.Root, 0)
+	return max_height
+}
