@@ -186,28 +186,28 @@ func TestMax_5(t *testing.T) {
 
 func TestContains_1(t *testing.T) {
 	tree := binary_tree_4()
-	output := tree.Contains(9)
+	output := tree.Search(9)
 
-	if output != true {
+	if output.Contains != true {
 		t.Fatalf("Expected true, received %v", output)
 	}
 }
 
 func TestContains_2(t *testing.T) {
 	tree := binary_tree_4()
-	output := tree.Contains(7)
+	output := tree.Search(7)
 
-	if output != true {
+	if output.Contains != true {
 		t.Fatalf("Expected true, received %v", output)
 	}
 }
 
 func TestContains_3(t *testing.T) {
 	tree := binary_tree_4()
-	output := tree.Contains(70)
+	output := tree.Search(70)
 
-	if output != false {
-		t.Fatalf("Expected false, received %v", output)
+	if output != nil {
+		t.Fatalf("Expected nil, received %v", output)
 	}
 }
 
@@ -226,8 +226,8 @@ func TestContains_4(t *testing.T) {
 	tree := tree.IntBinaryTree{
 		Root: &leaf_1,
 	}
-	output := tree.Contains(3)
-	if output != true {
+	output := tree.Search(3)
+	if output.Contains != true {
 		t.Fatalf("Expected true, received %v", output)
 	}
 }

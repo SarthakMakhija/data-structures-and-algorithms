@@ -191,26 +191,40 @@ func (tree *IntBinaryTree) Max_2() int {
 	return max_inner(tree.Root)
 }
 
-func (tree *IntBinaryTree) Contains(v int) bool {
+func (tree *IntBinaryTree) Search(v int) *SearchResult {
 
 	if tree.Root == nil {
-		return false
+		return nil
 	}
 
-	var contains_inner func(t *IntNode) bool
+	var search_inner func(t *IntNode) *SearchResult
 
-	contains_inner = func(t *IntNode) bool {
+	search_inner = func(t *IntNode) *SearchResult {
 		if t == nil {
-			return false
+			return nil
 		}
-		contains_left := contains_inner(t.Left)
-		contains_right := contains_inner(t.Right)
+		search_left := search_inner(t.Left)
+		search_right := search_inner(t.Right)
 
-		if contains_left || contains_right {
-			return true
+		if search_left != nil && search_left.Contains {
+			return search_left
+		} else if search_right != nil && search_right.Contains {
+			return search_right
 		} else {
-			return v == t.Value
+			if v == t.Value {
+				return &SearchResult{
+					Contains: true,
+					Node:     t,
+				}
+			} else {
+				return nil
+			}
 		}
 	}
-	return contains_inner(tree.Root)
+	return search_inner(tree.Root)
+}
+
+type SearchResult struct {
+	Contains bool
+	Node     *IntNode
 }
