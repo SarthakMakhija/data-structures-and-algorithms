@@ -128,7 +128,7 @@ func TestHeight_3(t *testing.T) {
 
 func TestMax_1(t *testing.T) {
 	tree := binary_tree_3()
-	output := tree.Max()
+	output := tree.Max_1()
 
 	if output != 8 {
 		t.Fatalf("Expected 8, received %v", output)
@@ -137,7 +137,47 @@ func TestMax_1(t *testing.T) {
 
 func TestMax_2(t *testing.T) {
 	tree := binary_tree_4()
-	output := tree.Max()
+	output := tree.Max_1()
+
+	if output != 9 {
+		t.Fatalf("Expected 9, received %v", output)
+	}
+}
+
+func TestMax_3(t *testing.T) {
+	leaf_2 := tree.IntNode{
+		Value: 2,
+	}
+	leaf_3 := tree.IntNode{
+		Value: 3,
+	}
+	leaf_1 := tree.IntNode{
+		Value: 1,
+		Left:  &leaf_2,
+		Right: &leaf_3,
+	}
+	tree := tree.IntBinaryTree{
+		Root: &leaf_1,
+	}
+	output := tree.Max_2()
+
+	if output != 3 {
+		t.Fatalf("Expected 3, received %v", output)
+	}
+}
+
+func TestMax_4(t *testing.T) {
+	tree := binary_tree_3()
+	output := tree.Max_2()
+
+	if output != 8 {
+		t.Fatalf("Expected 8, received %v", output)
+	}
+}
+
+func TestMax_5(t *testing.T) {
+	tree := binary_tree_4()
+	output := tree.Max_2()
 
 	if output != 9 {
 		t.Fatalf("Expected 9, received %v", output)

@@ -127,7 +127,6 @@ func (tree *IntBinaryTree) Height_2() int {
 		} else {
 			left_height := height_inner(t.Left)
 			right_height := height_inner(t.Right)
-
 			if left_height > right_height {
 				return left_height + 1
 			} else {
@@ -138,7 +137,7 @@ func (tree *IntBinaryTree) Height_2() int {
 	return height_inner(tree.Root)
 }
 
-func (tree *IntBinaryTree) Max() int {
+func (tree *IntBinaryTree) Max_1() int {
 	if tree.Root == nil {
 		return 0
 	}
@@ -163,4 +162,31 @@ func (tree *IntBinaryTree) Max() int {
 	}
 	max_inner(tree.Root)
 	return max
+}
+
+func (tree *IntBinaryTree) Max_2() int {
+	if tree.Root == nil {
+		return 0
+	}
+
+	var max_inner func(t *IntNode) int
+
+	max_inner = func(t *IntNode) int {
+		if t == nil {
+			return 0
+		}
+		if t.Left == nil && t.Right == nil {
+			return t.Value
+		} else {
+			left_x := max_inner(t.Left)
+			left_y := max_inner(t.Right)
+
+			if left_x > left_y {
+				return left_x
+			} else {
+				return left_y
+			}
+		}
+	}
+	return max_inner(tree.Root)
 }
