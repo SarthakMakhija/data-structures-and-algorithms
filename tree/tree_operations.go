@@ -113,3 +113,30 @@ func (tree *IntBinaryTree) Height() int {
 	height_inner(tree.Root, 0)
 	return max_height
 }
+
+func (tree *IntBinaryTree) Max() int {
+	if tree.Root == nil {
+		return 0
+	}
+
+	var max_inner func(*IntNode)
+	var max int
+
+	max_inner = func(t *IntNode) {
+		if t == nil {
+			return
+		} else {
+			if t.Value > max {
+				max = t.Value
+			}
+			if t.Left == nil && t.Right == nil {
+				return
+			} else {
+				max_inner(t.Left)
+				max_inner(t.Right)
+			}
+		}
+	}
+	max_inner(tree.Root)
+	return max
+}
