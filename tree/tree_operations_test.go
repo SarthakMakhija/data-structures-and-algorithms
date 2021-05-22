@@ -65,6 +65,27 @@ func TestTreeNodeCount_2(t *testing.T) {
 	}
 }
 
+func TestTreeLeafNodeCount_1(t *testing.T) {
+	tree := binary_tree_3()
+	output := tree.Count_Leaf_Nodes()
+	if output != 4 {
+		t.Fatalf("Expected 4, received %v", output)
+	}
+}
+
+func TestTreeLeafNodeCount_2(t *testing.T) {
+	leaf_D := tree.IntNode{
+		Value: 1,
+	}
+	tree := tree.IntBinaryTree{
+		Root: &leaf_D,
+	}
+	output := tree.Count_Leaf_Nodes()
+	if output != 1 {
+		t.Fatalf("Expected 1, received %v", output)
+	}
+}
+
 func binary_tree_1() *tree.StringBinaryTree {
 
 	leaf_D := tree.StringNode{
