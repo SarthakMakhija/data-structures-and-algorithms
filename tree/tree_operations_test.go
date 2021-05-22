@@ -232,6 +232,37 @@ func TestContains_4(t *testing.T) {
 	}
 }
 
+func TestInsert_1(t *testing.T) {
+	tree := binary_tree_3()
+	tree.Insert_Left_Of(8, 9)
+
+	output := tree.Traverse()
+
+	if output != "984251637" {
+		t.Fatalf("Expected 984251637, received %v", output)
+	}
+}
+
+func TestInsert_2(t *testing.T) {
+	leaf_3 := tree.IntNode{
+		Value: 3,
+	}
+	leaf_1 := tree.IntNode{
+		Value: 1,
+		Right: &leaf_3,
+	}
+	tree := tree.IntBinaryTree{
+		Root: &leaf_1,
+	}
+	tree.Insert_Left_Of(1, 2)
+
+	output := tree.Traverse()
+
+	if output != "213" {
+		t.Fatalf("Expected 213, received %v", output)
+	}
+}
+
 func binary_tree_1() *tree.StringBinaryTree {
 
 	leaf_D := tree.StringNode{

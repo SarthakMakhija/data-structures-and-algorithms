@@ -1,5 +1,7 @@
 package tree
 
+import "strconv"
+
 type StringBinaryTree struct {
 	Root *StringNode
 }
@@ -33,6 +35,24 @@ func (tree *StringBinaryTree) Traverse() string {
 			return t.Value
 		} else {
 			return traverse_inner(t.Left) + t.Value + traverse_inner(t.Right)
+		}
+	}
+	return traverse_inner(tree.Root)
+}
+
+func (tree *IntBinaryTree) Traverse() string {
+	if tree.Root == nil {
+		return ""
+	}
+
+	var traverse_inner func(t *IntNode) string
+	traverse_inner = func(t *IntNode) string {
+		if t == nil {
+			return ""
+		} else if t.Left == nil && t.Right == nil {
+			return strconv.Itoa(t.Value)
+		} else {
+			return traverse_inner(t.Left) + strconv.Itoa(t.Value) + traverse_inner(t.Right)
 		}
 	}
 	return traverse_inner(tree.Root)
@@ -227,4 +247,21 @@ func (tree *IntBinaryTree) Search(v int) *SearchResult {
 type SearchResult struct {
 	Contains bool
 	Node     *IntNode
+}
+
+func (tree *IntBinaryTree) Insert_Left_Of(value, element int) {
+
+	if tree.Root == nil {
+		return
+	}
+	search_result := tree.Search(value)
+	if search_result == nil {
+		return
+	}
+
+	search_result.Node.Left = &IntNode{
+		Value: element,
+		Left:  nil,
+		Right: nil,
+	}
 }
