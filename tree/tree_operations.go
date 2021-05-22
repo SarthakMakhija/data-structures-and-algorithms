@@ -1,22 +1,22 @@
 package tree
 
-type BinaryTree struct {
-	Root *Node
+type StringBinaryTree struct {
+	Root *StringNode
 }
 
-type Node struct {
+type StringNode struct {
 	Value string
-	Left  *Node
-	Right *Node
+	Left  *StringNode
+	Right *StringNode
 }
 
-func (tree *BinaryTree) Traverse() string {
+func (tree *StringBinaryTree) Traverse() string {
 	if tree.Root == nil {
 		return ""
 	}
 
-	var traverse_inner func(t *Node) string
-	traverse_inner = func(t *Node) string {
+	var traverse_inner func(t *StringNode) string
+	traverse_inner = func(t *StringNode) string {
 		if t == nil {
 			return ""
 		} else if t.Left == nil && t.Right == nil {

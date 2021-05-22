@@ -15,10 +15,10 @@ func TestTreeTraversal_1(t *testing.T) {
 }
 
 func TestTreeTraversal_2(t *testing.T) {
-	leaf_D := tree.Node{
+	leaf_D := tree.StringNode{
 		Value: "D",
 	}
-	tree := tree.BinaryTree{
+	tree := tree.StringBinaryTree{
 		Root: &leaf_D,
 	}
 
@@ -36,78 +36,78 @@ func TestTreeTraversal_3(t *testing.T) {
 	}
 }
 
-func binary_tree_1() *tree.BinaryTree {
+func binary_tree_1() *tree.StringBinaryTree {
 
-	leaf_D := tree.Node{
+	leaf_D := tree.StringNode{
 		Value: "D",
 	}
-	leaf_E := tree.Node{
+	leaf_E := tree.StringNode{
 		Value: "E",
 	}
-	leaf_B := tree.Node{
+	leaf_B := tree.StringNode{
 		Value: "B",
 		Left:  &leaf_D,
 		Right: &leaf_E,
 	}
 
-	leaf_F := tree.Node{
+	leaf_F := tree.StringNode{
 		Value: "F",
 	}
-	leaf_G := tree.Node{
+	leaf_G := tree.StringNode{
 		Value: "G",
 	}
-	leaf_C := tree.Node{
+	leaf_C := tree.StringNode{
 		Value: "C",
 		Left:  &leaf_F,
 		Right: &leaf_G,
 	}
 
-	leaf_A := tree.Node{
+	leaf_A := tree.StringNode{
 		Value: "A",
 		Left:  &leaf_B,
 		Right: &leaf_C,
 	}
-	return &tree.BinaryTree{
+	return &tree.StringBinaryTree{
 		Root: &leaf_A,
 	}
 }
 
-func binary_tree_2() *tree.BinaryTree {
+func binary_tree_2() *tree.StringBinaryTree {
 
-	leaf_Q := tree.Node{
+	leaf_Q := tree.StringNode{
 		Value: "Q",
 	}
-	leaf_D := tree.Node{
+	leaf_D := tree.StringNode{
 		Value: "D",
 		Left:  &leaf_Q,
 	}
-	leaf_E := tree.Node{
+	leaf_E := tree.StringNode{
 		Value: "E",
 	}
-	leaf_B := tree.Node{
+	leaf_B := tree.StringNode{
 		Value: "B",
 		Left:  &leaf_D,
 		Right: &leaf_E,
 	}
 
-	leaf_F := tree.Node{
+	leaf_F := tree.StringNode{
 		Value: "F",
 	}
-	leaf_G := tree.Node{
+	leaf_G := tree.StringNode{
 		Value: "G",
 	}
-	leaf_C := tree.Node{
+	leaf_C := tree.StringNode{
 		Value: "C",
 		Left:  &leaf_F,
 		Right: &leaf_G,
 	}
 
-	leaf_A := tree.Node{
+	leaf_A := tree.StringNode{
 		Value: "A",
 		Left:  &leaf_B,
 		Right: &leaf_C,
 	}
-	return &tree.BinaryTree{
+	return &tree.StringBinaryTree{
 		Root: &leaf_A,
 	}
 }
