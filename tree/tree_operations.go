@@ -190,3 +190,27 @@ func (tree *IntBinaryTree) Max_2() int {
 	}
 	return max_inner(tree.Root)
 }
+
+func (tree *IntBinaryTree) Contains(v int) bool {
+
+	if tree.Root == nil {
+		return false
+	}
+
+	var contains_inner func(t *IntNode) bool
+
+	contains_inner = func(t *IntNode) bool {
+		if t == nil {
+			return false
+		}
+		contains_left := contains_inner(t.Left)
+		contains_right := contains_inner(t.Right)
+
+		if contains_left || contains_right {
+			return true
+		} else {
+			return v == t.Value
+		}
+	}
+	return contains_inner(tree.Root)
+}
