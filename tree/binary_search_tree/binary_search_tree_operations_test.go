@@ -102,6 +102,36 @@ func TestInsert_6(t *testing.T) {
 	}
 }
 
+func TestDelete_1(t *testing.T) {
+	tree := binary_search_tree_1()
+	tree.Delete_1(21)
+
+	output := tree.InOrder_Traversal()
+	if output != "10203040" {
+		t.Fatalf("Expected 10203040 bit received %v", output)
+	}
+}
+
+func TestDelete_2(t *testing.T) {
+	tree := binary_search_tree_1()
+	tree.Delete_1(40)
+
+	output := tree.InOrder_Traversal()
+	if output != "10202130" {
+		t.Fatalf("Expected 10202130 bit received %v", output)
+	}
+}
+
+func TestDelete_3(t *testing.T) {
+	tree := binary_search_tree_1()
+	tree.Delete_1(30)
+
+	output := tree.InOrder_Traversal()
+	if output != "" {
+		t.Fatalf("Expected '' bit received %v", output)
+	}
+}
+
 func binary_search_tree_1() *binarysearchtree.IntBinarySearchTree {
 	node_10 := binarysearchtree.IntNode{
 		Value: 10,

@@ -113,3 +113,32 @@ func (tree *IntBinarySearchTree) Insert_2(element int) {
 	}
 	insert_inner(tree.Root)
 }
+
+func (tree *IntBinarySearchTree) Delete_1(element int) {
+
+	if tree.Root == nil {
+		return
+	}
+	var delete_inner func(*IntNode, *IntNode)
+
+	delete_inner = func(t *IntNode, following *IntNode) {
+		if t == nil {
+			return
+		} else if t.Value == element {
+			if following.Right == t {
+				following.Right = nil
+			} else {
+				following.Left = nil
+			}
+		} else if element > t.Value {
+			delete_inner(t.Right, t)
+		} else if element < t.Value {
+			delete_inner(t.Left, t)
+		}
+	}
+	if tree.Root.Value == element {
+		tree.Root = nil
+	} else {
+		delete_inner(tree.Root, nil)
+	}
+}
