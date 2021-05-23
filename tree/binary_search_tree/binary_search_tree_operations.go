@@ -1,5 +1,7 @@
 package binarysearchtree
 
+import "strconv"
+
 type IntBinarySearchTree struct {
 	Root *IntNode
 }
@@ -28,4 +30,19 @@ func (tree *IntBinarySearchTree) Search(element int) bool {
 		}
 	}
 	return tree_inner(tree.Root)
+}
+
+func (tree *IntBinarySearchTree) InOrder_Traversal() string {
+
+	if tree.Root == nil {
+		return ""
+	}
+	var inorder func(t *IntNode) string
+	inorder = func(t *IntNode) string {
+		if t == nil {
+			return ""
+		}
+		return inorder(t.Left) + strconv.Itoa(t.Value) + inorder(t.Right)
+	}
+	return inorder(tree.Root)
 }

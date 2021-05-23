@@ -33,6 +33,15 @@ func TestSearch_3(t *testing.T) {
 	}
 }
 
+func TestInorderTraversal_1(t *testing.T) {
+	tree := binary_search_tree_1()
+	output := tree.InOrder_Traversal()
+
+	if output != "1020213040" {
+		t.Fatalf("Expected 1020213040 bit received %v", output)
+	}
+}
+
 func binary_search_tree_1() *binarysearchtree.IntBinarySearchTree {
 	node_10 := binarysearchtree.IntNode{
 		Value: 10,
