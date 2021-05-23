@@ -44,7 +44,7 @@ func TestInorderTraversal_1(t *testing.T) {
 
 func TestInsert_1(t *testing.T) {
 	tree := binary_search_tree_1()
-	tree.Insert(41)
+	tree.Insert_1(41)
 
 	output := tree.InOrder_Traversal()
 	if output != "102021304041" {
@@ -54,7 +54,7 @@ func TestInsert_1(t *testing.T) {
 
 func TestInsert_2(t *testing.T) {
 	tree := binary_search_tree_1()
-	tree.Insert(31)
+	tree.Insert_1(31)
 
 	output := tree.InOrder_Traversal()
 	if output != "102021303140" {
@@ -64,7 +64,37 @@ func TestInsert_2(t *testing.T) {
 
 func TestInsert_3(t *testing.T) {
 	tree := binary_search_tree_1()
-	tree.Insert(21)
+	tree.Insert_1(21)
+
+	output := tree.InOrder_Traversal()
+	if output != "1020213040" {
+		t.Fatalf("Expected 1020213040 bit received %v", output)
+	}
+}
+
+func TestInsert_4(t *testing.T) {
+	tree := binary_search_tree_1()
+	tree.Insert_2(41)
+
+	output := tree.InOrder_Traversal()
+	if output != "102021304041" {
+		t.Fatalf("Expected 102021304041 bit received %v", output)
+	}
+}
+
+func TestInsert_5(t *testing.T) {
+	tree := binary_search_tree_1()
+	tree.Insert_2(31)
+
+	output := tree.InOrder_Traversal()
+	if output != "102021303140" {
+		t.Fatalf("Expected 102021303140 bit received %v", output)
+	}
+}
+
+func TestInsert_6(t *testing.T) {
+	tree := binary_search_tree_1()
+	tree.Insert_2(21)
 
 	output := tree.InOrder_Traversal()
 	if output != "1020213040" {

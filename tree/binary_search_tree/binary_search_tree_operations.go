@@ -49,7 +49,7 @@ func (tree *IntBinarySearchTree) InOrder_Traversal() string {
 	return inorder(tree.Root)
 }
 
-func (tree *IntBinarySearchTree) Insert(element int) {
+func (tree *IntBinarySearchTree) Insert_1(element int) {
 
 	if tree.Root == nil {
 		return
@@ -87,4 +87,29 @@ func (tree *IntBinarySearchTree) Insert(element int) {
 			target.Left = &node
 		}
 	}
+}
+
+func (tree *IntBinarySearchTree) Insert_2(element int) {
+
+	if tree.Root == nil {
+		return
+	}
+	var insert_inner func(t *IntNode) *IntNode
+	var node *IntNode
+
+	insert_inner = func(t *IntNode) *IntNode {
+		if t == nil {
+			node = &IntNode{
+				Value: element,
+			}
+			return node
+		}
+		if element > t.Value {
+			t.Right = insert_inner(t.Right)
+		} else if element < t.Value {
+			t.Left = insert_inner(t.Left)
+		}
+		return t
+	}
+	insert_inner(tree.Root)
 }
