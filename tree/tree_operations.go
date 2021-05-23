@@ -1,6 +1,8 @@
 package tree
 
-import "strconv"
+import (
+	"strconv"
+)
 
 type StringBinaryTree struct {
 	Root *StringNode
@@ -216,6 +218,13 @@ func (tree *IntBinaryTree) Search(v int) *SearchResult {
 	if tree.Root == nil {
 		return nil
 	}
+	if tree.Root.Value == v {
+		return &SearchResult{
+			Contains: true,
+			Parent:   nil,
+			Node:     tree.Root,
+		}
+	}
 
 	var search_inner func(t *IntNode) *SearchResult
 
@@ -231,10 +240,19 @@ func (tree *IntBinaryTree) Search(v int) *SearchResult {
 		} else if search_right != nil && search_right.Contains {
 			return search_right
 		} else {
-			if v == t.Value {
+			if t.Left != nil && v == t.Left.Value {
 				return &SearchResult{
-					Contains: true,
-					Node:     t,
+					Contains:       true,
+					Parent:         t,
+					Node:           t.Left,
+					MatchDirection: Left,
+				}
+			} else if t.Right != nil && v == t.Right.Value {
+				return &SearchResult{
+					Contains:       true,
+					Parent:         t,
+					Node:           t.Right,
+					MatchDirection: Right,
 				}
 			} else {
 				return nil
@@ -245,9 +263,18 @@ func (tree *IntBinaryTree) Search(v int) *SearchResult {
 }
 
 type SearchResult struct {
-	Contains bool
-	Node     *IntNode
+	Contains       bool
+	Parent         *IntNode
+	Node           *IntNode
+	MatchDirection MatchDirection
 }
+
+type MatchDirection int
+
+const (
+	Left MatchDirection = iota
+	Right
+)
 
 func (tree *IntBinaryTree) Insert_Left_Of(value, element int) {
 
@@ -263,5 +290,24 @@ func (tree *IntBinaryTree) Insert_Left_Of(value, element int) {
 		Value: element,
 		Left:  nil,
 		Right: nil,
+	}
+}
+
+func (tree *IntBinaryTree) Delete(value int) {
+
+	if tree.Root == nil {
+		return
+	}
+	search_result := tree.Search(value)
+	if search_result == nil {
+		return
+	}
+
+	if search_result.Parent == nil {
+		search_result.Node = nil
+	} else if search_result.MatchDirection == Left {
+		search_result.Parent.Left = nil
+	} else {
+		search_result.Parent.Right = nil
 	}
 }

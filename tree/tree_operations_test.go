@@ -263,6 +263,41 @@ func TestInsert_2(t *testing.T) {
 	}
 }
 
+func TestDelete_1(t *testing.T) {
+	leaf_2 := tree.IntNode{
+		Value: 2,
+	}
+	leaf_3 := tree.IntNode{
+		Value: 3,
+	}
+	leaf_1 := tree.IntNode{
+		Value: 1,
+		Left:  &leaf_2,
+		Right: &leaf_3,
+	}
+	tree := tree.IntBinaryTree{
+		Root: &leaf_1,
+	}
+	tree.Delete(2)
+
+	output := tree.Traverse()
+
+	if output != "13" {
+		t.Fatalf("Expected 13, received %v", output)
+	}
+}
+
+func TestDelete_2(t *testing.T) {
+	tree := binary_tree_3()
+	tree.Delete(2)
+
+	output := tree.Traverse()
+
+	if output != "1637" {
+		t.Fatalf("Expected 1637, received %v", output)
+	}
+}
+
 func binary_tree_1() *tree.StringBinaryTree {
 
 	leaf_D := tree.StringNode{
