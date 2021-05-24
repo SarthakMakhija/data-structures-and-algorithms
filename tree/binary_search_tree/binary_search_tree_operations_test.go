@@ -102,36 +102,6 @@ func TestInsert_6(t *testing.T) {
 	}
 }
 
-func TestDelete_1(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Delete_1(21)
-
-	output := tree.InOrder_Traversal()
-	if output != "10203040" {
-		t.Fatalf("Expected 10203040 bit received %v", output)
-	}
-}
-
-func TestDelete_2(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Delete_1(40)
-
-	output := tree.InOrder_Traversal()
-	if output != "10202130" {
-		t.Fatalf("Expected 10202130 bit received %v", output)
-	}
-}
-
-func TestDelete_3(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Delete_1(30)
-
-	output := tree.InOrder_Traversal()
-	if output != "" {
-		t.Fatalf("Expected '' bit received %v", output)
-	}
-}
-
 func binary_search_tree_1() *binarysearchtree.IntBinarySearchTree {
 	node_10 := binarysearchtree.IntNode{
 		Value: 10,
@@ -146,6 +116,66 @@ func binary_search_tree_1() *binarysearchtree.IntBinarySearchTree {
 	}
 	node_40 := binarysearchtree.IntNode{
 		Value: 40,
+	}
+
+	node_30 := binarysearchtree.IntNode{
+		Value: 30,
+		Left:  &node_20,
+		Right: &node_40,
+	}
+	return &binarysearchtree.IntBinarySearchTree{
+		Root: &node_30,
+	}
+}
+
+func binary_search_tree_2() *binarysearchtree.IntBinarySearchTree {
+	node_10 := binarysearchtree.IntNode{
+		Value: 10,
+	}
+	node_21 := binarysearchtree.IntNode{
+		Value: 21,
+	}
+	node_20 := binarysearchtree.IntNode{
+		Value: 20,
+		Left:  &node_10,
+		Right: &node_21,
+	}
+	node_39 := binarysearchtree.IntNode{
+		Value: 39,
+	}
+	node_40 := binarysearchtree.IntNode{
+		Value: 40,
+		Left:  &node_39,
+	}
+
+	node_30 := binarysearchtree.IntNode{
+		Value: 30,
+		Left:  &node_20,
+		Right: &node_40,
+	}
+	return &binarysearchtree.IntBinarySearchTree{
+		Root: &node_30,
+	}
+}
+
+func binary_search_tree_3() *binarysearchtree.IntBinarySearchTree {
+	node_10 := binarysearchtree.IntNode{
+		Value: 10,
+	}
+	node_21 := binarysearchtree.IntNode{
+		Value: 21,
+	}
+	node_20 := binarysearchtree.IntNode{
+		Value: 20,
+		Left:  &node_10,
+		Right: &node_21,
+	}
+	node_41 := binarysearchtree.IntNode{
+		Value: 41,
+	}
+	node_40 := binarysearchtree.IntNode{
+		Value: 40,
+		Right: &node_41,
 	}
 
 	node_30 := binarysearchtree.IntNode{
