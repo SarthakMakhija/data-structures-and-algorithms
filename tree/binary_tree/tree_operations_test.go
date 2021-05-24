@@ -406,6 +406,51 @@ func TestEvaluatePostfix_4(t *testing.T) {
 	}
 }
 
+func TestKthElement_1(t *testing.T) {
+	//Assume there is a linked list which will be converted to a tree represented below
+	tree := binary_tree_5()
+	output := tree.K_element(11)
+	if output != 105 {
+		t.Fatalf("Expected 105, received %v", output)
+	}
+}
+
+func TestKthElement_2(t *testing.T) {
+	//Assume there is a linked list which will be converted to a tree represented below
+	tree := binary_tree_5()
+	output := tree.K_element(1)
+	if output != 1 {
+		t.Fatalf("Expected 1, received %v", output)
+	}
+}
+
+func TestKthElement_3(t *testing.T) {
+	//Assume there is a linked list which will be converted to a tree represented below
+	tree := binary_tree_5()
+	output := tree.K_element(9)
+	if output != 90 {
+		t.Fatalf("Expected 90, received %v", output)
+	}
+}
+
+func TestKthElement_4(t *testing.T) {
+	//Assume there is a linked list which will be converted to a tree represented below
+	tree := binary_tree_5()
+	output := tree.K_element(2)
+	if output != 20 {
+		t.Fatalf("Expected 20, received %v", output)
+	}
+}
+
+func TestKthElement_5(t *testing.T) {
+	//Assume there is a linked list which will be converted to a tree represented below
+	tree := binary_tree_5()
+	output := tree.K_element(5)
+	if output != 15 {
+		t.Fatalf("Expected 15, received %v", output)
+	}
+}
+
 func binary_tree_1() *tree.StringBinaryTree {
 
 	leaf_D := tree.StringNode{
@@ -563,5 +608,59 @@ func binary_tree_4() *tree.IntBinaryTree {
 	}
 	return &tree.IntBinaryTree{
 		Root: &leaf_1,
+	}
+}
+
+func binary_tree_5() *tree.IntBinaryTree {
+	leaf_80 := tree.IntNode{
+		Value: 80,
+	}
+	leaf_90 := tree.IntNode{
+		Value: 90,
+	}
+	node_60 := tree.IntNode{
+		Value: 60,
+		Left:  &leaf_80,
+		Right: &leaf_90,
+	}
+	leaf_95 := tree.IntNode{
+		Value: 95,
+	}
+	leaf_105 := tree.IntNode{
+		Value: 105,
+	}
+	node_15 := tree.IntNode{
+		Value: 15,
+		Left:  &leaf_95,
+		Right: &leaf_105,
+	}
+	node_20 := tree.IntNode{
+		Value: 20,
+		Left:  &node_60,
+		Right: &node_15,
+	}
+	leaf_58 := tree.IntNode{
+		Value: 58,
+	}
+	leaf_71 := tree.IntNode{
+		Value: 71,
+		Left:  &leaf_58,
+	}
+	leaf_68 := tree.IntNode{
+		Value: 68,
+	}
+	node_45 := tree.IntNode{
+		Value: 45,
+		Left:  &leaf_71,
+		Right: &leaf_68,
+	}
+	root := tree.IntNode{
+		Value: 1,
+		Left:  &node_20,
+		Right: &node_45,
+	}
+
+	return &tree.IntBinaryTree{
+		Root: &root,
 	}
 }

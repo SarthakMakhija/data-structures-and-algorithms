@@ -2,6 +2,7 @@ package binarytree
 
 import (
 	"errors"
+	"math"
 	"strconv"
 )
 
@@ -343,4 +344,32 @@ func (tree *StringBinaryTree) Evaluate_Postfix() (int, error) {
 		}
 	}
 	return evaluate_inner(tree.Root)
+}
+
+//assume a linked list is converted to a binary tree and we need to find the kth element
+func (tree *IntBinaryTree) K_element(position int) int {
+
+	var node_positions []int
+	var height int = int(math.Floor(math.Log2(float64(position)))) + 1
+
+	var node_position int = position - int(math.Pow(float64(2), float64(height-1))) + 1
+	node_positions = append(node_positions, node_position)
+
+	for height != 1 {
+		height = height - 1
+		node_position = int(math.Ceil(float64(node_position) / float64(2)))
+		node_positions = append(node_positions, node_position)
+	}
+
+	head := tree.Root
+	for index := len(node_positions) - 2; index >= 0; index-- {
+		position_to_visit := node_positions[index]
+
+		if math.Mod(float64(position_to_visit), float64(2)) == 0 {
+			head = head.Right
+		} else {
+			head = head.Left
+		}
+	}
+	return head.Value
 }
