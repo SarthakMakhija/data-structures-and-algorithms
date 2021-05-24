@@ -1,6 +1,7 @@
 package binarytree
 
 import (
+	"errors"
 	"strconv"
 )
 
@@ -310,4 +311,36 @@ func (tree *IntBinaryTree) Delete(value int) {
 	} else {
 		search_result.Parent.Right = nil
 	}
+}
+
+func (tree *StringBinaryTree) Evaluate_Postfix() (int, error) {
+	if tree.Root == nil {
+		return -1, errors.New("EMPTY EXPRESSION")
+	}
+
+	var evaluate_inner func(*StringNode) (int, error)
+	evaluate_inner = func(t *StringNode) (int, error) {
+
+		if t.Left == nil && t.Right == nil {
+			return strconv.Atoi(t.Value)
+		} else {
+			left_operand, _ := evaluate_inner(t.Left)
+			operator := t.Value
+			right_operand, _ := evaluate_inner(t.Right)
+
+			switch operator {
+			case "+":
+				return left_operand + right_operand, nil
+			case "*":
+				return left_operand * right_operand, nil
+			case "-":
+				return left_operand - right_operand, nil
+			case "/":
+				return left_operand / right_operand, nil
+			default:
+				return -1, errors.New("UNSUPPORTED OPERATOR")
+			}
+		}
+	}
+	return evaluate_inner(tree.Root)
 }

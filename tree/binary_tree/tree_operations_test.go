@@ -298,6 +298,114 @@ func TestDelete_2(t *testing.T) {
 	}
 }
 
+func TestEvaluatePostfix_1(t *testing.T) {
+	leaf_6 := tree.StringNode{
+		Value: "6",
+	}
+	leaf_4 := tree.StringNode{
+		Value: "4",
+	}
+	sum := tree.StringNode{
+		Value: "+",
+		Left:  &leaf_6,
+		Right: &leaf_4,
+	}
+	tree := tree.StringBinaryTree{
+		Root: &sum,
+	}
+	result, _ := tree.Evaluate_Postfix()
+	if result != 10 {
+		t.Fatalf("Expected 10, received %v", result)
+	}
+}
+
+func TestEvaluatePostfix_2(t *testing.T) {
+	leaf_2 := tree.StringNode{
+		Value: "2",
+	}
+	leaf_6 := tree.StringNode{
+		Value: "6",
+	}
+	leaf_4 := tree.StringNode{
+		Value: "4",
+	}
+	sum := tree.StringNode{
+		Value: "+",
+		Left:  &leaf_6,
+		Right: &leaf_4,
+	}
+	multiply := tree.StringNode{
+		Value: "*",
+		Left:  &leaf_2,
+		Right: &sum,
+	}
+	tree := tree.StringBinaryTree{
+		Root: &multiply,
+	}
+	result, _ := tree.Evaluate_Postfix()
+	if result != 20 {
+		t.Fatalf("Expected 20, received %v", result)
+	}
+}
+
+func TestEvaluatePostfix_3(t *testing.T) {
+	leaf_2 := tree.StringNode{
+		Value: "2",
+	}
+	leaf_6 := tree.StringNode{
+		Value: "6",
+	}
+	leaf_4 := tree.StringNode{
+		Value: "4",
+	}
+	sum := tree.StringNode{
+		Value: "+",
+		Left:  &leaf_6,
+		Right: &leaf_4,
+	}
+	minus := tree.StringNode{
+		Value: "-",
+		Left:  &leaf_2,
+		Right: &sum,
+	}
+	tree := tree.StringBinaryTree{
+		Root: &minus,
+	}
+	result, _ := tree.Evaluate_Postfix()
+	if result != -8 {
+		t.Fatalf("Expected -8, received %v", result)
+	}
+}
+
+func TestEvaluatePostfix_4(t *testing.T) {
+	leaf_40 := tree.StringNode{
+		Value: "40",
+	}
+	leaf_6 := tree.StringNode{
+		Value: "6",
+	}
+	leaf_4 := tree.StringNode{
+		Value: "4",
+	}
+	sum := tree.StringNode{
+		Value: "+",
+		Left:  &leaf_6,
+		Right: &leaf_4,
+	}
+	divide := tree.StringNode{
+		Value: "/",
+		Left:  &leaf_40,
+		Right: &sum,
+	}
+	tree := tree.StringBinaryTree{
+		Root: &divide,
+	}
+	result, _ := tree.Evaluate_Postfix()
+	if result != 4 {
+		t.Fatalf("Expected 4, received %v", result)
+	}
+}
+
 func binary_tree_1() *tree.StringBinaryTree {
 
 	leaf_D := tree.StringNode{
