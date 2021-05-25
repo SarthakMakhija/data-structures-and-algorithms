@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"example.com/data-structures-and-algorithms/recursion"
+	"github.com/SarthakMakhija/data-structures-and-algorithms/recursion"
 )
 
 func TestSearchElementFound(t *testing.T) {

@@ -3,7 +3,7 @@ package stack_test
 import (
 	"testing"
 
-	"example.com/data-structures-and-algorithms/stack"
+	"github.com/SarthakMakhija/data-structures-and-algorithms/stack"
 )
 
 func TestValidParenthesesMatching_1(t *testing.T) {

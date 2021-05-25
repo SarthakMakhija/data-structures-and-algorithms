@@ -3,7 +3,7 @@ package binarytree_test
 import (
 	"testing"
 
-	tree "example.com/data-structures-and-algorithms/tree/binary_tree"
+	tree "github.com/SarthakMakhija/data-structures-and-algorithms/tree/binary_tree"
 )
 
 func TestTreeTraversal_1(t *testing.T) {

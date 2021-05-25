@@ -3,7 +3,7 @@ package linkedlist_test
 import (
 	"testing"
 
-	linkedlist "example.com/data-structures-and-algorithms/linked_list"
+	linkedlist "github.com/SarthakMakhija/data-structures-and-algorithms/linked_list"
 )
 
 func TestElementIsContainedInSearchOptimisedLinkedList(t *testing.T) {

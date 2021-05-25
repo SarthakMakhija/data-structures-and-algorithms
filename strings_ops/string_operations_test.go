@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	stringsops "example.com/data-structures-and-algorithms/strings_ops"
+	stringsops "github.com/SarthakMakhija/data-structures-and-algorithms/strings_ops"
 )
 
 func TestStringDuplicatesGivenThereAreNoDuplicates(t *testing.T) {
