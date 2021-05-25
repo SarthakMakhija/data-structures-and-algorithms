@@ -8,17 +8,12 @@ The key ideas are -
 - Practice DSA problems
 - Learn Golang
 
-Current solutions include -
+Current solutions cover the following areas -
 
-**Recursion**
-- Search an element in a collection
-- Revese a collection
-- Power (x raise to y)
-- Factorial
-- Palindrome
-- Permuatations of a string
+- **Recursion**
+- **Stack**
+- **Binary Tree**
+- **Binary Search Tree**
 
-**Stack**
-- MatchParentheses
-- Evaluate postfix
-- Convert infix to postfix
+One of the other things that I wish to get out of this repository is figure out some real life use-cases of various data structures. 
+Eg; AVL trees might be used in some databases for lookup operations. Figure that out and add it here.
