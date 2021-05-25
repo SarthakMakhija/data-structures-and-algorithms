@@ -29,7 +29,7 @@ func TestSearchElementNotFound(t *testing.T) {
 
 func TestReverseEmptySlice(t *testing.T) {
 
-	elements := []int{}
+	var elements []int
 	reversed := recursion.Reverse(elements)
 
 	if len(reversed) != 0 {
@@ -39,7 +39,7 @@ func TestReverseEmptySlice(t *testing.T) {
 
 func TestReverseSlice(t *testing.T) {
 
-	elements := []int{1, 2, 3}
+	var elements = []int{1, 2, 3}
 	reversed := recursion.Reverse(elements)
 	var expected = []int{3, 2, 1}
 
@@ -50,7 +50,7 @@ func TestReverseSlice(t *testing.T) {
 
 func TestPowerWithYAsZeroUsingImplementation1(t *testing.T) {
 
-	powered := recursion.Power_1(2, 0)
+	powered := recursion.Power1(2, 0)
 	if powered != 1 {
 		t.Fatalf(`Expected 1 but found %v`, powered)
 	}
@@ -58,7 +58,7 @@ func TestPowerWithYAsZeroUsingImplementation1(t *testing.T) {
 
 func TestPowerWithYAs3UsingImplementation1(t *testing.T) {
 
-	powered := recursion.Power_1(2, 3)
+	powered := recursion.Power1(2, 3)
 	if powered != 8 {
 		t.Fatalf(`Expected 8 but found %v`, powered)
 	}
@@ -66,7 +66,7 @@ func TestPowerWithYAs3UsingImplementation1(t *testing.T) {
 
 func TestPowerWithYAs10UsingImplementation2(t *testing.T) {
 
-	powered := recursion.Power_2(2, 10)
+	powered := recursion.Power2(2, 10)
 	if powered != 1024 {
 		t.Fatalf(`Expected 1024 but found %v`, powered)
 	}
@@ -74,7 +74,7 @@ func TestPowerWithYAs10UsingImplementation2(t *testing.T) {
 
 func TestPowerWithYAsZeroUsingImplementation2(t *testing.T) {
 
-	powered := recursion.Power_2(2, 0)
+	powered := recursion.Power2(2, 0)
 	if powered != 1 {
 		t.Fatalf(`Expected 1 but found %v`, powered)
 	}
@@ -82,7 +82,7 @@ func TestPowerWithYAsZeroUsingImplementation2(t *testing.T) {
 
 func TestPowerWithYAs3UsingImplementation2(t *testing.T) {
 
-	powered := recursion.Power_2(2, 3)
+	powered := recursion.Power2(2, 3)
 	if powered != 8 {
 		t.Fatalf(`Expected 8 but found %v`, powered)
 	}
@@ -90,7 +90,7 @@ func TestPowerWithYAs3UsingImplementation2(t *testing.T) {
 
 func TestPowerWithYAs10UsingImplementation1(t *testing.T) {
 
-	powered := recursion.Power_1(2, 10)
+	powered := recursion.Power1(2, 10)
 	if powered != 1024 {
 		t.Fatalf(`Expected 1024 but found %v`, powered)
 	}
@@ -114,65 +114,65 @@ func TestFactorialNonZero(t *testing.T) {
 
 func TestIsPalindromeWithEmptyStringUsingImplementation1(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_1("")
-	if is_palindrome != false {
-		t.Fatalf(`Expected false but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome1("")
+	if isPalindrome != false {
+		t.Fatalf(`Expected false but found %v`, isPalindrome)
 	}
 }
 
 func TestIsPalindromeWithOddCharactersUsingImplementation1(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_1("MALAYALAM")
-	if is_palindrome != true {
-		t.Fatalf(`Expected true but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome1("MALAYALAM")
+	if isPalindrome != true {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
 	}
 }
 
 func TestIsPalindromeWithEvenCharactersUsingImplementation1(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_1("ABBA")
-	if is_palindrome != true {
-		t.Fatalf(`Expected true but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome1("ABBA")
+	if isPalindrome != true {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
 	}
 }
 
 func TestIsNotPalindromeWithEvenCharactersUsingImplementation1(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_1("ABCFBA")
-	if is_palindrome != false {
-		t.Fatalf(`Expected true but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome1("ABCFBA")
+	if isPalindrome != false {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
 	}
 }
 
 func TestIsPalindromeWithEmptyStringUsingImplementation2(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_2("")
-	if is_palindrome != false {
-		t.Fatalf(`Expected false but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome2("")
+	if isPalindrome != false {
+		t.Fatalf(`Expected false but found %v`, isPalindrome)
 	}
 }
 
 func TestIsPalindromeWithOddCharactersUsingImplementation2(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_2("MALAYALAM")
-	if is_palindrome != true {
-		t.Fatalf(`Expected true but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome2("MALAYALAM")
+	if isPalindrome != true {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
 	}
 }
 
 func TestIsPalindromeWithEvenCharactersUsingImplementation2(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_2("ABBA")
-	if is_palindrome != true {
-		t.Fatalf(`Expected true but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome2("ABBA")
+	if isPalindrome != true {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
 	}
 }
 
 func TestIsNotPalindromeWithEvenCharactersUsingImplementation2(t *testing.T) {
 
-	is_palindrome := recursion.Is_Palindrome_2("ABCFBA")
-	if is_palindrome != false {
-		t.Fatalf(`Expected true but found %v`, is_palindrome)
+	isPalindrome := recursion.IsPalindrome2("ABCFBA")
+	if isPalindrome != false {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
 	}
 }
 

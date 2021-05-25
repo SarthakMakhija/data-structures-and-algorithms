@@ -16,37 +16,37 @@ func Search(elements []int, element int) bool {
 }
 
 func Reverse(elements []int) []int {
-	var reverse_internal func(int) []int
-	var reversed_slice []int
+	var reverseInternal func(int) []int
+	var reversedSlice []int
 
-	reverse_internal = func(index int) []int {
+	reverseInternal = func(index int) []int {
 		if index < len(elements) {
-			reverse_internal(index + 1)
-			reversed_slice = append(reversed_slice, elements[index])
+			reverseInternal(index + 1)
+			reversedSlice = append(reversedSlice, elements[index])
 		}
-		return reversed_slice
+		return reversedSlice
 	}
-	return reverse_internal(0)
+	return reverseInternal(0)
 }
 
-func Power_1(x int, y int) int {
+func Power1(x int, y int) int {
 	initial := 1
-	var power_inner func(int, int) int
+	var powerInner func(int, int) int
 
-	power_inner = func(output, y int) int {
+	powerInner = func(output, y int) int {
 		if y == 0 {
 			return output * 1
 		}
-		return power_inner(output*x, y-1)
+		return powerInner(output*x, y-1)
 	}
-	return power_inner(initial, y)
+	return powerInner(initial, y)
 }
 
-func Power_2(x int, y int) int {
+func Power2(x int, y int) int {
 	if y == 0 {
 		return 1
 	}
-	return Power_2(x, y-1) * x
+	return Power2(x, y-1) * x
 }
 
 func Factorial(n int) int {
@@ -56,76 +56,76 @@ func Factorial(n int) int {
 	return n * Factorial(n-1)
 }
 
-func Is_Palindrome_1(str string) bool {
+func IsPalindrome1(str string) bool {
 	if len(str) == 0 {
 		return false
 	}
 
-	var palindrome_inner func(int) bool
-	var first_half []rune
-	var other_half string
+	var palindromeInner func(int) bool
+	var firstHalf []rune
+	var otherHalf string
 
 	mid := len(str) / 2
-	is_even_length := math.Mod(float64(len(str)), 2) == 0
+	isEvenLength := math.Mod(float64(len(str)), 2) == 0
 
-	if is_even_length {
-		other_half = string(str[mid:])
+	if isEvenLength {
+		otherHalf = str[mid:]
 	} else {
-		other_half = string(str[mid+1:])
+		otherHalf = str[mid+1:]
 	}
 
-	palindrome_inner = func(index int) bool {
+	palindromeInner = func(index int) bool {
 		if index < mid {
-			palindrome_inner(index + 1)
-			first_half = append(first_half, rune(str[index]))
+			palindromeInner(index + 1)
+			firstHalf = append(firstHalf, rune(str[index]))
 		}
-		return reflect.DeepEqual(string(first_half), other_half)
+		return reflect.DeepEqual(string(firstHalf), otherHalf)
 	}
-	return palindrome_inner(0)
+	return palindromeInner(0)
 }
 
-func Is_Palindrome_2(str string) bool {
+func IsPalindrome2(str string) bool {
 	if len(str) == 0 {
 		return false
 	}
 
-	var palindrome_inner func(int) bool
-	var is_palindrome bool = false
+	var palindromeInner func(int) bool
+	var isPalindrome bool = false
 
 	length := len(str)
 	mid := length / 2
 
-	palindrome_inner = func(index int) bool {
+	palindromeInner = func(index int) bool {
 		if index < mid {
 			if str[index] == str[length-1-index] {
-				is_palindrome = true
-				return palindrome_inner(index + 1)
+				isPalindrome = true
+				return palindromeInner(index + 1)
 			} else {
-				is_palindrome = false
-				return is_palindrome
+				isPalindrome = false
+				return isPalindrome
 			}
 		}
-		return is_palindrome
+		return isPalindrome
 	}
-	return palindrome_inner(0)
+	return palindromeInner(0)
 }
 
 func Permutate(str string) []string {
 
-	var permutate_inner func(string) []string
+	var permutateInner func(string) []string
 
-	swap := func(str string, first_index, second_index int) string {
+	swap := func(str string, firstIndex, secondIndex int) string {
 
 		characters := []rune(str)
 		var copied = make([]rune, len(characters))
 
 		copy(copied, characters)
 
-		copied[first_index], copied[second_index] = copied[second_index], copied[first_index]
+		copied[firstIndex], copied[secondIndex] = copied[secondIndex], copied[firstIndex]
 		return string(copied)
 	}
 
-	permutate_inner = func(partial string) []string {
+	permutateInner = func(partial string) []string {
 		if len(partial) == 1 {
 			return []string{partial}
 		}
@@ -133,7 +133,7 @@ func Permutate(str string) []string {
 			swapped := swap(partial, 0, 1)
 			return []string{partial, swapped}
 		} else {
-			var final_permutations []string
+			var finalPermutations []string
 			var swapped string
 
 			for count := 0; count < len(partial); count++ {
@@ -142,13 +142,13 @@ func Permutate(str string) []string {
 				} else {
 					swapped = swap(partial, 0, count)
 				}
-				permutations := permutate_inner(swapped[1:])
+				permutations := permutateInner(swapped[1:])
 				for p := 0; p < len(permutations); p++ {
-					final_permutations = append(final_permutations, string(swapped[0])+permutations[p])
+					finalPermutations = append(finalPermutations, string(swapped[0])+permutations[p])
 				}
 			}
-			return final_permutations
+			return finalPermutations
 		}
 	}
-	return permutate_inner(str)
+	return permutateInner(str)
 }
