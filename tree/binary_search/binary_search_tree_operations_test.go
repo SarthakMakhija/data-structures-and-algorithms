@@ -3,7 +3,7 @@ package binarysearchtree_test
 import (
 	"testing"
 
-	binarysearchtree "github.com/SarthakMakhija/data-structures-and-algorithms/tree/binary_search_tree"
+	binarysearchtree "github.com/SarthakMakhija/data-structures-and-algorithms/tree/binary_search"
 )
 
 func TestSearch_1(t *testing.T) {
