@@ -33,7 +33,7 @@ func (l *LinkedList) Add(element int) *Node {
 	return &node
 }
 
-func (l *LinkedList) Add_With_Next(element int, next *Node) {
+func (l *LinkedList) AddWithNext(element int, next *Node) {
 
 	node := Node{
 		value:   element,
@@ -49,7 +49,7 @@ func (l *LinkedList) Add_With_Next(element int, next *Node) {
 	}
 }
 
-func (l *LinkedList) Add_Sorted(element int) {
+func (l *LinkedList) AddSorted(element int) {
 
 	node := Node{
 		value:   element,
@@ -87,7 +87,7 @@ func (l *LinkedList) Add_Sorted(element int) {
 	}
 }
 
-func (l *LinkedList) All_As_String() string {
+func (l *LinkedList) AllAsString() string {
 	if l.first == nil {
 		return ""
 	}
@@ -111,20 +111,20 @@ func (l *LinkedList) Max() (int, error) {
 		return 0, errors.New("EMPTY LIST, NO MAXIMUM")
 	}
 
-	var max_inner func(*Node) int
+	var maxInner func(*Node) int
 	var max int = l.first.value
 
-	max_inner = func(p *Node) int {
+	maxInner = func(p *Node) int {
 		if p.value > max {
 			max = p.value
 		}
 		if p.next == nil {
 			return max
 		} else {
-			return max_inner(p.next)
+			return maxInner(p.next)
 		}
 	}
-	return max_inner(l.first), nil
+	return maxInner(l.first), nil
 }
 
 func (l *LinkedList) Contains(element int) bool {
@@ -132,22 +132,22 @@ func (l *LinkedList) Contains(element int) bool {
 		return false
 	}
 
-	var contains_inner func(*Node) bool
+	var containsInner func(*Node) bool
 
-	contains_inner = func(p *Node) bool {
+	containsInner = func(p *Node) bool {
 		if p == nil {
 			return false
 		}
 		if p.value == element {
 			return true
 		} else {
-			return contains_inner(p.next)
+			return containsInner(p.next)
 		}
 	}
-	return contains_inner(l.first)
+	return containsInner(l.first)
 }
 
-func (l *LinkedList) Contains_Cycle() bool {
+func (l *LinkedList) ContainsCycle() bool {
 
 	if l.first == nil {
 		return false
@@ -176,13 +176,13 @@ func (l *LinkedList) Reverse() *LinkedList {
 	}
 
 	var list LinkedList = LinkedList{}
-	var reverse_inner func(head *Node)
+	var reverseInner func(head *Node)
 
-	reverse_inner = func(head *Node) {
+	reverseInner = func(head *Node) {
 		if head == nil {
 			return
 		} else {
-			reverse_inner(head.next)
+			reverseInner(head.next)
 			node := Node{
 				value:   head.value,
 				visited: false,
@@ -197,7 +197,7 @@ func (l *LinkedList) Reverse() *LinkedList {
 			}
 		}
 	}
-	reverse_inner(l.first)
+	reverseInner(l.first)
 	return &list
 }
 
@@ -207,25 +207,25 @@ func (l *LinkedList) RemoveDuplicatesFromSorted() {
 		return
 	}
 
-	current_value := l.first.value
+	currentValue := l.first.value
 	previous := l.first
 
 	for head := l.first.next; head != nil; head = head.next {
 
-		for head.next != nil && head.value == current_value {
+		for head.next != nil && head.value == currentValue {
 			head = head.next
 		}
-		if head.value == current_value {
+		if head.value == currentValue {
 			previous.next = head.next
 		} else {
 			previous.next = head
 		}
 		previous = previous.next
-		current_value = head.value
+		currentValue = head.value
 	}
 }
 
-func (l *LinkedList) Mid_Value() int {
+func (l *LinkedList) MidValue() int {
 
 	if l.first == nil {
 		return 0
@@ -246,6 +246,7 @@ func (l *LinkedList) Mid_Value() int {
 	return follower.value
 }
 
+//Intersection
 /**
 this implementation relies on an additional property visited to be presented in the list
 other option is iterate through both the lists one by one and collect all the elements
@@ -257,12 +258,12 @@ which means once we have created 2 stacks, if there is an intersection we can co
 and keep repeating it until there is no match
 This means extra space and extra iterations
 **/
-func Intersection(first_list *LinkedList, second_list *LinkedList) int {
+func Intersection(firstList *LinkedList, secondList *LinkedList) int {
 
-	head1 := first_list.first
-	head2 := second_list.first
+	head1 := firstList.first
+	head2 := secondList.first
 
-	var intersection_value int = -1
+	var intersectionValue = -1
 
 	for head1 != nil {
 		head1.visited = true
@@ -270,12 +271,12 @@ func Intersection(first_list *LinkedList, second_list *LinkedList) int {
 	}
 	for head2 != nil {
 		if head2.visited {
-			intersection_value = head2.value
+			intersectionValue = head2.value
 			break
 		}
 		head2.visited = true
 		head2 = head2.next
 	}
 
-	return intersection_value
+	return intersectionValue
 }
