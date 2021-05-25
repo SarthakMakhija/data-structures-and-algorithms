@@ -20,7 +20,7 @@ func MatchParentheses(expression string) bool {
 		}
 	}
 
-	if stack.stack_top == 0 {
+	if stack.stackTop == 0 {
 		return true
 	} else {
 		return false
@@ -60,16 +60,17 @@ func PostFixEvaluate(expression string) (int, error) {
 	return stack.stack[0], nil
 }
 
+//InFixToPostFix
 //No parentheses, no minus
 func InFixToPostFix(expression string) string {
 	if len(expression) == 0 {
 		return ""
 	}
 
-	operand_stack := StringStack{}
-	operator_stack := StringStack{}
+	operandStack := StringStack{}
+	operatorStack := StringStack{}
 
-	operator_precedence := func(operator string, other string) OperatorPrecedence {
+	operatorPrecedence := func(operator string, other string) OperatorPrecedence {
 		if operator == other {
 			return Eq
 		}
@@ -91,92 +92,92 @@ func InFixToPostFix(expression string) string {
 	for index := 0; index < len(expression); index++ {
 		element := string(expression[index])
 		if _, err := strconv.Atoi(element); err == nil {
-			operand_stack.push(element)
+			operandStack.push(element)
 		}
 		if element == "+" || element == "*" || element == "/" {
-			top_operator := operator_stack.top()
+			top_operator := operatorStack.top()
 
 			if len(top_operator) == 0 {
-				operator_stack.push(element)
+				operatorStack.push(element)
 			} else {
-				if operator_precedence(element, top_operator) == Eq || operator_precedence(element, top_operator) == Lt {
-					operand2 := operand_stack.pop()
-					operand1 := operand_stack.pop()
-					operator := operator_stack.pop()
+				if operatorPrecedence(element, top_operator) == Eq || operatorPrecedence(element, top_operator) == Lt {
+					operand2 := operandStack.pop()
+					operand1 := operandStack.pop()
+					operator := operatorStack.pop()
 
-					operand_stack.push(operand1 + operand2 + operator)
-					operator_stack.push(element)
+					operandStack.push(operand1 + operand2 + operator)
+					operatorStack.push(element)
 				}
-				if operator_precedence(element, top_operator) == Gt {
+				if operatorPrecedence(element, top_operator) == Gt {
 
-					next_element := string(expression[index+1])
-					operator_stack.push(element)
-					operand_stack.push(next_element)
+					nextElement := string(expression[index+1])
+					operatorStack.push(element)
+					operandStack.push(nextElement)
 
-					operand2 := operand_stack.pop()
-					operand1 := operand_stack.pop()
-					operator := operator_stack.pop()
+					operand2 := operandStack.pop()
+					operand1 := operandStack.pop()
+					operator := operatorStack.pop()
 
-					operand_stack.push(operand1 + operand2 + operator)
+					operandStack.push(operand1 + operand2 + operator)
 					index = index + 1
 				}
 			}
 		}
 	}
 
-	operand2 := operand_stack.pop()
-	operand1 := operand_stack.pop()
-	operator := operator_stack.pop()
+	operand2 := operandStack.pop()
+	operand1 := operandStack.pop()
+	operator := operatorStack.pop()
 
 	return operand1 + operand2 + operator
 }
 
 type IntStack struct {
-	stack     []int
-	stack_top int
+	stack    []int
+	stackTop int
 }
 
 func (s *IntStack) push(element int) {
 	s.stack = append(s.stack, element)
-	s.stack_top = s.stack_top + 1
+	s.stackTop = s.stackTop + 1
 }
 
 func (s *IntStack) pop() int {
-	s.stack_top = s.stack_top - 1
-	if s.stack_top < 0 {
+	s.stackTop = s.stackTop - 1
+	if s.stackTop < 0 {
 		return -1
 	}
-	top := s.stack[s.stack_top]
-	s.stack = s.stack[0:s.stack_top]
+	top := s.stack[s.stackTop]
+	s.stack = s.stack[0:s.stackTop]
 	return top
 }
 
 type StringStack struct {
-	stack     []string
-	stack_top int
+	stack    []string
+	stackTop int
 }
 
 func (s *StringStack) push(element string) {
 	s.stack = append(s.stack, element)
-	s.stack_top = s.stack_top + 1
+	s.stackTop = s.stackTop + 1
 }
 
 func (s *StringStack) pop() string {
-	s.stack_top = s.stack_top - 1
-	if s.stack_top < 0 {
+	s.stackTop = s.stackTop - 1
+	if s.stackTop < 0 {
 		return ""
 	}
-	top := s.stack[s.stack_top]
-	s.stack = s.stack[0:s.stack_top]
+	top := s.stack[s.stackTop]
+	s.stack = s.stack[0:s.stackTop]
 	return top
 }
 
 func (s *StringStack) top() string {
-	stack_top := s.stack_top - 1
-	if stack_top < 0 {
+	stackTop := s.stackTop - 1
+	if stackTop < 0 {
 		return ""
 	}
-	return s.stack[stack_top]
+	return s.stack[stackTop]
 }
 
 type OperatorPrecedence int
