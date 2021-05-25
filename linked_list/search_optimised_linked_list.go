@@ -32,37 +32,37 @@ func (l *SearchOptimisedLinkedList) Add(element string) {
 		next:  nil,
 	}
 
-	bucket_index := int(math.Mod(float64(hash(element)), 10))
-	if l.buckets[bucket_index].first == nil {
+	bucketIndex := int(math.Mod(float64(hash(element)), 10))
+	if l.buckets[bucketIndex].first == nil {
 		bucket := SearchOptimisedBucket{
 			first:   &node,
 			current: &node,
 		}
-		l.buckets[bucket_index] = bucket
+		l.buckets[bucketIndex] = bucket
 	} else {
-		l.buckets[bucket_index].current.next = &node
-		l.buckets[bucket_index].current = &node
+		l.buckets[bucketIndex].current.next = &node
+		l.buckets[bucketIndex].current = &node
 	}
 }
 
 func (l *SearchOptimisedLinkedList) Contains(element string) bool {
 
-	bucket_index := int(math.Mod(float64(hash(element)), 10))
-	target_bucket := l.buckets[bucket_index]
+	bucketIndex := int(math.Mod(float64(hash(element)), 10))
+	targetBucket := l.buckets[bucketIndex]
 
-	var contains_inner func(*SearchOptimisedNode) bool
+	var containsInner func(*SearchOptimisedNode) bool
 
-	contains_inner = func(p *SearchOptimisedNode) bool {
+	containsInner = func(p *SearchOptimisedNode) bool {
 		if p == nil {
 			return false
 		}
 		if p.value == element {
 			return true
 		} else {
-			return contains_inner(p.next)
+			return containsInner(p.next)
 		}
 	}
-	return contains_inner(target_bucket.first)
+	return containsInner(targetBucket.first)
 }
 
 func hash(s string) uint32 {
