@@ -17,25 +17,25 @@ func Duplicates(str string) []string {
 		ch    string
 		count int
 	}
-	var occurrences []CharacterOccurrence = make([]CharacterOccurrence, length)
+	var occurrences = make([]CharacterOccurrence, length)
 	var duplicates []string
 
-	is_occurrence_slot_available := func(index int) bool {
+	isOccurrenceSlotAvailable := func(index int) bool {
 		return len(occurrences[index].ch) == 0
 	}
-	add_occurrence := func(ch byte, index int) {
+	addOccurrence := func(ch byte, index int) {
 		occurrences[index] = CharacterOccurrence{
 			ch:    string(ch),
 			count: 1,
 		}
 	}
-	slot_after := func(index int, ch byte) int {
+	slotAfter := func(index int, ch byte) int {
 		existing := occurrences[index]
 		if existing.ch == string(ch) {
 			return index
 		}
 		for count := 0; count < length; count++ {
-			if is_occurrence_slot_available(count) || occurrences[count].ch == string(ch) {
+			if isOccurrenceSlotAvailable(count) || occurrences[count].ch == string(ch) {
 				return count
 			}
 		}
@@ -44,15 +44,15 @@ func Duplicates(str string) []string {
 
 	for index := 0; index < length; index++ {
 		ch := lowercase[index]
-		occurrence_index := int(math.Mod(float64(ch), float64(length)))
+		occurrenceIndex := int(math.Mod(float64(ch), float64(length)))
 
-		if is_occurrence_slot_available(occurrence_index) {
-			add_occurrence(ch, occurrence_index)
+		if isOccurrenceSlotAvailable(occurrenceIndex) {
+			addOccurrence(ch, occurrenceIndex)
 		} else {
-			next_slot := slot_after(occurrence_index, ch)
-			occurrences[next_slot] = CharacterOccurrence{
+			nextSlot := slotAfter(occurrenceIndex, ch)
+			occurrences[nextSlot] = CharacterOccurrence{
 				ch:    string(ch),
-				count: occurrences[next_slot].count + 1,
+				count: occurrences[nextSlot].count + 1,
 			}
 		}
 	}
