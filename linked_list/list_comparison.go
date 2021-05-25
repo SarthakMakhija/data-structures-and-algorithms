@@ -4,6 +4,7 @@ import (
 	"errors"
 )
 
+//Compare
 //Assume lists are of the same size || One of the naive implementations, other than sorting both and comparing
 func Compare(list1 *LinkedList, list2 *LinkedList) bool {
 
@@ -13,48 +14,48 @@ func Compare(list1 *LinkedList, list2 *LinkedList) bool {
 
 	matched := true
 
-	for list1_current := list1.first; list1_current != nil; {
-		v1 := list1_current.value
-		v1_matched := false
+	for list1Current := list1.first; list1Current != nil; {
+		v1 := list1Current.value
+		v1Matched := false
 
-		var v2_matched, v3_matched, v4_matched bool
+		var v2Matched, v3Matched, v4Matched bool
 
-		v2, err := value_of(list1_current, 1)
+		v2, err := valueOf(list1Current, 1)
 		if err == nil {
-			v2_matched = false
+			v2Matched = false
 		} else {
-			v2_matched = true
+			v2Matched = true
 		}
 
-		v3, err := value_of(list1_current, 2)
+		v3, err := valueOf(list1Current, 2)
 		if err == nil {
-			v3_matched = false
+			v3Matched = false
 		} else {
-			v3_matched = true
+			v3Matched = true
 		}
 
-		v4, err := value_of(list1_current, 3)
+		v4, err := valueOf(list1Current, 3)
 		if err == nil {
-			v4_matched = false
+			v4Matched = false
 		} else {
-			v4_matched = true
+			v4Matched = true
 		}
 
-		for list2_current := list2.first; list2_current != nil; list2_current = list2_current.next {
+		for list2Current := list2.first; list2Current != nil; list2Current = list2Current.next {
 
-			if list2_current.value == v1 {
-				v1_matched = true
-			} else if list2_current.value == v2 {
-				v2_matched = true
-			} else if list2_current.value == v3 {
-				v3_matched = true
-			} else if list2_current.value == v4 {
-				v4_matched = true
+			if list2Current.value == v1 {
+				v1Matched = true
+			} else if list2Current.value == v2 {
+				v2Matched = true
+			} else if list2Current.value == v3 {
+				v3Matched = true
+			} else if list2Current.value == v4 {
+				v4Matched = true
 			}
 		}
 
-		if v1_matched && v2_matched && v3_matched && v4_matched {
-			list1_current = advance(list1_current, 4)
+		if v1Matched && v2Matched && v3Matched && v4Matched {
+			list1Current = advance(list1Current, 4)
 		} else {
 			matched = false
 			break
@@ -64,7 +65,7 @@ func Compare(list1 *LinkedList, list2 *LinkedList) bool {
 	return matched
 }
 
-func value_of(head *Node, by int) (int, error) {
+func valueOf(head *Node, by int) (int, error) {
 	node := advance(head, by)
 	if node == nil {
 		return -1, errors.New("NO VALUE POSSIBLE")
