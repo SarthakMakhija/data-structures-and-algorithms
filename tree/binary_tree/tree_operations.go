@@ -31,17 +31,17 @@ func (tree *StringBinaryTree) Traverse() string {
 		return ""
 	}
 
-	var traverse_inner func(t *StringNode) string
-	traverse_inner = func(t *StringNode) string {
+	var traverseInner func(t *StringNode) string
+	traverseInner = func(t *StringNode) string {
 		if t == nil {
 			return ""
 		} else if t.Left == nil && t.Right == nil {
 			return t.Value
 		} else {
-			return traverse_inner(t.Left) + t.Value + traverse_inner(t.Right)
+			return traverseInner(t.Left) + t.Value + traverseInner(t.Right)
 		}
 	}
-	return traverse_inner(tree.Root)
+	return traverseInner(tree.Root)
 }
 
 func (tree *IntBinaryTree) Traverse() string {
@@ -49,17 +49,17 @@ func (tree *IntBinaryTree) Traverse() string {
 		return ""
 	}
 
-	var traverse_inner func(t *IntNode) string
-	traverse_inner = func(t *IntNode) string {
+	var traverseInner func(t *IntNode) string
+	traverseInner = func(t *IntNode) string {
 		if t == nil {
 			return ""
 		} else if t.Left == nil && t.Right == nil {
 			return strconv.Itoa(t.Value)
 		} else {
-			return traverse_inner(t.Left) + strconv.Itoa(t.Value) + traverse_inner(t.Right)
+			return traverseInner(t.Left) + strconv.Itoa(t.Value) + traverseInner(t.Right)
 		}
 	}
-	return traverse_inner(tree.Root)
+	return traverseInner(tree.Root)
 }
 
 func (tree *IntBinaryTree) Sum() int {
@@ -67,109 +67,109 @@ func (tree *IntBinaryTree) Sum() int {
 		return 0
 	}
 
-	var traverse_inner func(t *IntNode) int
-	traverse_inner = func(t *IntNode) int {
+	var traverseInner func(t *IntNode) int
+	traverseInner = func(t *IntNode) int {
 		if t == nil {
 			return 0
 		} else if t.Left == nil && t.Right == nil {
 			return t.Value
 		} else {
-			return traverse_inner(t.Left) + t.Value + traverse_inner(t.Right)
+			return traverseInner(t.Left) + t.Value + traverseInner(t.Right)
 		}
 	}
-	return traverse_inner(tree.Root)
+	return traverseInner(tree.Root)
 }
 
-func (tree *IntBinaryTree) Count_Nodes() int {
+func (tree *IntBinaryTree) CountNodes() int {
 	if tree.Root == nil {
 		return 0
 	}
 
-	var count_inner func(t *IntNode) int
-	count_inner = func(t *IntNode) int {
+	var countInner func(t *IntNode) int
+	countInner = func(t *IntNode) int {
 		if t == nil {
 			return 0
 		} else if t.Left == nil && t.Right == nil {
 			return 1
 		} else {
-			return count_inner(t.Left) + 1 + count_inner(t.Right)
+			return countInner(t.Left) + 1 + countInner(t.Right)
 		}
 	}
-	return count_inner(tree.Root)
+	return countInner(tree.Root)
 }
 
-func (tree *IntBinaryTree) Count_Leaf_Nodes() int {
+func (tree *IntBinaryTree) CountLeafNodes() int {
 	if tree.Root == nil {
 		return 0
 	}
 
-	var count_inner func(t *IntNode) int
-	count_inner = func(t *IntNode) int {
+	var countInner func(t *IntNode) int
+	countInner = func(t *IntNode) int {
 		if t == nil {
 			return 0
 		} else if t.Left == nil && t.Right == nil {
 			return 1
 		} else {
-			return count_inner(t.Left) + count_inner(t.Right)
+			return countInner(t.Left) + countInner(t.Right)
 		}
 	}
-	return count_inner(tree.Root)
+	return countInner(tree.Root)
 }
 
-func (tree *IntBinaryTree) Height_1() int {
+func (tree *IntBinaryTree) Height1() int {
 	if tree.Root == nil {
 		return 0
 	}
-	var max_height int = 0
-	var height_inner func(*IntNode, int)
+	var maxHeight = 0
+	var heightInner func(*IntNode, int)
 
-	height_inner = func(t *IntNode, height int) {
+	heightInner = func(t *IntNode, height int) {
 		if t == nil {
 		} else if t.Left == nil && t.Right == nil {
-			if height > max_height {
-				max_height = height
+			if height > maxHeight {
+				maxHeight = height
 			}
 		} else {
-			height_inner(t.Left, height+1)
-			height_inner(t.Right, height+1)
+			heightInner(t.Left, height+1)
+			heightInner(t.Right, height+1)
 		}
 	}
-	height_inner(tree.Root, 1)
-	return max_height
+	heightInner(tree.Root, 1)
+	return maxHeight
 }
 
-func (tree *IntBinaryTree) Height_2() int {
+func (tree *IntBinaryTree) Height2() int {
 	if tree.Root == nil {
 		return 0
 	}
 
-	var height_inner func(*IntNode) int
+	var heightInner func(*IntNode) int
 
-	height_inner = func(t *IntNode) int {
+	heightInner = func(t *IntNode) int {
 		if t == nil {
 			return 0
 		} else {
-			left_height := height_inner(t.Left)
-			right_height := height_inner(t.Right)
-			if left_height > right_height {
-				return left_height + 1
+			leftHeight := heightInner(t.Left)
+			rightHeight := heightInner(t.Right)
+			if leftHeight > rightHeight {
+				return leftHeight + 1
 			} else {
-				return right_height + 1
+				return rightHeight + 1
 			}
 		}
 	}
-	return height_inner(tree.Root)
+	return heightInner(tree.Root)
 }
 
-func (tree *IntBinaryTree) Max_1() int {
+func (tree *IntBinaryTree) Max1() int {
 	if tree.Root == nil {
 		return 0
 	}
 
-	var max_inner func(*IntNode)
+	var maxInner func(*IntNode)
 	var max int
 
-	max_inner = func(t *IntNode) {
+	maxInner = func(t *IntNode) {
 		if t == nil {
 			return
 		} else {
@@ -179,40 +179,40 @@ func (tree *IntBinaryTree) Max_1() int {
 			if t.Left == nil && t.Right == nil {
 				return
 			} else {
-				max_inner(t.Left)
-				max_inner(t.Right)
+				maxInner(t.Left)
+				maxInner(t.Right)
 			}
 		}
 	}
-	max_inner(tree.Root)
+	maxInner(tree.Root)
 	return max
 }
 
-func (tree *IntBinaryTree) Max_2() int {
+func (tree *IntBinaryTree) Max2() int {
 	if tree.Root == nil {
 		return 0
 	}
 
-	var max_inner func(t *IntNode) int
+	var maxInner func(t *IntNode) int
 
-	max_inner = func(t *IntNode) int {
+	maxInner = func(t *IntNode) int {
 		if t == nil {
 			return 0
 		}
 		if t.Left == nil && t.Right == nil {
 			return t.Value
 		} else {
-			left_x := max_inner(t.Left)
-			left_y := max_inner(t.Right)
+			leftX := maxInner(t.Left)
+			leftY := maxInner(t.Right)
 
-			if left_x > left_y {
-				return left_x
+			if leftX > leftY {
+				return leftX
 			} else {
-				return left_y
+				return leftY
 			}
 		}
 	}
-	return max_inner(tree.Root)
+	return maxInner(tree.Root)
 }
 
 func (tree *IntBinaryTree) Search(v int) *SearchResult {
@@ -228,19 +228,19 @@ func (tree *IntBinaryTree) Search(v int) *SearchResult {
 		}
 	}
 
-	var search_inner func(t *IntNode) *SearchResult
+	var searchInner func(t *IntNode) *SearchResult
 
-	search_inner = func(t *IntNode) *SearchResult {
+	searchInner = func(t *IntNode) *SearchResult {
 		if t == nil {
 			return nil
 		}
-		search_left := search_inner(t.Left)
-		search_right := search_inner(t.Right)
+		searchLeft := searchInner(t.Left)
+		searchRight := searchInner(t.Right)
 
-		if search_left != nil && search_left.Contains {
-			return search_left
-		} else if search_right != nil && search_right.Contains {
-			return search_right
+		if searchLeft != nil && searchLeft.Contains {
+			return searchLeft
+		} else if searchRight != nil && searchRight.Contains {
+			return searchRight
 		} else {
 			if t.Left != nil && v == t.Left.Value {
 				return &SearchResult{
@@ -261,7 +261,7 @@ func (tree *IntBinaryTree) Search(v int) *SearchResult {
 			}
 		}
 	}
-	return search_inner(tree.Root)
+	return searchInner(tree.Root)
 }
 
 type SearchResult struct {
@@ -278,17 +278,17 @@ const (
 	Right
 )
 
-func (tree *IntBinaryTree) Insert_Left_Of(value, element int) {
+func (tree *IntBinaryTree) InsertLeftOf(value, element int) {
 
 	if tree.Root == nil {
 		return
 	}
-	search_result := tree.Search(value)
-	if search_result == nil {
+	searchResult := tree.Search(value)
+	if searchResult == nil {
 		return
 	}
 
-	search_result.Node.Left = &IntNode{
+	searchResult.Node.Left = &IntNode{
 		Value: element,
 		Left:  nil,
 		Right: nil,
@@ -300,72 +300,73 @@ func (tree *IntBinaryTree) Delete(value int) {
 	if tree.Root == nil {
 		return
 	}
-	search_result := tree.Search(value)
-	if search_result == nil {
+	searchResult := tree.Search(value)
+	if searchResult == nil {
 		return
 	}
 
-	if search_result.Parent == nil {
-		search_result.Node = nil
-	} else if search_result.MatchDirection == Left {
-		search_result.Parent.Left = nil
+	if searchResult.Parent == nil {
+		searchResult.Node = nil
+	} else if searchResult.MatchDirection == Left {
+		searchResult.Parent.Left = nil
 	} else {
-		search_result.Parent.Right = nil
+		searchResult.Parent.Right = nil
 	}
 }
 
-func (tree *StringBinaryTree) Evaluate_Postfix() (int, error) {
+func (tree *StringBinaryTree) EvaluatePostfix() (int, error) {
 	if tree.Root == nil {
 		return -1, errors.New("EMPTY EXPRESSION")
 	}
 
-	var evaluate_inner func(*StringNode) (int, error)
-	evaluate_inner = func(t *StringNode) (int, error) {
+	var evaluateInner func(*StringNode) (int, error)
+	evaluateInner = func(t *StringNode) (int, error) {
 
 		if t.Left == nil && t.Right == nil {
 			return strconv.Atoi(t.Value)
 		} else {
-			left_operand, _ := evaluate_inner(t.Left)
+			leftOperand, _ := evaluateInner(t.Left)
 			operator := t.Value
-			right_operand, _ := evaluate_inner(t.Right)
+			rightOperand, _ := evaluateInner(t.Right)
 
 			switch operator {
 			case "+":
-				return left_operand + right_operand, nil
+				return leftOperand + rightOperand, nil
 			case "*":
-				return left_operand * right_operand, nil
+				return leftOperand * rightOperand, nil
 			case "-":
-				return left_operand - right_operand, nil
+				return leftOperand - rightOperand, nil
 			case "/":
-				return left_operand / right_operand, nil
+				return leftOperand / rightOperand, nil
 			default:
 				return -1, errors.New("UNSUPPORTED OPERATOR")
 			}
 		}
 	}
-	return evaluate_inner(tree.Root)
+	return evaluateInner(tree.Root)
 }
 
+//KElement
 //assume a linked list is converted to a binary tree and we need to find the kth element
-func (tree *IntBinaryTree) K_element(position int) int {
+func (tree *IntBinaryTree) KElement(position int) int {
 
-	var node_positions []int
-	var height int = int(math.Floor(math.Log2(float64(position)))) + 1
+	var nodePositions []int
+	var height = int(math.Floor(math.Log2(float64(position)))) + 1
 
-	var node_position int = position - int(math.Pow(float64(2), float64(height-1))) + 1
-	node_positions = append(node_positions, node_position)
+	var nodePosition = position - int(math.Pow(float64(2), float64(height-1))) + 1
+	nodePositions = append(nodePositions, nodePosition)
 
 	for height != 1 {
 		height = height - 1
-		node_position = int(math.Ceil(float64(node_position) / float64(2)))
-		node_positions = append(node_positions, node_position)
+		nodePosition = int(math.Ceil(float64(nodePosition) / float64(2)))
+		nodePositions = append(nodePositions, nodePosition)
 	}
 
 	head := tree.Root
-	for index := len(node_positions) - 2; index >= 0; index-- {
-		position_to_visit := node_positions[index]
+	for index := len(nodePositions) - 2; index >= 0; index-- {
+		positionToVisit := nodePositions[index]
 
-		if math.Mod(float64(position_to_visit), float64(2)) == 0 {
+		if math.Mod(float64(positionToVisit), float64(2)) == 0 {
 			head = head.Right
 		} else {
 			head = head.Left
