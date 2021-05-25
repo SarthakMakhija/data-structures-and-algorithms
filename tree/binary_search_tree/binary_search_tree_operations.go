@@ -19,19 +19,19 @@ func (tree *IntBinarySearchTree) Search(element int) bool {
 	if tree.Root == nil {
 		return false
 	}
-	var tree_inner func(t *IntNode) bool
-	tree_inner = func(t *IntNode) bool {
+	var treeInner func(t *IntNode) bool
+	treeInner = func(t *IntNode) bool {
 		if t == nil {
 			return false
 		} else if t.Value == element {
 			return true
 		} else if element > t.Value {
-			return tree_inner(t.Right)
+			return treeInner(t.Right)
 		} else {
-			return tree_inner(t.Left)
+			return treeInner(t.Left)
 		}
 	}
-	return tree_inner(tree.Root)
+	return treeInner(tree.Root)
 }
 
 func (tree *IntBinarySearchTree) InOrder_Traversal() string {
@@ -49,7 +49,7 @@ func (tree *IntBinarySearchTree) InOrder_Traversal() string {
 	return inorder(tree.Root)
 }
 
-func (tree *IntBinarySearchTree) Insert_1(element int) {
+func (tree *IntBinarySearchTree) Insert1(element int) {
 
 	if tree.Root == nil {
 		return
@@ -89,15 +89,15 @@ func (tree *IntBinarySearchTree) Insert_1(element int) {
 	}
 }
 
-func (tree *IntBinarySearchTree) Insert_2(element int) {
+func (tree *IntBinarySearchTree) Insert2(element int) {
 
 	if tree.Root == nil {
 		return
 	}
-	var insert_inner func(t *IntNode) *IntNode
+	var insertInner func(t *IntNode) *IntNode
 	var node *IntNode
 
-	insert_inner = func(t *IntNode) *IntNode {
+	insertInner = func(t *IntNode) *IntNode {
 		if t == nil {
 			node = &IntNode{
 				Value: element,
@@ -105,11 +105,11 @@ func (tree *IntBinarySearchTree) Insert_2(element int) {
 			return node
 		}
 		if element > t.Value {
-			t.Right = insert_inner(t.Right)
+			t.Right = insertInner(t.Right)
 		} else if element < t.Value {
-			t.Left = insert_inner(t.Left)
+			t.Left = insertInner(t.Left)
 		}
 		return t
 	}
-	insert_inner(tree.Root)
+	insertInner(tree.Root)
 }

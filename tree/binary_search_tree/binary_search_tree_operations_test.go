@@ -7,7 +7,7 @@ import (
 )
 
 func TestSearch_1(t *testing.T) {
-	tree := binary_search_tree_1()
+	tree := binarySearchTree1()
 	contains := tree.Search(21)
 
 	if contains != true {
@@ -16,7 +16,7 @@ func TestSearch_1(t *testing.T) {
 }
 
 func TestSearch_2(t *testing.T) {
-	tree := binary_search_tree_1()
+	tree := binarySearchTree1()
 	contains := tree.Search(40)
 
 	if contains != true {
@@ -25,7 +25,7 @@ func TestSearch_2(t *testing.T) {
 }
 
 func TestSearch_3(t *testing.T) {
-	tree := binary_search_tree_1()
+	tree := binarySearchTree1()
 	contains := tree.Search(41)
 
 	if contains != false {
@@ -34,7 +34,7 @@ func TestSearch_3(t *testing.T) {
 }
 
 func TestInorderTraversal_1(t *testing.T) {
-	tree := binary_search_tree_1()
+	tree := binarySearchTree1()
 	output := tree.InOrder_Traversal()
 
 	if output != "1020213040" {
@@ -43,8 +43,8 @@ func TestInorderTraversal_1(t *testing.T) {
 }
 
 func TestInsert_1(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Insert_1(41)
+	tree := binarySearchTree1()
+	tree.Insert1(41)
 
 	output := tree.InOrder_Traversal()
 	if output != "102021304041" {
@@ -53,8 +53,8 @@ func TestInsert_1(t *testing.T) {
 }
 
 func TestInsert_2(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Insert_1(31)
+	tree := binarySearchTree1()
+	tree.Insert1(31)
 
 	output := tree.InOrder_Traversal()
 	if output != "102021303140" {
@@ -63,8 +63,8 @@ func TestInsert_2(t *testing.T) {
 }
 
 func TestInsert_3(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Insert_1(21)
+	tree := binarySearchTree1()
+	tree.Insert1(21)
 
 	output := tree.InOrder_Traversal()
 	if output != "1020213040" {
@@ -73,8 +73,8 @@ func TestInsert_3(t *testing.T) {
 }
 
 func TestInsert_4(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Insert_2(41)
+	tree := binarySearchTree1()
+	tree.Insert2(41)
 
 	output := tree.InOrder_Traversal()
 	if output != "102021304041" {
@@ -83,8 +83,8 @@ func TestInsert_4(t *testing.T) {
 }
 
 func TestInsert_5(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Insert_2(31)
+	tree := binarySearchTree1()
+	tree.Insert2(31)
 
 	output := tree.InOrder_Traversal()
 	if output != "102021303140" {
@@ -93,8 +93,8 @@ func TestInsert_5(t *testing.T) {
 }
 
 func TestInsert_6(t *testing.T) {
-	tree := binary_search_tree_1()
-	tree.Insert_2(21)
+	tree := binarySearchTree1()
+	tree.Insert2(21)
 
 	output := tree.InOrder_Traversal()
 	if output != "1020213040" {
@@ -102,88 +102,28 @@ func TestInsert_6(t *testing.T) {
 	}
 }
 
-func binary_search_tree_1() *binarysearchtree.IntBinarySearchTree {
-	node_10 := binarysearchtree.IntNode{
+func binarySearchTree1() *binarysearchtree.IntBinarySearchTree {
+	node10 := binarysearchtree.IntNode{
 		Value: 10,
 	}
-	node_21 := binarysearchtree.IntNode{
+	node21 := binarysearchtree.IntNode{
 		Value: 21,
 	}
-	node_20 := binarysearchtree.IntNode{
+	node20 := binarysearchtree.IntNode{
 		Value: 20,
-		Left:  &node_10,
-		Right: &node_21,
+		Left:  &node10,
+		Right: &node21,
 	}
-	node_40 := binarysearchtree.IntNode{
+	node40 := binarysearchtree.IntNode{
 		Value: 40,
 	}
 
-	node_30 := binarysearchtree.IntNode{
+	node30 := binarysearchtree.IntNode{
 		Value: 30,
-		Left:  &node_20,
-		Right: &node_40,
+		Left:  &node20,
+		Right: &node40,
 	}
 	return &binarysearchtree.IntBinarySearchTree{
-		Root: &node_30,
-	}
-}
-
-func binary_search_tree_2() *binarysearchtree.IntBinarySearchTree {
-	node_10 := binarysearchtree.IntNode{
-		Value: 10,
-	}
-	node_21 := binarysearchtree.IntNode{
-		Value: 21,
-	}
-	node_20 := binarysearchtree.IntNode{
-		Value: 20,
-		Left:  &node_10,
-		Right: &node_21,
-	}
-	node_39 := binarysearchtree.IntNode{
-		Value: 39,
-	}
-	node_40 := binarysearchtree.IntNode{
-		Value: 40,
-		Left:  &node_39,
-	}
-
-	node_30 := binarysearchtree.IntNode{
-		Value: 30,
-		Left:  &node_20,
-		Right: &node_40,
-	}
-	return &binarysearchtree.IntBinarySearchTree{
-		Root: &node_30,
-	}
-}
-
-func binary_search_tree_3() *binarysearchtree.IntBinarySearchTree {
-	node_10 := binarysearchtree.IntNode{
-		Value: 10,
-	}
-	node_21 := binarysearchtree.IntNode{
-		Value: 21,
-	}
-	node_20 := binarysearchtree.IntNode{
-		Value: 20,
-		Left:  &node_10,
-		Right: &node_21,
-	}
-	node_41 := binarysearchtree.IntNode{
-		Value: 41,
-	}
-	node_40 := binarysearchtree.IntNode{
-		Value: 40,
-		Right: &node_41,
-	}
-
-	node_30 := binarysearchtree.IntNode{
-		Value: 30,
-		Left:  &node_20,
-		Right: &node_40,
-	}
-	return &binarysearchtree.IntBinarySearchTree{
-		Root: &node_30,
+		Root: &node30,
 	}
 }
