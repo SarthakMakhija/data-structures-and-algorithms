@@ -250,3 +250,62 @@ func TestRotate_4(t *testing.T) {
 		t.Fatalf("Expected %v but received %v", expected, arr.All())
 	}
 }
+
+func TestDuplicate_1(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	duplicates := arr.FindDuplicates()
+	if len(duplicates) != 0 {
+		t.Fatalf("Expected no duplicates but received %v", duplicates)
+	}
+}
+
+func TestDuplicate_2(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(2)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(5)
+	arr.Insert(7)
+
+	expected := []int{2, 5}
+	duplicates := arr.FindDuplicates()
+	if !reflect.DeepEqual(duplicates, expected) {
+		t.Fatalf("Expected %v but received %v", expected, duplicates)
+	}
+}
+
+func TestDuplicate_3(t *testing.T) {
+	arr := array.Array{
+		Size: 10,
+	}
+	arr.Insert(10)
+	arr.Insert(45)
+	arr.Insert(55)
+	arr.Insert(45)
+	arr.Insert(65)
+	arr.Insert(65)
+	arr.Insert(70)
+	arr.Insert(80)
+	arr.Insert(80)
+	arr.Insert(90)
+
+	expected := []int{65, 80, 45}
+	duplicates := arr.FindDuplicates()
+	if !reflect.DeepEqual(duplicates, expected) {
+		t.Fatalf("Expected %v but received %v", expected, duplicates)
+	}
+}

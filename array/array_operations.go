@@ -92,6 +92,64 @@ func (a *Array) Rotate(by int) {
 	}
 }
 
+func (a *Array) FindDuplicates() []int {
+	type Occurrences struct {
+		element int
+		count   int
+	}
+	length := len(a.elements)
+	var occurrences = make([]*Occurrences, length)
+
+	addOccurrenceAt := func(index int, withElement int) {
+		occurrences[index] = &Occurrences{
+			element: withElement,
+			count:   1,
+		}
+	}
+	increaseOccurrenceAt := func(index int) {
+		occurrences[index].count = occurrences[index].count + 1
+	}
+	findNextSlotFor := func(element int) int {
+		emptySlot := -1
+		for slot := 0; slot < len(occurrences); slot++ {
+			if occurrences[slot] != nil && occurrences[slot].element == element {
+				return slot
+			}
+			if emptySlot == -1 && occurrences[slot] == nil {
+				emptySlot = slot
+			}
+		}
+		return emptySlot
+	}
+	upsertOccurrenceAt := func(index int, element int) {
+		if occurrences[index] == nil {
+			addOccurrenceAt(index, element)
+		} else {
+			increaseOccurrenceAt(index)
+		}
+	}
+
+	for _, element := range a.elements {
+		index := int(math.Mod(float64(element), float64(length)))
+		if occurrences[index] == nil {
+			addOccurrenceAt(index, element)
+		} else if occurrences[index].element == element {
+			increaseOccurrenceAt(index)
+		} else {
+			slot := findNextSlotFor(element)
+			upsertOccurrenceAt(slot, element)
+		}
+	}
+
+	var duplicateElements []int
+	for _, occurrence := range occurrences {
+		if occurrence != nil && occurrence.count > 1 {
+			duplicateElements = append(duplicateElements, occurrence.element)
+		}
+	}
+	return duplicateElements
+}
+
 func (a *Array) All() []int {
 	elements := make([]int, a.index)
 	for count := 0; count < a.index; count++ {
