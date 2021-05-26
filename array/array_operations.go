@@ -15,6 +15,16 @@ func (a *Array) Insert(element int) {
 	a.index = a.index + 1
 }
 
+func (a *Array) DeleteAt(index int) {
+	compact := func(fromIndex int) {
+		for index := fromIndex; index < len(a.elements); index++ {
+			a.elements[index-1] = a.elements[index]
+		}
+	}
+	compact(index + 1)
+	a.index = len(a.elements) - 1
+}
+
 func (a *Array) All() []int {
 	elements := make([]int, a.index)
 	for count := 0; count < a.index; count++ {
