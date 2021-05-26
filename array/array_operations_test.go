@@ -141,3 +141,36 @@ func TestBinarySearch_3(t *testing.T) {
 		t.Fatalf("Expected false but received %v", contains)
 	}
 }
+
+func TestMax_1(t *testing.T) {
+	arr := array.Array{
+		Size: 10,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+	arr.Insert(8)
+	arr.Insert(9)
+	arr.Insert(10)
+
+	max := arr.Max()
+	if max != 10 {
+		t.Fatalf("Expected %v but received %v", 10, max)
+	}
+}
+
+func TestMax_2(t *testing.T) {
+	arr := array.Array{
+		Size: 1,
+	}
+	arr.Insert(1)
+
+	max := arr.Max()
+	if max != 1 {
+		t.Fatalf("Expected %v but received %v", 1, max)
+	}
+}
