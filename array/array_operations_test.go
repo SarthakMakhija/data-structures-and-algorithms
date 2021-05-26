@@ -83,3 +83,61 @@ func TestDelete_3(t *testing.T) {
 		t.Fatalf("Expected %v but received %v", expected, arr.All())
 	}
 }
+
+func TestBinarySearch_1(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+
+	contains := arr.BinarySearch(4)
+	if contains != true {
+		t.Fatalf("Expected true but received %v", contains)
+	}
+}
+
+func TestBinarySearch_2(t *testing.T) {
+	arr := array.Array{
+		Size: 10,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+	arr.Insert(8)
+	arr.Insert(9)
+	arr.Insert(10)
+
+	contains := arr.BinarySearch(9)
+	if contains != true {
+		t.Fatalf("Expected true but received %v", contains)
+	}
+}
+
+func TestBinarySearch_3(t *testing.T) {
+	arr := array.Array{
+		Size: 10,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+	arr.Insert(8)
+	arr.Insert(9)
+	arr.Insert(10)
+
+	contains := arr.BinarySearch(90)
+	if contains != false {
+		t.Fatalf("Expected false but received %v", contains)
+	}
+}

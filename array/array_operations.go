@@ -1,5 +1,9 @@
 package array
 
+import (
+	"math"
+)
+
 type Array struct {
 	Size     int
 	elements []int
@@ -23,6 +27,29 @@ func (a *Array) DeleteAt(index int) {
 	}
 	compact(index + 1)
 	a.index = len(a.elements) - 1
+}
+
+//BinarySearch
+//Assume Array is sorted
+func (a *Array) BinarySearch(element int) bool {
+	var binarySearchInner func(e []int) bool
+
+	binarySearchInner = func(elements []int) bool {
+		if len(elements) == 0 {
+			return false
+		}
+		pivot := int(math.Floor(float64(len(elements))) / 2)
+		pivotElement := elements[pivot]
+
+		if element < pivotElement {
+			return binarySearchInner(elements[0:pivot])
+		} else if element > pivotElement {
+			return binarySearchInner(elements[pivot+1:])
+		} else {
+			return true
+		}
+	}
+	return binarySearchInner(a.elements)
 }
 
 func (a *Array) All() []int {
