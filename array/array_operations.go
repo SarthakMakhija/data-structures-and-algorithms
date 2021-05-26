@@ -67,6 +67,31 @@ func (a Array) Max() int {
 	return maxInner(a.elements, a.elements[0])
 }
 
+//Rotate
+//Assume by is less than the size of the array
+func (a *Array) Rotate(by int) {
+	if by == 0 {
+		return
+	}
+	var backup = make([]int, by)
+	var element int
+
+	length := len(a.elements)
+	for index := 0; index < length; index++ {
+		if index < by {
+			backup[index] = a.elements[index]
+		}
+		targetIndex := index + by
+		if targetIndex >= length {
+			targetIndex = targetIndex - length
+			element = backup[targetIndex]
+		} else {
+			element = a.elements[targetIndex]
+		}
+		a.elements[index] = element
+	}
+}
+
 func (a *Array) All() []int {
 	elements := make([]int, a.index)
 	for count := 0; count < a.index; count++ {
