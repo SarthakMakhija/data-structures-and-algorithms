@@ -10,6 +10,11 @@ type Array struct {
 	index    int
 }
 
+type Pair struct {
+	Element1 int
+	Element2 int
+}
+
 func (a *Array) Insert(element int) {
 	if len(a.elements) == 0 {
 		a.elements = make([]int, a.Size)
@@ -148,6 +153,30 @@ func (a *Array) FindDuplicates() []int {
 		}
 	}
 	return duplicateElements
+}
+
+//PairWithSumEqualTo1
+//Assume array elements are sorted
+func (a *Array) PairWithSumEqualTo1(k int) []Pair {
+
+	var pairs []Pair
+
+	minIndex := 0
+	maxIndex := len(a.elements) - 1
+
+	for index := maxIndex; index > minIndex; {
+		if a.elements[index]+a.elements[minIndex] != k {
+			index = index - 1
+		} else {
+			pairs = append(pairs, Pair{
+				Element1: a.elements[minIndex],
+				Element2: a.elements[index],
+			})
+			index = index - 1
+			minIndex = minIndex + 1
+		}
+	}
+	return pairs
 }
 
 func (a *Array) All() []int {

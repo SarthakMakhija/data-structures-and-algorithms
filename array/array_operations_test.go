@@ -309,3 +309,114 @@ func TestDuplicate_3(t *testing.T) {
 		t.Fatalf("Expected %v but received %v", expected, duplicates)
 	}
 }
+
+func TestPairWithSumEqualToKForSortedArray_1(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	expected := []array.Pair{
+		{
+			Element1: 1,
+			Element2: 6,
+		},
+		{
+			Element1: 2,
+			Element2: 5,
+		},
+		{
+			Element1: 3,
+			Element2: 4,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo1(7)
+	if !reflect.DeepEqual(pairs, expected) {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+}
+
+func TestPairWithSumEqualToKForSortedArray_2(t *testing.T) {
+	arr := array.Array{
+		Size: 3,
+	}
+	arr.Insert(10)
+	arr.Insert(20)
+	arr.Insert(30)
+
+	expected := []array.Pair{
+		{
+			Element1: 10,
+			Element2: 20,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo1(30)
+	if !reflect.DeepEqual(pairs, expected) {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+}
+
+func TestPairWithSumEqualToKForSortedArray_3(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(-1)
+	arr.Insert(0)
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+
+	expected := []array.Pair{
+		{
+			Element1: -1,
+			Element2: 3,
+		},
+		{
+			Element1: 0,
+			Element2: 2,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo1(2)
+	if !reflect.DeepEqual(pairs, expected) {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+}
+
+func TestPairWithSumEqualToKForSortedArray_4(t *testing.T) {
+	arr := array.Array{
+		Size: 8,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+
+	expected := []array.Pair{
+		{
+			Element1: 1,
+			Element2: 5,
+		},
+		{
+			Element1: 2,
+			Element2: 4,
+		},
+		{
+			Element1: 2,
+			Element2: 4,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo1(6)
+	if !reflect.DeepEqual(pairs, expected) {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+}
