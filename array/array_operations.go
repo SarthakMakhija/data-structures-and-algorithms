@@ -209,6 +209,49 @@ func (a *Array) SecondHighestElement() int {
 	return highestElements[ElementIndexWithSecondMaxValue]
 }
 
+func (a *Array) NthHighestElement(n int) int {
+	if n > len(a.elements) {
+		return 0
+	}
+	var highestElements = make([]int, n)
+	var top = 0
+
+	addHighestElement := func(element int) {
+		highestElements[top] = element
+		top = top + 1
+	}
+	swapHighestOrderElements := func() {
+		for index := top - 1; index > 0; index-- {
+			if highestElements[index] > highestElements[index-1] {
+				topElement := highestElements[index]
+				highestElements[index] = highestElements[index-1]
+				highestElements[index-1] = topElement
+			}
+		}
+	}
+	orderHighestElements := func(element int) {
+		if top >= n {
+			index := top - 1
+			if element > highestElements[index] {
+				highestElements[index] = element
+			}
+			swapHighestOrderElements()
+		} else {
+			highestElements[top] = element
+			top = top + 1
+			swapHighestOrderElements()
+		}
+	}
+	for _, element := range a.elements {
+		if top == 0 {
+			addHighestElement(element)
+		} else {
+			orderHighestElements(element)
+		}
+	}
+	return highestElements[top-1]
+}
+
 func (a *Array) All() []int {
 	elements := make([]int, a.index)
 	for count := 0; count < a.index; count++ {

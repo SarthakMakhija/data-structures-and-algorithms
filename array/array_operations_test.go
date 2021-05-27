@@ -477,3 +477,67 @@ func TestSecondHighestElement_4(t *testing.T) {
 		t.Fatalf("Expected 10 but received %v", secondHighest)
 	}
 }
+
+func TestNthHighestElement_1(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+
+	secondHighest := arr.NthHighestElement(2)
+	if secondHighest != 4 {
+		t.Fatalf("Expected 4 but received %v", secondHighest)
+	}
+}
+
+func TestNthHighestElement_2(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+
+	secondHighest := arr.NthHighestElement(3)
+	if secondHighest != 3 {
+		t.Fatalf("Expected 3 but received %v", secondHighest)
+	}
+}
+
+func TestNthHighestElement_3(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+
+	secondHighest := arr.NthHighestElement(5)
+	if secondHighest != 1 {
+		t.Fatalf("Expected 1 but received %v", secondHighest)
+	}
+}
+
+func TestNthHighestElement_4(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(-1)
+	arr.Insert(20)
+	arr.Insert(-3)
+	arr.Insert(40)
+	arr.Insert(-5)
+
+	secondHighest := arr.NthHighestElement(3)
+	if secondHighest != -1 {
+		t.Fatalf("Expected -1 but received %v", secondHighest)
+	}
+}
