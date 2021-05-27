@@ -179,6 +179,36 @@ func (a *Array) PairWithSumEqualTo1(k int) []Pair {
 	return pairs
 }
 
+func (a *Array) SecondHighestElement() int {
+	if len(a.elements) == 0 {
+		return 0
+	} else if len(a.elements) == 1 {
+		return a.elements[0]
+	}
+
+	const ElementIndexWithMaxValue = 0
+	const ElementIndexWithSecondMaxValue = 1
+
+	var highestElements = make([]int, 2)
+
+	if a.elements[0] > a.elements[1] {
+		highestElements[ElementIndexWithMaxValue] = a.elements[0]
+		highestElements[ElementIndexWithSecondMaxValue] = a.elements[1]
+	} else {
+		highestElements[ElementIndexWithMaxValue] = a.elements[1]
+		highestElements[ElementIndexWithSecondMaxValue] = a.elements[0]
+	}
+	for index := 2; index < len(a.elements); index++ {
+		if a.elements[index] > highestElements[ElementIndexWithMaxValue] {
+			highestElements[ElementIndexWithSecondMaxValue] = highestElements[ElementIndexWithMaxValue]
+			highestElements[ElementIndexWithMaxValue] = a.elements[index]
+		} else if a.elements[index] > highestElements[ElementIndexWithSecondMaxValue] {
+			highestElements[ElementIndexWithSecondMaxValue] = a.elements[index]
+		}
+	}
+	return highestElements[ElementIndexWithSecondMaxValue]
+}
+
 func (a *Array) All() []int {
 	elements := make([]int, a.index)
 	for count := 0; count < a.index; count++ {

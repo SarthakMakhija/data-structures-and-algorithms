@@ -420,3 +420,60 @@ func TestPairWithSumEqualToKForSortedArray_4(t *testing.T) {
 		t.Fatalf("Expected %v but received %v", expected, pairs)
 	}
 }
+
+func TestSecondHighestElement_1(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+
+	secondHighest := arr.SecondHighestElement()
+	if secondHighest != 4 {
+		t.Fatalf("Expected 4 but received %v", secondHighest)
+	}
+}
+
+func TestSecondHighestElement_2(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(10)
+	arr.Insert(70)
+	arr.Insert(-3)
+	arr.Insert(30)
+	arr.Insert(50)
+
+	secondHighest := arr.SecondHighestElement()
+	if secondHighest != 50 {
+		t.Fatalf("Expected 50 but received %v", secondHighest)
+	}
+}
+
+func TestSecondHighestElement_3(t *testing.T) {
+	arr := array.Array{
+		Size: 2,
+	}
+	arr.Insert(10)
+	arr.Insert(70)
+
+	secondHighest := arr.SecondHighestElement()
+	if secondHighest != 10 {
+		t.Fatalf("Expected 10 but received %v", secondHighest)
+	}
+}
+
+func TestSecondHighestElement_4(t *testing.T) {
+	arr := array.Array{
+		Size: 1,
+	}
+	arr.Insert(10)
+
+	secondHighest := arr.SecondHighestElement()
+	if secondHighest != 10 {
+		t.Fatalf("Expected 10 but received %v", secondHighest)
+	}
+}
