@@ -57,7 +57,7 @@ func (a *Array) BinarySearch(element int) bool {
 	return binarySearchInner(a.elements)
 }
 
-func (a Array) Max() int {
+func (a *Array) Max() int {
 	var maxInner func([]int, int) int
 
 	maxInner = func(elements []int, max int) int {
