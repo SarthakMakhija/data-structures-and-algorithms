@@ -541,3 +541,79 @@ func TestNthHighestElement_4(t *testing.T) {
 		t.Fatalf("Expected -1 but received %v", secondHighest)
 	}
 }
+
+func TestMerge_1(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	other := array.Array{
+		Size: 5,
+	}
+	arr.Insert(10)
+	arr.Insert(20)
+	arr.Insert(30)
+	arr.Insert(40)
+	arr.Insert(50)
+
+	other.Insert(5)
+	other.Insert(9)
+	other.Insert(11)
+	other.Insert(31)
+	other.Insert(37)
+
+	merged := arr.Merge(other)
+	expected := []int{5, 9, 10, 11, 20, 30, 31, 37, 40, 50}
+	if !reflect.DeepEqual(merged, expected) {
+		t.Fatalf("Expected %v but received %v", expected, merged)
+	}
+}
+
+func TestMerge_2(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	other := array.Array{
+		Size: 5,
+	}
+	arr.Insert(10)
+	arr.Insert(20)
+	arr.Insert(30)
+	arr.Insert(40)
+	arr.Insert(50)
+
+	other.Insert(60)
+	other.Insert(70)
+	other.Insert(80)
+	other.Insert(90)
+	other.Insert(100)
+
+	merged := arr.Merge(other)
+	expected := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
+	if !reflect.DeepEqual(merged, expected) {
+		t.Fatalf("Expected %v but received %v", expected, merged)
+	}
+}
+
+func TestMerge_3(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	other := array.Array{
+		Size: 3,
+	}
+	arr.Insert(10)
+	arr.Insert(20)
+	arr.Insert(30)
+	arr.Insert(40)
+	arr.Insert(50)
+
+	other.Insert(0)
+	other.Insert(5)
+	other.Insert(100)
+
+	merged := arr.Merge(other)
+	expected := []int{0, 5, 10, 20, 30, 40, 50, 100}
+	if !reflect.DeepEqual(merged, expected) {
+		t.Fatalf("Expected %v but received %v", expected, merged)
+	}
+}

@@ -252,6 +252,45 @@ func (a *Array) NthHighestElement(n int) int {
 	return highestElements[top-1]
 }
 
+//Merge
+//Assume both are sorted arrays
+func (a *Array) Merge(other Array) []int {
+
+	merged := make([]int, len(a.elements)+len(other.elements))
+
+	mergedArrayIndex := 0
+	firstArrayIndex, secondArrayIndex := 0, 0
+
+	firstArray := a.elements
+	secondArray := other.elements
+
+	pick := func(element int) {
+		merged[mergedArrayIndex] = element
+		mergedArrayIndex = mergedArrayIndex + 1
+	}
+	copyRemaining := func(arr []int, fromIndex int) {
+		for index := fromIndex; index < len(arr); index++ {
+			merged[mergedArrayIndex] = arr[index]
+			mergedArrayIndex = mergedArrayIndex + 1
+		}
+	}
+	for firstArrayIndex < len(a.elements) && secondArrayIndex < len(other.elements) {
+		if firstArray[firstArrayIndex] < secondArray[secondArrayIndex] {
+			pick(firstArray[firstArrayIndex])
+			firstArrayIndex = firstArrayIndex + 1
+		} else {
+			pick(secondArray[secondArrayIndex])
+			secondArrayIndex = secondArrayIndex + 1
+		}
+	}
+	if firstArrayIndex >= len(firstArray) {
+		copyRemaining(secondArray, secondArrayIndex)
+	} else {
+		copyRemaining(firstArray, firstArrayIndex)
+	}
+	return merged
+}
+
 func (a *Array) All() []int {
 	elements := make([]int, a.index)
 	for count := 0; count < a.index; count++ {
