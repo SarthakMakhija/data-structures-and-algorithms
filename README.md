@@ -12,8 +12,10 @@ Current solutions cover the following areas -
 
 - **Recursion**
 - **Stack**
+- **Linked List**
 - **Binary Tree**
 - **Binary Search Tree**
+- **Arrays**
 
 One of the other things that I wish to get out of this repository is figure out some real life use-cases of various data structures. 
-Eg; AVL trees might be used in some databases for lookup operations. Figure that out and add it here.
+Eg; Java's Hashmap uses Red-Black tree, figure out such uses and add them here.
