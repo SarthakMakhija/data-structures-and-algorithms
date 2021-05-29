@@ -179,6 +179,32 @@ func (a *Array) PairWithSumEqualTo1(k int) []Pair {
 	return pairs
 }
 
+//PairWithSumEqualTo2
+//Assume array elements are not sorted
+func (a *Array) PairWithSumEqualTo2(k int) []Pair {
+	var pairs []Pair
+	var potentialSumPairs = make(map[int]*Pair, len(a.elements))
+	var EmptyPair = &Pair{}
+
+	for _, element := range a.elements {
+		difference := k - element
+		if potentialSumPairs[difference] == nil {
+			potentialSumPairs[element] = EmptyPair
+		} else {
+			potentialSumPairs[difference] = &Pair{
+				Element1: element,
+				Element2: difference,
+			}
+		}
+	}
+	for _, value := range potentialSumPairs {
+		if value != EmptyPair {
+			pairs = append(pairs, Pair{Element1: value.Element2, Element2: value.Element1})
+		}
+	}
+	return pairs
+}
+
 func (a *Array) SecondHighestElement() int {
 	if len(a.elements) == 0 {
 		return 0

@@ -421,6 +421,141 @@ func TestPairWithSumEqualToKForSortedArray_4(t *testing.T) {
 	}
 }
 
+func TestPairWithSumEqualToKForUnSortedArray_1(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(3)
+	arr.Insert(2)
+	arr.Insert(5)
+	arr.Insert(4)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	expected := []array.Pair{
+		{
+			Element1: 1,
+			Element2: 6,
+		},
+		{
+			Element1: 2,
+			Element2: 5,
+		},
+		{
+			Element1: 3,
+			Element2: 4,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo2(7)
+	if len(pairs) == 0 {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+	for _, element := range pairs {
+		if !((element.Element1 == 1 && element.Element2 == 6) ||
+			(element.Element1 == 2 && element.Element2 == 5) ||
+			(element.Element1 == 3 && element.Element2 == 4)) {
+			t.Fatalf("Expected %v but received %v", expected, pairs)
+		}
+	}
+}
+
+func TestPairWithSumEqualToKForUnSortedArray_2(t *testing.T) {
+	arr := array.Array{
+		Size: 3,
+	}
+	arr.Insert(10)
+	arr.Insert(30)
+	arr.Insert(20)
+
+	expected := []array.Pair{
+		{
+			Element1: 10,
+			Element2: 20,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo2(30)
+	if len(pairs) == 0 {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+	for _, element := range pairs {
+		if !(element.Element1 == 10 && element.Element2 == 20) {
+			t.Fatalf("Expected %v but received %v", expected, pairs)
+		}
+	}
+}
+
+func TestPairWithSumEqualToKForUnSortedArray_3(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	arr.Insert(0)
+	arr.Insert(-1)
+	arr.Insert(2)
+	arr.Insert(1)
+	arr.Insert(3)
+
+	expected := []array.Pair{
+		{
+			Element1: -1,
+			Element2: 3,
+		},
+		{
+			Element1: 0,
+			Element2: 2,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo2(2)
+	if len(pairs) == 0 {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+	for _, element := range pairs {
+		if !((element.Element1 == -1 && element.Element2 == 3) ||
+			(element.Element1 == 0 && element.Element2 == 2)) {
+			t.Fatalf("Expected %v but received %v", expected, pairs)
+		}
+	}
+}
+
+func TestPairWithSumEqualToKForUnSortedArray_4(t *testing.T) {
+	arr := array.Array{
+		Size: 8,
+	}
+	arr.Insert(6)
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(3)
+	arr.Insert(2)
+	arr.Insert(4)
+
+	expected := []array.Pair{
+		{
+			Element1: 1,
+			Element2: 5,
+		},
+		{
+			Element1: 2,
+			Element2: 4,
+		},
+		{
+			Element1: 2,
+			Element2: 4,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo2(6)
+	if len(pairs) == 0 {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+	for _, element := range pairs {
+		if !((element.Element1 == 1 && element.Element2 == 5) ||
+			(element.Element1 == 2 && element.Element2 == 4)) {
+			t.Fatalf("Expected %v but received %v", expected, pairs)
+		}
+	}
+}
+
 func TestSecondHighestElement_1(t *testing.T) {
 	arr := array.Array{
 		Size: 5,
