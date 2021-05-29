@@ -317,6 +317,21 @@ func (a *Array) Merge(other Array) []int {
 	return merged
 }
 
+//IntersectWith
+//Assume unsorted arrays, had they been sorted we could have used a modified version of merge.
+//Similar solution can be extended for Union and Difference. This uses an extra map (space) over compute.
+func (a *Array) IntersectWith(other Array) []int {
+	var intersected []int
+	existenceByElement := a.toMap()
+
+	for _, element := range other.elements {
+		if existenceByElement[element] {
+			intersected = append(intersected, element)
+		}
+	}
+	return intersected
+}
+
 func (a *Array) All() []int {
 	elements := make([]int, a.index)
 	for count := 0; count < a.index; count++ {
@@ -339,4 +354,12 @@ func (a *Array) copyElementTo(destination []int) {
 	for index, element := range a.elements {
 		destination[index] = element
 	}
+}
+
+func (a *Array) toMap() map[int]bool {
+	existenceByElement := make(map[int]bool, len(a.elements))
+	for _, element := range a.elements {
+		existenceByElement[element] = true
+	}
+	return existenceByElement
 }

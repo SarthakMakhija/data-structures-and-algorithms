@@ -752,3 +752,48 @@ func TestMerge_3(t *testing.T) {
 		t.Fatalf("Expected %v but received %v", expected, merged)
 	}
 }
+
+func TestIntersect_1(t *testing.T) {
+	arr := array.Array{
+		Size: 2,
+	}
+	other := array.Array{
+		Size: 1,
+	}
+	arr.Insert(10)
+	arr.Insert(20)
+
+	other.Insert(10)
+
+	expected := []int{10}
+	intersected := arr.IntersectWith(other)
+	if !reflect.DeepEqual(intersected, expected) {
+		t.Fatalf("Expected %v but received %v", expected, intersected)
+	}
+}
+
+func TestIntersect_2(t *testing.T) {
+	arr := array.Array{
+		Size: 5,
+	}
+	other := array.Array{
+		Size: 5,
+	}
+	arr.Insert(10)
+	arr.Insert(30)
+	arr.Insert(20)
+	arr.Insert(50)
+	arr.Insert(40)
+
+	other.Insert(100)
+	other.Insert(200)
+	other.Insert(300)
+	other.Insert(40)
+	other.Insert(50)
+
+	expected := []int{40, 50}
+	intersected := arr.IntersectWith(other)
+	if !reflect.DeepEqual(intersected, expected) {
+		t.Fatalf("Expected %v but received %v", expected, intersected)
+	}
+}
