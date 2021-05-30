@@ -71,3 +71,14 @@ func SetBitsCountUsingLookup(number int) int {
 
 	return bitSetCount
 }
+
+//IsPowerOf2
+//Option1, Numbers which are power of 2 have only 1 bit set.
+//Option2, Perform an and operation with number - 1, we should get a zero
+func IsPowerOf2(number int) bool {
+	if number == 0 {
+		return false
+	} else {
+		return number&(number-1) == 0
+	}
+}

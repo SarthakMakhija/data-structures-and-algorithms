@@ -276,3 +276,27 @@ func TestSetBitsCountUsingUsingLookup_6(t *testing.T) {
 		t.Fatalf("Expected %v received %v", 1, result)
 	}
 }
+
+func TestIsPowerOf2_1(t *testing.T) {
+	result := bitwise.IsPowerOf2(8)
+
+	if result != true {
+		t.Fatalf("Expected %v received %v", true, result)
+	}
+}
+
+func TestIsPowerOf2_2(t *testing.T) {
+	result := bitwise.IsPowerOf2(32)
+
+	if result != true {
+		t.Fatalf("Expected %v received %v", true, result)
+	}
+}
+
+func TestIsPowerOf2_3(t *testing.T) {
+	result := bitwise.IsPowerOf2(100)
+
+	if result != false {
+		t.Fatalf("Expected %v received %v", false, result)
+	}
+}
