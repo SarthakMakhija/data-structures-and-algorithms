@@ -41,6 +41,42 @@ func TestIsKthDigitSet_4(t *testing.T) {
 	}
 }
 
+func TestIsKthDigitSetAlternate_1(t *testing.T) {
+	number := 5
+	result := bitwise.IsKthBitSetAlternate(3, number)
+
+	if result != true {
+		t.Fatalf("Expected true received %v", result)
+	}
+}
+
+func TestIsKthDigitSetAlternate_2(t *testing.T) {
+	number := 5
+	result := bitwise.IsKthBitSetAlternate(1, number)
+
+	if result != true {
+		t.Fatalf("Expected true received %v", result)
+	}
+}
+
+func TestIsKthDigitSetAlternate_3(t *testing.T) {
+	number := 10
+	result := bitwise.IsKthBitSetAlternate(4, number)
+
+	if result != true {
+		t.Fatalf("Expected true received %v", result)
+	}
+}
+
+func TestIsKthDigitSetAlternate_4(t *testing.T) {
+	number := 10
+	result := bitwise.IsKthBitSetAlternate(3, number)
+
+	if result != false {
+		t.Fatalf("Expected false received %v", result)
+	}
+}
+
 func TestPowerOf2By_1(t *testing.T) {
 	result := bitwise.PowerOf2By(3)
 

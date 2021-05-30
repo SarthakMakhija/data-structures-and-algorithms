@@ -2,7 +2,13 @@ package bitwise
 
 func IsKthBitSet(k int, number int) bool {
 	numberWithKThBitSet := PowerOf2By(k - 1) //2^(k-1), power of 2 with k-1
-	return number&numberWithKThBitSet == numberWithKThBitSet
+	return number&numberWithKThBitSet != 0
+}
+
+//IsKthBitSetAlternate
+//use right shift to get the bit to the first position
+func IsKthBitSetAlternate(k int, number int) bool {
+	return (number >> (k - 1) & 1) != 0
 }
 
 func PowerOf2By(k int) int {
