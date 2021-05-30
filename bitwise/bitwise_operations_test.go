@@ -132,3 +132,147 @@ func TestSetBitsCount_5(t *testing.T) {
 		t.Fatalf("Expected %v received %v", 3, result)
 	}
 }
+
+func TestSetBitsCountAlternate_1(t *testing.T) {
+	result := bitwise.SetBitsCountAlternateIn(10)
+
+	if result != 2 {
+		t.Fatalf("Expected %v received %v", 2, result)
+	}
+}
+
+func TestSetBitsCountAlternate_2(t *testing.T) {
+	result := bitwise.SetBitsCountAlternateIn(0)
+
+	if result != 0 {
+		t.Fatalf("Expected %v received %v", 0, result)
+	}
+}
+
+func TestSetBitsCountAlternate_3(t *testing.T) {
+	result := bitwise.SetBitsCountAlternateIn(7)
+
+	if result != 3 {
+		t.Fatalf("Expected %v received %v", 3, result)
+	}
+}
+
+func TestSetBitsCountAlternate_4(t *testing.T) {
+	result := bitwise.SetBitsCountAlternateIn(1)
+
+	if result != 1 {
+		t.Fatalf("Expected %v received %v", 1, result)
+	}
+}
+
+func TestSetBitsCountAlternate_5(t *testing.T) {
+	result := bitwise.SetBitsCountAlternateIn(100)
+
+	if result != 3 {
+		t.Fatalf("Expected %v received %v", 3, result)
+	}
+}
+
+func TestSetBitsCountAlternate_6(t *testing.T) {
+	result := bitwise.SetBitsCountAlternateIn(8)
+
+	if result != 1 {
+		t.Fatalf("Expected %v received %v", 1, result)
+	}
+}
+
+func TestSetBitsCountUsingBrianKerningam_1(t *testing.T) {
+	result := bitwise.SetBitsCountUsingBrianKerningam(10)
+
+	if result != 2 {
+		t.Fatalf("Expected %v received %v", 2, result)
+	}
+}
+
+func TestSetBitsCountUsingBrianKerningam_2(t *testing.T) {
+	result := bitwise.SetBitsCountUsingBrianKerningam(0)
+
+	if result != 0 {
+		t.Fatalf("Expected %v received %v", 0, result)
+	}
+}
+
+func TestSetBitsCountUsingBrianKerningam_3(t *testing.T) {
+	result := bitwise.SetBitsCountUsingBrianKerningam(7)
+
+	if result != 3 {
+		t.Fatalf("Expected %v received %v", 3, result)
+	}
+}
+
+func TestSetBitsCountUsingBrianKerningam_4(t *testing.T) {
+	result := bitwise.SetBitsCountUsingBrianKerningam(1)
+
+	if result != 1 {
+		t.Fatalf("Expected %v received %v", 1, result)
+	}
+}
+
+func TestSetBitsCountUsingBrianKerningam_5(t *testing.T) {
+	result := bitwise.SetBitsCountUsingBrianKerningam(100)
+
+	if result != 3 {
+		t.Fatalf("Expected %v received %v", 3, result)
+	}
+}
+
+func TestSetBitsCountUsingBrianKerningam_6(t *testing.T) {
+	result := bitwise.SetBitsCountUsingBrianKerningam(8)
+
+	if result != 1 {
+		t.Fatalf("Expected %v received %v", 1, result)
+	}
+}
+
+func TestSetBitsCountUsingUsingLookup_1(t *testing.T) {
+	result := bitwise.SetBitsCountUsingLookup(10)
+
+	if result != 2 {
+		t.Fatalf("Expected %v received %v", 2, result)
+	}
+}
+
+func TestSetBitsCountUsingUsingLookup_2(t *testing.T) {
+	result := bitwise.SetBitsCountUsingLookup(0)
+
+	if result != 0 {
+		t.Fatalf("Expected %v received %v", 0, result)
+	}
+}
+
+func TestSetBitsCountUsingUsingLookup_3(t *testing.T) {
+	result := bitwise.SetBitsCountUsingLookup(7)
+
+	if result != 3 {
+		t.Fatalf("Expected %v received %v", 3, result)
+	}
+}
+
+func TestSetBitsCountUsingUsingLookup_4(t *testing.T) {
+	result := bitwise.SetBitsCountUsingLookup(1)
+
+	if result != 1 {
+		t.Fatalf("Expected %v received %v", 1, result)
+	}
+}
+
+func TestSetBitsCountUsingUsingLookup_5(t *testing.T) {
+	result := bitwise.SetBitsCountUsingLookup(100)
+
+	if result != 3 {
+		t.Fatalf("Expected %v received %v", 3, result)
+	}
+}
+
+func TestSetBitsCountUsingUsingLookup_6(t *testing.T) {
+	result := bitwise.SetBitsCountUsingLookup(8)
+
+	if result != 1 {
+		t.Fatalf("Expected %v received %v", 1, result)
+	}
+}
