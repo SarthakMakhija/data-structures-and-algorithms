@@ -8,7 +8,7 @@ The key ideas are -
 - Practice DSA problems
 - Learn Golang
 
-Current solutions cover the following areas -
+Current solutions cover the problems from the following areas -
 
 - **Recursion**
 - **Stack**
@@ -16,6 +16,7 @@ Current solutions cover the following areas -
 - **Binary Tree**
 - **Binary Search Tree**
 - **Arrays**
+- **Bit Manipulation**
 
 One of the other things that I wish to get out of this repository is figure out some real life use-cases of various data structures. 
 Eg; Java's Hashmap uses Red-Black tree, figure out such uses and add them here.
