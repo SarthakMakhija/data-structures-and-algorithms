@@ -2,7 +2,7 @@
 
 The idea behind this repository is to practice problems around Data structures and algorithms and get a hang of golang. 
 
-This effectively means that the code might not be great but I am not sure if that is even the focus here.
+This effectively means that the code might not be great but I hope to improve it gradually.
 
 The key ideas are -
 - Practice DSA problems
