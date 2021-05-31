@@ -69,13 +69,13 @@ func Duplicates1(str string) []string {
 //Assume characters are english alphabets
 func Duplicates2(str string) []string {
 	var lowerCased = strings.ToLower(str)
-	var englishCharacters = []rune{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}
+	var englishCharacters [26]bool
 	var duplicates []string
 
 	for _, ch := range lowerCased {
 		index := int(math.Mod(float64(ch), float64(26)))
-		if englishCharacters[index] != '$' {
-			englishCharacters[index] = '$'
+		if englishCharacters[index] != true {
+			englishCharacters[index] = true
 		} else {
 			duplicates = append(duplicates, string(ch))
 		}
