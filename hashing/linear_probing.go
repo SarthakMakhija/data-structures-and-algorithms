@@ -7,11 +7,11 @@ import (
 
 const size int = 10
 
-type FixedSizeBucket struct {
+type LinearProbingFixedSizedBucket struct {
 	entries [size]*int
 }
 
-func (f *FixedSizeBucket) Add(element int) (bool, error) {
+func (f *LinearProbingFixedSizedBucket) Add(element int) (bool, error) {
 	index := f.indexOf(element)
 	if f.entries[index] == nil {
 		f.entries[index] = &element
@@ -27,7 +27,7 @@ func (f *FixedSizeBucket) Add(element int) (bool, error) {
 	}
 }
 
-func (f *FixedSizeBucket) Contains(element int) bool {
+func (f *LinearProbingFixedSizedBucket) Contains(element int) bool {
 	initialIndex := f.indexOf(element)
 	index := initialIndex
 
@@ -43,7 +43,7 @@ func (f *FixedSizeBucket) Contains(element int) bool {
 	return false
 }
 
-func (f *FixedSizeBucket) nextSlotAvailableAfter(index int) (int, error) {
+func (f *LinearProbingFixedSizedBucket) nextSlotAvailableAfter(index int) (int, error) {
 	slotValue := f.entries[index]
 	nextIndex := index
 	for slotValue != nil {
@@ -56,14 +56,14 @@ func (f *FixedSizeBucket) nextSlotAvailableAfter(index int) (int, error) {
 	return nextIndex, nil
 }
 
-func (f *FixedSizeBucket) indexAfter(index int) int {
+func (f *LinearProbingFixedSizedBucket) indexAfter(index int) int {
 	return int(math.Mod(float64(index+1), float64(f.size())))
 }
 
-func (f *FixedSizeBucket) indexOf(key int) int {
+func (f *LinearProbingFixedSizedBucket) indexOf(key int) int {
 	return int(math.Mod(float64(key), float64(f.size())))
 }
 
-func (f *FixedSizeBucket) size() int {
+func (f *LinearProbingFixedSizedBucket) size() int {
 	return len(f.entries)
 }

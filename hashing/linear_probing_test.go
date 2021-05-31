@@ -6,7 +6,7 @@ import (
 )
 
 func TestFixedSizeBucketContains_1(t *testing.T) {
-	bucket := hashing.FixedSizeBucket{}
+	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
 	_, _ = bucket.Add(57)
@@ -20,7 +20,7 @@ func TestFixedSizeBucketContains_1(t *testing.T) {
 }
 
 func TestFixedSizeBucketContains_2(t *testing.T) {
-	bucket := hashing.FixedSizeBucket{}
+	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
 	_, _ = bucket.Add(57)
@@ -36,7 +36,7 @@ func TestFixedSizeBucketContains_2(t *testing.T) {
 }
 
 func TestFixedSizeBucketContains_3(t *testing.T) {
-	bucket := hashing.FixedSizeBucket{}
+	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
 	_, _ = bucket.Add(57)
@@ -52,7 +52,7 @@ func TestFixedSizeBucketContains_3(t *testing.T) {
 }
 
 func TestFixedSizeBucketAdd(t *testing.T) {
-	bucket := hashing.FixedSizeBucket{}
+	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(1)
 	_, _ = bucket.Add(2)
