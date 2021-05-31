@@ -6,7 +6,7 @@ import (
 )
 
 type LinearProbingFixedSizedBucket struct {
-	entries [fixedSize]*int
+	entries [fixedBucketSize]*int
 }
 
 func (f *LinearProbingFixedSizedBucket) Add(element int) (bool, error) {

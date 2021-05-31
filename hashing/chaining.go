@@ -14,7 +14,7 @@ type FixedSizedSortedMap struct {
 
 func (m *FixedSizedSortedMap) Add(key int, value int) {
 	if m.size() == 0 {
-		m.entries = make([]*Node, fixedSize)
+		m.entries = make([]*Node, fixedBucketSize)
 	}
 	addAt := func(index int, node *Node) {
 		head := m.entries[index]

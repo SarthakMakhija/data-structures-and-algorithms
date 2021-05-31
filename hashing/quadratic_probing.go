@@ -6,7 +6,7 @@ import (
 )
 
 type QuadraticProbingFixedSizedBucket struct {
-	entries [fixedSize]*int
+	entries [fixedBucketSize]*int
 }
 
 func (f *QuadraticProbingFixedSizedBucket) Add(element int) (bool, error) {
@@ -30,7 +30,7 @@ func (f *QuadraticProbingFixedSizedBucket) Contains(element int) bool {
 	index := initialIndex
 	incrementFactor := 1
 
-	for incrementFactor <= fixedSize {
+	for incrementFactor <= fixedBucketSize {
 		if f.entries[index] != nil && *f.entries[index] == element {
 			return true
 		}
@@ -45,7 +45,7 @@ func (f *QuadraticProbingFixedSizedBucket) nextSlotAvailableAfter(index int) (in
 	nextIndex := index
 	incrementFactor := 1
 
-	for slotValue != nil && incrementFactor <= fixedSize {
+	for slotValue != nil && incrementFactor <= fixedBucketSize {
 		nextIndex = int(math.Mod(float64(index+(incrementFactor*incrementFactor)), float64(f.size())))
 		slotValue = f.entries[nextIndex]
 		incrementFactor = incrementFactor + 1
