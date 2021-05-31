@@ -66,7 +66,7 @@ func Duplicates1(str string) []string {
 }
 
 //Duplicates2
-//Assume characters are english alphabets (Latin)
+//Assume characters are english alphabets
 func Duplicates2(str string) []string {
 	var lowerCased = strings.ToLower(str)
 	var englishCharacters = []rune{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}
