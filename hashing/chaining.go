@@ -8,8 +8,6 @@ type Node struct {
 	next  *Node
 }
 
-const fixedSize int = 10
-
 type FixedSizedSortedMap struct {
 	entries []*Node
 }

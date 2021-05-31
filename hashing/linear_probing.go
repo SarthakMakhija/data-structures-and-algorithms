@@ -5,10 +5,8 @@ import (
 	"math"
 )
 
-const size int = 10
-
 type LinearProbingFixedSizedBucket struct {
-	entries [size]*int
+	entries [fixedSize]*int
 }
 
 func (f *LinearProbingFixedSizedBucket) Add(element int) (bool, error) {
