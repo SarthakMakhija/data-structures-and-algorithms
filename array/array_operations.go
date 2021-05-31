@@ -160,13 +160,16 @@ func (a *Array) FindDuplicates() []int {
 func (a *Array) PairWithSumEqualTo1(k int) []Pair {
 
 	var pairs []Pair
-
 	minIndex := 0
 	maxIndex := len(a.elements) - 1
 
 	for index := maxIndex; index > minIndex; {
 		if a.elements[index]+a.elements[minIndex] != k {
-			index = index - 1
+			if k > a.elements[index] {
+				minIndex = minIndex + 1
+			} else {
+				index = index - 1
+			}
 		} else {
 			pairs = append(pairs, Pair{
 				Element1: a.elements[minIndex],
