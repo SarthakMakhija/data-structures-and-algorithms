@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestDoubleHashingFixedSizedBucketContains_1(t *testing.T) {
+func TestDoubleHashingContains_1(t *testing.T) {
 	bucket := hashing.DoubleHashingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
@@ -19,7 +19,7 @@ func TestDoubleHashingFixedSizedBucketContains_1(t *testing.T) {
 	}
 }
 
-func TestDoubleHashingFixedSizedBucketContains_2(t *testing.T) {
+func TestDoubleHashingContains_2(t *testing.T) {
 	bucket := hashing.DoubleHashingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
@@ -35,7 +35,7 @@ func TestDoubleHashingFixedSizedBucketContains_2(t *testing.T) {
 	}
 }
 
-func TestDoubleHashingFixedSizedBucketContains_3(t *testing.T) {
+func TestDoubleHashingContains_3(t *testing.T) {
 	bucket := hashing.DoubleHashingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
@@ -51,7 +51,7 @@ func TestDoubleHashingFixedSizedBucketContains_3(t *testing.T) {
 	}
 }
 
-func TestDoubleHashingFixedSizedBucketContains_4(t *testing.T) {
+func TestDoubleHashingContains_4(t *testing.T) {
 	bucket := hashing.DoubleHashingFixedSizedBucket{}
 
 	_, _ = bucket.Add(5)
@@ -66,7 +66,7 @@ func TestDoubleHashingFixedSizedBucketContains_4(t *testing.T) {
 	}
 }
 
-func TestDoubleHashingFixedSizedBucketAdd_1(t *testing.T) {
+func TestDoubleHashingAdd_1(t *testing.T) {
 	bucket := hashing.DoubleHashingFixedSizedBucket{}
 
 	_, _ = bucket.Add(1)

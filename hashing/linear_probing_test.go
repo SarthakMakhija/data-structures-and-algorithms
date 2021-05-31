@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestFixedSizeBucketContains_1(t *testing.T) {
+func TestLinearProbingContains_1(t *testing.T) {
 	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
@@ -19,7 +19,7 @@ func TestFixedSizeBucketContains_1(t *testing.T) {
 	}
 }
 
-func TestFixedSizeBucketContains_2(t *testing.T) {
+func TestLinearProbingContains_2(t *testing.T) {
 	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
@@ -35,7 +35,7 @@ func TestFixedSizeBucketContains_2(t *testing.T) {
 	}
 }
 
-func TestFixedSizeBucketContains_3(t *testing.T) {
+func TestLinearProbingContains_3(t *testing.T) {
 	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
@@ -51,7 +51,7 @@ func TestFixedSizeBucketContains_3(t *testing.T) {
 	}
 }
 
-func TestFixedSizeBucketAdd(t *testing.T) {
+func TestLinearProbingAdd(t *testing.T) {
 	bucket := hashing.LinearProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(1)

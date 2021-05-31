@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestFixedSizedMapFindFirstValueBy_1(t *testing.T) {
+func TestChainingFindFirstValueBy_1(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(65, 30)
@@ -19,7 +19,7 @@ func TestFixedSizedMapFindFirstValueBy_1(t *testing.T) {
 	}
 }
 
-func TestFixedSizedMapFindFirstValueBy_2(t *testing.T) {
+func TestChainingFindFirstValueBy_2(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(15, 30)
@@ -32,7 +32,7 @@ func TestFixedSizedMapFindFirstValueBy_2(t *testing.T) {
 	}
 }
 
-func TestFixedSizedMapFindFirstValueBy_3(t *testing.T) {
+func TestChainingFindFirstValueBy_3(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(14, 30)
@@ -45,7 +45,7 @@ func TestFixedSizedMapFindFirstValueBy_3(t *testing.T) {
 	}
 }
 
-func TestFixedSizedMapFindAllValuesBy_1(t *testing.T) {
+func TestChainingFindAllValuesBy_1(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(15, 30)
@@ -60,7 +60,7 @@ func TestFixedSizedMapFindAllValuesBy_1(t *testing.T) {
 	}
 }
 
-func TestFixedSizedMapFindAllValuesBy_2(t *testing.T) {
+func TestChainingFindAllValuesBy_2(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(65, 30)
@@ -77,7 +77,7 @@ func TestFixedSizedMapFindAllValuesBy_2(t *testing.T) {
 	}
 }
 
-func TestFixedSizedMapContains_1(t *testing.T) {
+func TestChainingContains_1(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(65, 30)
@@ -93,7 +93,7 @@ func TestFixedSizedMapContains_1(t *testing.T) {
 	}
 }
 
-func TestFixedSizedMapContains_2(t *testing.T) {
+func TestChainingContains_2(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(65, 30)
@@ -105,7 +105,7 @@ func TestFixedSizedMapContains_2(t *testing.T) {
 	}
 }
 
-func TestFixedSizedMapContains_3(t *testing.T) {
+func TestChainingContains_3(t *testing.T) {
 	fixedSizedMap := hashing.FixedSizedSortedMap{}
 
 	fixedSizedMap.Add(65, 30)
