@@ -1,9 +1,5 @@
 package bitwise
 
-import (
-	"sort"
-)
-
 func IsKthBitSet(k int, number int) bool {
 	numberWithKThBitSet := PowerOf2By(k - 1) //2^(k-1), power of 2 with k-1
 	return number&numberWithKThBitSet != 0
@@ -85,26 +81,4 @@ func IsPowerOf2(number int) bool {
 	} else {
 		return number&(number-1) == 0
 	}
-}
-
-func MaxAnd(arr []int) int {
-	sort.Ints(arr)
-	maxBitSetIn := func(value int) int {
-		maxBitSet := 0
-
-		for value > 0 {
-			maxBitSet = maxBitSet + 1
-			value = value >> 1
-		}
-		return maxBitSet
-	}
-	maxAndResult := 0
-	for index := len(arr) - 1; index >= 1; index-- {
-		maxBit := maxBitSetIn(arr[index])
-		if IsKthBitSet(maxBit, arr[index-1]) {
-			maxAndResult = arr[index] & arr[index-1]
-			break
-		}
-	}
-	return maxAndResult
 }

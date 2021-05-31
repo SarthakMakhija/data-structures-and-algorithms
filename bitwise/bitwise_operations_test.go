@@ -300,39 +300,3 @@ func TestIsPowerOf2_3(t *testing.T) {
 		t.Fatalf("Expected %v received %v", false, result)
 	}
 }
-
-func TestMaxAnd_1(t *testing.T) {
-	arr := []int{16, 4, 8, 12}
-	result := bitwise.MaxAnd(arr)
-
-	if result != 8 {
-		t.Fatalf("Expected %v received %v", 8, result)
-	}
-}
-
-func TestMaxAnd_2(t *testing.T) {
-	arr := []int{15, 9, 8, 11}
-	result := bitwise.MaxAnd(arr)
-
-	if result != 11 {
-		t.Fatalf("Expected %v received %v", 11, result)
-	}
-}
-
-func TestMaxAnd_3(t *testing.T) {
-	arr := []int{15, 9, 8, 11, 12}
-	result := bitwise.MaxAnd(arr)
-
-	if result != 12 {
-		t.Fatalf("Expected %v received %v", 12, result)
-	}
-}
-
-func TestMaxAnd_4(t *testing.T) {
-	arr := []int{5, 1, 3, 7, 9}
-	result := bitwise.MaxAnd(arr)
-
-	if result != 5 {
-		t.Fatalf("Expected %v received %v", 5, result)
-	}
-}
