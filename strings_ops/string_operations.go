@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func Duplicates(str string) []string {
+func Duplicates1(str string) []string {
 
 	length := len(str)
 	if length == 0 {
@@ -60,6 +60,24 @@ func Duplicates(str string) []string {
 	for _, occurrence := range occurrences {
 		if occurrence.count > 1 {
 			duplicates = append(duplicates, occurrence.ch)
+		}
+	}
+	return duplicates
+}
+
+//Duplicates2
+//Assume characters are english alphabets (Latin)
+func Duplicates2(str string) []string {
+	var lowerCased = strings.ToLower(str)
+	var englishCharacters = []rune{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}
+	var duplicates []string
+
+	for _, ch := range lowerCased {
+		index := int(math.Mod(float64(ch), float64(26)))
+		if englishCharacters[index] != '$' {
+			englishCharacters[index] = '$'
+		} else {
+			duplicates = append(duplicates, string(ch))
 		}
 	}
 	return duplicates
