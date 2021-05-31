@@ -17,6 +17,11 @@ Current solutions cover the problems from the following areas -
 - **Binary Search Tree**
 - **Arrays**
 - **Bit Manipulation**
+- **Hashing**
+  - Chaining
+  - Linear probing
+  - Quadratic probing
+  - Double hasing
 
 One of the other things that I wish to get out of this repository is figure out some real life use-cases of various data structures. 
 Eg; Java's Hashmap uses Red-Black tree, figure out such uses and add them here.
