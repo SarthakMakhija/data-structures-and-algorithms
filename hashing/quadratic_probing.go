@@ -5,18 +5,17 @@ import (
 	"math"
 )
 
-type Bucket struct {
+type QuadraticProbingFixedSizedBucket struct {
 	entries [size]*int
 }
 
-func (f *Bucket) Add(element int) (bool, error) {
+func (f *QuadraticProbingFixedSizedBucket) Add(element int) (bool, error) {
 	index := f.indexOf(element)
 	if f.entries[index] == nil {
 		f.entries[index] = &element
 		return true, nil
 	} else {
 		nextIndex, err := f.nextSlotAvailableAfter(index)
-		//fmt.Println("nextindex ", nextIndex, " for element ", element)
 		if err == nil {
 			f.entries[nextIndex] = &element
 			return true, nil
@@ -26,7 +25,7 @@ func (f *Bucket) Add(element int) (bool, error) {
 	}
 }
 
-func (f *Bucket) Contains(element int) bool {
+func (f *QuadraticProbingFixedSizedBucket) Contains(element int) bool {
 	initialIndex := f.indexOf(element)
 	index := initialIndex
 	incrementFactor := 1
@@ -41,7 +40,7 @@ func (f *Bucket) Contains(element int) bool {
 	return false
 }
 
-func (f *Bucket) nextSlotAvailableAfter(index int) (int, error) {
+func (f *QuadraticProbingFixedSizedBucket) nextSlotAvailableAfter(index int) (int, error) {
 	slotValue := f.entries[index]
 	nextIndex := index
 	incrementFactor := 1
@@ -58,10 +57,10 @@ func (f *Bucket) nextSlotAvailableAfter(index int) (int, error) {
 	}
 }
 
-func (f *Bucket) indexOf(key int) int {
+func (f *QuadraticProbingFixedSizedBucket) indexOf(key int) int {
 	return int(math.Mod(float64(key), float64(f.size())))
 }
 
-func (f *Bucket) size() int {
+func (f *QuadraticProbingFixedSizedBucket) size() int {
 	return len(f.entries)
 }

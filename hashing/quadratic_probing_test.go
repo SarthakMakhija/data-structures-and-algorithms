@@ -6,7 +6,7 @@ import (
 )
 
 func TestBucketContains_1(t *testing.T) {
-	bucket := hashing.Bucket{}
+	bucket := hashing.QuadraticProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
 	_, _ = bucket.Add(57)
@@ -20,7 +20,7 @@ func TestBucketContains_1(t *testing.T) {
 }
 
 func TestBucketContains_2(t *testing.T) {
-	bucket := hashing.Bucket{}
+	bucket := hashing.QuadraticProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
 	_, _ = bucket.Add(57)
@@ -36,7 +36,7 @@ func TestBucketContains_2(t *testing.T) {
 }
 
 func TestBucketContains_3(t *testing.T) {
-	bucket := hashing.Bucket{}
+	bucket := hashing.QuadraticProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(47)
 	_, _ = bucket.Add(57)
@@ -52,7 +52,7 @@ func TestBucketContains_3(t *testing.T) {
 }
 
 func TestBucketAdd(t *testing.T) {
-	bucket := hashing.Bucket{}
+	bucket := hashing.QuadraticProbingFixedSizedBucket{}
 
 	_, _ = bucket.Add(1)
 	_, _ = bucket.Add(2)
