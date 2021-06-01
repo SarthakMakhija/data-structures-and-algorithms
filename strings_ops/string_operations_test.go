@@ -62,3 +62,43 @@ func TestStringDuplicatesGivenThereAreDuplicates_4(t *testing.T) {
 		t.Fatalf("Expecting duplicates lma but found %v", duplicates)
 	}
 }
+
+func TestStringDuplicatesGivenThereAreNoDuplicates_4(t *testing.T) {
+
+	duplicateExists := stringsops.Duplicates3("sample")
+	if duplicateExists != false {
+		t.Fatalf("Expecting no duplicates but found %v", duplicateExists)
+	}
+}
+
+func TestStringDuplicatesGivenThereAreNoDuplicates_5(t *testing.T) {
+
+	duplicateExists := stringsops.Duplicates3("Sample")
+	if duplicateExists != false {
+		t.Fatalf("Expecting no duplicates but found %v", duplicateExists)
+	}
+}
+
+func TestStringDuplicatesGivenThereAreNoDuplicates_6(t *testing.T) {
+
+	duplicateExists := stringsops.Duplicates3("Hello")
+	if duplicateExists != true {
+		t.Fatalf("Expecting duplicates but found %v", duplicateExists)
+	}
+}
+
+func TestStringDuplicatesGivenThereAreNoDuplicates_7(t *testing.T) {
+
+	duplicateExists := stringsops.Duplicates3("Finding")
+	if duplicateExists != true {
+		t.Fatalf("Expecting duplicates but found %v", duplicateExists)
+	}
+}
+
+func TestStringDuplicatesGivenThereAreNoDuplicates_8(t *testing.T) {
+
+	duplicateExists := stringsops.Duplicates3("Malayalam")
+	if duplicateExists != true {
+		t.Fatalf("Expecting duplicates but found %v", duplicateExists)
+	}
+}

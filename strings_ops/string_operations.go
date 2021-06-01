@@ -82,3 +82,30 @@ func Duplicates2(str string) []string {
 	}
 	return duplicates
 }
+
+func Duplicates3(str string) bool {
+	var lowerCased = strings.ToLower(str)
+
+	var occurrence int32 = 0
+	var base int32 = 1
+	var duplicateExists = false
+
+	for _, ch := range lowerCased {
+		var nthBitSet int32 = 0
+		nthBit := ch - 97
+
+		if nthBit == 0 {
+			nthBitSet = base << (nthBit)
+		} else {
+			nthBitSet = base << (nthBit - 1)
+		}
+
+		if occurrence&nthBitSet == 0 {
+			occurrence = occurrence | nthBitSet
+		} else {
+			duplicateExists = true
+			return duplicateExists
+		}
+	}
+	return duplicateExists
+}
