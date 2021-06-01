@@ -83,3 +83,22 @@ func TestPolynomialListPlus_2(t *testing.T) {
 		t.Fatalf("Expecting %v, received %v", expected, expression)
 	}
 }
+
+func TestPolynomialListPlus_3(t *testing.T) {
+	firstList := linkedlist.PolynomialList{}
+	firstList.Add(5, 0)
+	firstList.Add(20, 2)
+	firstList.Add(-30, 3)
+
+	secondList := linkedlist.PolynomialList{}
+	secondList.Add(50, 3)
+
+	resultList := firstList.Plus(secondList)
+
+	expression := strings.Trim(resultList.Expression(), " ")
+	expected := "20x3 + 20x2 + 5x0"
+
+	if expression != expected {
+		t.Fatalf("Expecting %v, received %v", expected, expression)
+	}
+}
