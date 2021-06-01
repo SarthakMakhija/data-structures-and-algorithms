@@ -84,7 +84,7 @@ func Duplicates2(str string) []string {
 }
 
 //Duplicates3
-//Assume characters are english alphabets, needs extra 32 bytes for `occurrence`
+//Assume characters are english alphabets, needs extra 4 bytes for `occurrence`
 func Duplicates3(str string) bool {
 	var lowerCased = strings.ToLower(str)
 
