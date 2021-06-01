@@ -66,7 +66,7 @@ func Duplicates1(str string) []string {
 }
 
 //Duplicates2
-//Assume characters are english alphabets
+//Assume characters are english alphabets, needs extra 26 bytes
 func Duplicates2(str string) []string {
 	var lowerCased = strings.ToLower(str)
 	var englishCharactersAppearance [26]bool
@@ -83,6 +83,8 @@ func Duplicates2(str string) []string {
 	return duplicates
 }
 
+//Duplicates3
+//Assume characters are english alphabets, needs extra 32 bytes for `occurrence`
 func Duplicates3(str string) bool {
 	var lowerCased = strings.ToLower(str)
 
