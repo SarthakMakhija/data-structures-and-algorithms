@@ -316,3 +316,73 @@ func TestIntersectionBetweenLinkedList_2(t *testing.T) {
 		t.Fatalf("Expected 4 received %v", intersectionValue)
 	}
 }
+
+func TestLinkedListRemoveDuplicates_1(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+
+	list.RemoveDuplicates()
+	output := list.AllAsString()
+	if output != "1234" {
+		t.Fatalf("Expected 1234 received %v", output)
+	}
+}
+
+func TestLinkedListRemoveDuplicates_2(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(3)
+	list.Add(4)
+	list.Add(4)
+
+	list.RemoveDuplicates()
+	output := list.AllAsString()
+	if output != "1234" {
+		t.Fatalf("Expected 1234 received %v", output)
+	}
+}
+
+func TestLinkedListRemoveDuplicates_3(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(3)
+	list.Add(4)
+	list.Add(4)
+
+	list.RemoveDuplicates()
+	output := list.AllAsString()
+	if output != "1234" {
+		t.Fatalf("Expected 1234 received %v", output)
+	}
+}
+
+func TestLinkedListRemoveDuplicates_4(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(3)
+	list.Add(4)
+	list.Add(3)
+	list.Add(4)
+	list.Add(3)
+
+	list.RemoveDuplicates()
+	output := list.AllAsString()
+	if output != "1234" {
+		t.Fatalf("Expected 1234 received %v", output)
+	}
+}

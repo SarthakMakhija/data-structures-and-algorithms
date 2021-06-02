@@ -280,3 +280,23 @@ func (l *LinkedList) Intersection(other *LinkedList) int {
 
 	return intersectionValue
 }
+
+//RemoveDuplicates
+//Assume unsorted list, needs extra storage, map can be given a size if linked list has a header node containing the size
+func (l *LinkedList) RemoveDuplicates() {
+	nodeExistenceByValue := make(map[int]bool)
+	head := l.first
+	var previous = head
+
+	for head != nil {
+		if nodeExistenceByValue[head.value] == true {
+			previous.next = head.next
+			head.next = nil
+			head = previous.next
+		} else {
+			nodeExistenceByValue[head.value] = true
+			previous = head
+			head = head.next
+		}
+	}
+}
