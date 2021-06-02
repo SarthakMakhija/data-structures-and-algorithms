@@ -300,3 +300,29 @@ func (l *LinkedList) RemoveDuplicates() {
 		}
 	}
 }
+
+//IsPalindrome
+//Given the node contains int we will have to consider a linked list like : 1 -> 4 -> 3 -> 4 -> 1 is a palindrome
+func (l *LinkedList) IsPalindrome() bool {
+	first := l.first
+
+	var isPalindromeInner func(*Node) bool
+	isPalindromeInner = func(head *Node) bool {
+		if head.next == nil {
+			firstValue := head.value
+			first = first.next
+			return head.value == firstValue
+		}
+		if isPalindromeInner(head.next) {
+			if head.value == first.value {
+				first = first.next
+				return true
+			} else {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+	return isPalindromeInner(first)
+}

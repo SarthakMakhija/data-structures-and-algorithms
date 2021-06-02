@@ -386,3 +386,63 @@ func TestLinkedListRemoveDuplicates_4(t *testing.T) {
 		t.Fatalf("Expected 1234 received %v", output)
 	}
 }
+
+func TestLinkedListIsPalindrome_1(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(2)
+	list.Add(1)
+
+	output := list.IsPalindrome()
+	if output != true {
+		t.Fatalf("Expected true received %v", output)
+	}
+}
+
+func TestLinkedListIsPalindrome_2(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(3)
+	list.Add(2)
+	list.Add(1)
+
+	output := list.IsPalindrome()
+	if output != true {
+		t.Fatalf("Expected true received %v", output)
+	}
+}
+
+func TestLinkedListIsPalindrome_3(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+
+	output := list.IsPalindrome()
+	if output != false {
+		t.Fatalf("Expected false received %v", output)
+	}
+}
+
+func TestLinkedListIsPalindrome_4(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(4)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+
+	output := list.IsPalindrome()
+	if output != false {
+		t.Fatalf("Expected false received %v", output)
+	}
+}
