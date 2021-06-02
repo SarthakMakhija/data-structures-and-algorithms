@@ -258,10 +258,10 @@ which means once we have created 2 stacks, if there is an intersection we can co
 and keep repeating it until there is no match
 This means extra space and extra iterations
 **/
-func Intersection(firstList *LinkedList, secondList *LinkedList) int {
+func (l *LinkedList) Intersection(other *LinkedList) int {
 
-	head1 := firstList.first
-	head2 := secondList.first
+	head1 := l.first
+	head2 := other.first
 
 	var intersectionValue = -1
 
