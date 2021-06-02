@@ -446,3 +446,239 @@ func TestLinkedListIsPalindrome_4(t *testing.T) {
 		t.Fatalf("Expected false received %v", output)
 	}
 }
+
+func TestLinkedListNthNodeFromEnd_1(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(8)
+	if output != 3 {
+		t.Fatalf("Expected 3 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_2(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(7)
+	if output != 4 {
+		t.Fatalf("Expected 4 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_3(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(5)
+	if output != 6 {
+		t.Fatalf("Expected 6 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_4(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(3)
+	if output != 8 {
+		t.Fatalf("Expected 8 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_5(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(2)
+	if output != 9 {
+		t.Fatalf("Expected 9 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_6(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(1)
+	if output != 10 {
+		t.Fatalf("Expected 10 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_7(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(10)
+	if output != 1 {
+		t.Fatalf("Expected 1 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_8(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+	list.Add(10)
+
+	output := list.NthNodeFromEnd(4)
+	if output != 7 {
+		t.Fatalf("Expected 7 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_9(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+
+	output := list.NthNodeFromEnd(4)
+	if output != 6 {
+		t.Fatalf("Expected 6 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_10(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+
+	output := list.NthNodeFromEnd(9)
+	if output != 1 {
+		t.Fatalf("Expected 1 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_11(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+
+	output := list.NthNodeFromEnd(1)
+	if output != 9 {
+		t.Fatalf("Expected 9 received %v", output)
+	}
+}
+
+func TestLinkedListNthNodeFromEnd_12(t *testing.T) {
+
+	list := linkedlist.LinkedList{}
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	list.Add(4)
+	list.Add(5)
+	list.Add(6)
+	list.Add(7)
+	list.Add(8)
+	list.Add(9)
+
+	output := list.NthNodeFromEnd(4)
+	if output != 6 {
+		t.Fatalf("Expected 6 received %v", output)
+	}
+}

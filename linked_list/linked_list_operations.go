@@ -326,3 +326,24 @@ func (l *LinkedList) IsPalindrome() bool {
 	}
 	return isPalindromeInner(first)
 }
+
+func (l *LinkedList) NthNodeFromEnd(n int) int {
+	head := l.first
+	tail := l.first
+
+	nodeGap := n - 1
+	headJump := 0
+	tailJump := 0
+
+	for head.next != nil {
+		for index := 1; index <= n && head.next != nil; index++ {
+			head = head.next
+			headJump++
+		}
+	}
+	for headJump-tailJump > nodeGap {
+		tail = tail.next
+		tailJump++
+	}
+	return tail.value
+}
