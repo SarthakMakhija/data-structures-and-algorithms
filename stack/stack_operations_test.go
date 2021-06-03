@@ -194,3 +194,31 @@ func TestIntStackCopyTo_2(t *testing.T) {
 		t.Fatalf("Expected %v, got %v", expected, result)
 	}
 }
+
+func TestDecimalToBinary_1(t *testing.T) {
+	output := stack.DecimalToBinary(10)
+	if output != "1010" {
+		t.Fatalf("Expected 1010 received %v", output)
+	}
+}
+
+func TestDecimalToBinary_2(t *testing.T) {
+	output := stack.DecimalToBinary(25)
+	if output != "11001" {
+		t.Fatalf("Expected 10001 received %v", output)
+	}
+}
+
+func TestDecimalToBinary_3(t *testing.T) {
+	output := stack.DecimalToBinary(9)
+	if output != "1001" {
+		t.Fatalf("Expected 1001 received %v", output)
+	}
+}
+
+func TestDecimalToBinary_4(t *testing.T) {
+	output := stack.DecimalToBinary(7)
+	if output != "111" {
+		t.Fatalf("Expected 111 received %v", output)
+	}
+}

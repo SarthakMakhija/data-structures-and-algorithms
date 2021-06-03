@@ -154,6 +154,21 @@ func (s *IntStack) All() []int {
 	return allElements
 }
 
+func DecimalToBinary(n int) string {
+	stack := IntStack{}
+	for n >= 1 {
+		by2 := n >> 1
+		remainder := n - by2*2
+		stack.Push(remainder)
+		n = by2
+	}
+	output := ""
+	for stack.stackTop > 0 {
+		output = output + strconv.Itoa(stack.pop())
+	}
+	return output
+}
+
 type IntStack struct {
 	stack    []int
 	stackTop int
