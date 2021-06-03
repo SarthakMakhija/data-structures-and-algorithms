@@ -241,3 +241,35 @@ func TestBinomialCoefficient_4(t *testing.T) {
 		t.Fatalf(`Expected 10C2 to be 45 but found  %v`, output)
 	}
 }
+
+func TestFirstCharacterOccurrence_1(t *testing.T) {
+
+	output := recursion.FirstCharacterOccurrence("sample", 'a')
+	if output != 1 {
+		t.Fatalf(`Expected index of character a to be 1 but found  %v`, output)
+	}
+}
+
+func TestFirstCharacterOccurrence_2(t *testing.T) {
+
+	output := recursion.FirstCharacterOccurrence("Hello", 'l')
+	if output != 2 {
+		t.Fatalf(`Expected index of character l to be 2 but found  %v`, output)
+	}
+}
+
+func TestFirstCharacterOccurrence_3(t *testing.T) {
+
+	output := recursion.FirstCharacterOccurrence("Fascinated", 'd')
+	if output != 9 {
+		t.Fatalf(`Expected index of character d to be 9 but found  %v`, output)
+	}
+}
+
+func TestFirstCharacterOccurrence_4(t *testing.T) {
+
+	output := recursion.FirstCharacterOccurrence("dummy", 'e')
+	if output != -1 {
+		t.Fatalf(`Expected index of character ea to be -1 but found  %v`, output)
+	}
+}

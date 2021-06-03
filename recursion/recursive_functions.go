@@ -160,3 +160,19 @@ func BinomialCoefficient(n int, k int) int {
 		return BinomialCoefficient(n-1, k-1) + BinomialCoefficient(n-1, k)
 	}
 }
+
+func FirstCharacterOccurrence(source string, char rune) int {
+	var firstOccurrenceInner func(string, int) int
+
+	firstOccurrenceInner = func(str string, index int) int {
+		if len(str) == 0 {
+			return -1
+		} else if rune(str[0]) == char {
+			return index
+		} else {
+			index++
+			return firstOccurrenceInner(str[1:], index)
+		}
+	}
+	return firstOccurrenceInner(source, 0)
+}
