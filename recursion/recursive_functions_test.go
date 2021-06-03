@@ -273,3 +273,33 @@ func TestFirstCharacterOccurrence_4(t *testing.T) {
 		t.Fatalf(`Expected index of character ea to be -1 but found  %v`, output)
 	}
 }
+
+func TestSumByPartitioning_1(t *testing.T) {
+
+	elements := []int{1, 2, 3, 4, 5, 6, 7, 8}
+	sum := recursion.SumByPartitioning(elements)
+
+	if sum != 36 {
+		t.Fatalf(`Expected sum to be 36 but was %v`, sum)
+	}
+}
+
+func TestSumByPartitioning_2(t *testing.T) {
+
+	elements := []int{1, 2, 3, 4, 5}
+	sum := recursion.SumByPartitioning(elements)
+
+	if sum != 15 {
+		t.Fatalf(`Expected sum to be 15 but was %v`, sum)
+	}
+}
+
+func TestSumByPartitioning_3(t *testing.T) {
+
+	elements := []int{1, 2, 3, 4, 5, 7}
+	sum := recursion.SumByPartitioning(elements)
+
+	if sum != 22 {
+		t.Fatalf(`Expected sum to be 22 but was %v`, sum)
+	}
+}

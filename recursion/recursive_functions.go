@@ -176,3 +176,20 @@ func FirstCharacterOccurrence(source string, char rune) int {
 	}
 	return firstOccurrenceInner(source, 0)
 }
+
+func SumByPartitioning(arr []int) int {
+	var sumByPartitioningInner func([]int, []int) int
+
+	sumByPartitioningInner = func(left []int, right []int) int {
+		if len(left) == 1 && len(right) == 1 {
+			return left[0] + right[0]
+		} else if len(left) == 1 && len(right) > 1 {
+			return left[0] + sumByPartitioningInner(right[0:len(right)/2], right[len(right)/2:])
+		} else if len(right) == 1 && len(left) > 1 {
+			return right[0] + sumByPartitioningInner(left[0:len(left)/2], left[len(left)/2:])
+		}
+		return sumByPartitioningInner(left[0:len(left)/2], left[len(left)/2:]) +
+			sumByPartitioningInner(right[0:len(right)/2], right[len(right)/2:])
+	}
+	return sumByPartitioningInner(arr[0:len(arr)/2], arr[len(arr)/2:])
+}
