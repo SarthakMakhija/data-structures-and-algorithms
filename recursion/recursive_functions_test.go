@@ -303,3 +303,39 @@ func TestSumByPartitioning_3(t *testing.T) {
 		t.Fatalf(`Expected sum to be 22 but was %v`, sum)
 	}
 }
+
+func TestDecimalToBinary_1(t *testing.T) {
+	n := 25
+	binary := recursion.DecimalToBinary(n)
+
+	if binary != "11001" {
+		t.Fatalf(`Expected binary to be 11001 but was %v`, binary)
+	}
+}
+
+func TestDecimalToBinary_2(t *testing.T) {
+	n := 16
+	binary := recursion.DecimalToBinary(n)
+
+	if binary != "10000" {
+		t.Fatalf(`Expected binary to be 10000 but was %v`, binary)
+	}
+}
+
+func TestDecimalToBinary_3(t *testing.T) {
+	n := 7
+	binary := recursion.DecimalToBinary(n)
+
+	if binary != "111" {
+		t.Fatalf(`Expected binary to be 111 but was %v`, binary)
+	}
+}
+
+func TestDecimalToBinary_4(t *testing.T) {
+	n := 9
+	binary := recursion.DecimalToBinary(n)
+
+	if binary != "1001" {
+		t.Fatalf(`Expected binary to be 1001 but was %v`, binary)
+	}
+}

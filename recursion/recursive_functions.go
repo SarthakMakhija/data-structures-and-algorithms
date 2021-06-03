@@ -3,6 +3,7 @@ package recursion
 import (
 	"math"
 	"reflect"
+	"strconv"
 )
 
 func Search(elements []int, element int) bool {
@@ -192,4 +193,21 @@ func SumByPartitioning(arr []int) int {
 			sumByPartitioningInner(right[0:len(right)/2], right[len(right)/2:])
 	}
 	return sumByPartitioningInner(arr[0:len(arr)/2], arr[len(arr)/2:])
+}
+
+func DecimalToBinary(n int) string {
+	var binary = ""
+	var decimalInner func(int, int) int
+
+	decimalInner = func(y int, remainder int) int {
+		if y == 0 {
+			return 1
+		} else {
+			by2 := y >> 1
+			binary = binary + strconv.Itoa(decimalInner(by2, y-(by2*2)))
+			return remainder
+		}
+	}
+	decimalInner(n, 0)
+	return binary
 }
