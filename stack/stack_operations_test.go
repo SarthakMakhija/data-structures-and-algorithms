@@ -1,6 +1,7 @@
 package stack_test
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/SarthakMakhija/data-structures-and-algorithms/stack"
@@ -155,5 +156,41 @@ func TestInfixToPostfix_7(t *testing.T) {
 	postfix := stack.InFixToPostFix("5/2+6")
 	if postfix != "52/6+" {
 		t.Fatalf("Expected 52/6+ but received %v", postfix)
+	}
+}
+
+func TestIntStackCopyTo_1(t *testing.T) {
+	sourceStack := stack.IntStack{}
+	sourceStack.Push(10)
+	sourceStack.Push(20)
+	sourceStack.Push(30)
+
+	destinationStack := &stack.IntStack{}
+	sourceStack.CopyTo(destinationStack)
+
+	result := destinationStack.All()
+	expected := []int{30, 20, 10}
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Fatalf("Expected %v, got %v", expected, result)
+	}
+}
+
+func TestIntStackCopyTo_2(t *testing.T) {
+	sourceStack := stack.IntStack{}
+	sourceStack.Push(10)
+	sourceStack.Push(20)
+	sourceStack.Push(30)
+	sourceStack.Push(40)
+	sourceStack.Push(50)
+
+	destinationStack := &stack.IntStack{}
+	sourceStack.CopyTo(destinationStack)
+
+	result := destinationStack.All()
+	expected := []int{50, 40, 30, 20, 10}
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Fatalf("Expected %v, got %v", expected, result)
 	}
 }

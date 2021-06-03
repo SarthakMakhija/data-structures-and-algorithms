@@ -36,7 +36,7 @@ func PostFixEvaluate(expression string) (int, error) {
 	for index := 0; index < len(expression); index++ {
 		element := string(expression[index])
 		if v, err := strconv.Atoi(element); err == nil {
-			stack.push(v)
+			stack.Push(v)
 		}
 		if element == "+" || element == "*" || element == "-" || element == "/" {
 			operand1 := stack.pop()
@@ -47,13 +47,13 @@ func PostFixEvaluate(expression string) (int, error) {
 			}
 
 			if element == "+" {
-				stack.push(operand1 + operand2)
+				stack.Push(operand1 + operand2)
 			} else if element == "*" {
-				stack.push(operand1 * operand2)
+				stack.Push(operand1 * operand2)
 			} else if element == "-" {
-				stack.push(operand2 - operand1)
+				stack.Push(operand2 - operand1)
 			} else if element == "/" {
-				stack.push(operand2 / operand1)
+				stack.Push(operand2 / operand1)
 			}
 		}
 	}
@@ -95,12 +95,12 @@ func InFixToPostFix(expression string) string {
 			operandStack.push(element)
 		}
 		if element == "+" || element == "*" || element == "/" {
-			top_operator := operatorStack.top()
+			topOperator := operatorStack.top()
 
-			if len(top_operator) == 0 {
+			if len(topOperator) == 0 {
 				operatorStack.push(element)
 			} else {
-				if operatorPrecedence(element, top_operator) == Eq || operatorPrecedence(element, top_operator) == Lt {
+				if operatorPrecedence(element, topOperator) == Eq || operatorPrecedence(element, topOperator) == Lt {
 					operand2 := operandStack.pop()
 					operand1 := operandStack.pop()
 					operator := operatorStack.pop()
@@ -108,7 +108,7 @@ func InFixToPostFix(expression string) string {
 					operandStack.push(operand1 + operand2 + operator)
 					operatorStack.push(element)
 				}
-				if operatorPrecedence(element, top_operator) == Gt {
+				if operatorPrecedence(element, topOperator) == Gt {
 
 					nextElement := string(expression[index+1])
 					operatorStack.push(element)
@@ -132,12 +132,34 @@ func InFixToPostFix(expression string) string {
 	return operand1 + operand2 + operator
 }
 
+func (s *IntStack) CopyTo(destination *IntStack) {
+	temporaryStack := IntStack{}
+	for s.stackTop > 0 {
+		temporaryStack.Push(s.pop())
+	}
+
+	for temporaryStack.stackTop > 0 {
+		destination.Push(temporaryStack.pop())
+	}
+}
+
+func (s *IntStack) All() []int {
+	var allElements []int
+	var top = s.stackTop - 1
+
+	for top >= 0 {
+		allElements = append(allElements, s.get(top))
+		top = top - 1
+	}
+	return allElements
+}
+
 type IntStack struct {
 	stack    []int
 	stackTop int
 }
 
-func (s *IntStack) push(element int) {
+func (s *IntStack) Push(element int) {
 	s.stack = append(s.stack, element)
 	s.stackTop = s.stackTop + 1
 }
@@ -149,6 +171,14 @@ func (s *IntStack) pop() int {
 	}
 	top := s.stack[s.stackTop]
 	s.stack = s.stack[0:s.stackTop]
+	return top
+}
+
+func (s *IntStack) get(stackTop int) int {
+	if stackTop < 0 {
+		return -1
+	}
+	top := s.stack[stackTop]
 	return top
 }
 
