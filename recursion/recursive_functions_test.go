@@ -209,3 +209,35 @@ func TestPermutationsOf4CharacterString(t *testing.T) {
 		t.Fatalf(`Expected %v but found %v`, expected, permutations)
 	}
 }
+
+func TestBinomialCoefficient_1(t *testing.T) {
+
+	output := recursion.BinomialCoefficient(3, 0)
+	if output != 1 {
+		t.Fatalf(`Expected 3C0 to be 1 but found  %v`, output)
+	}
+}
+
+func TestBinomialCoefficient_2(t *testing.T) {
+
+	output := recursion.BinomialCoefficient(3, 3)
+	if output != 1 {
+		t.Fatalf(`Expected 3C3 to be 1 but found  %v`, output)
+	}
+}
+
+func TestBinomialCoefficient_3(t *testing.T) {
+
+	output := recursion.BinomialCoefficient(5, 2)
+	if output != 10 {
+		t.Fatalf(`Expected 5C2 to be 10 but found  %v`, output)
+	}
+}
+
+func TestBinomialCoefficient_4(t *testing.T) {
+
+	output := recursion.BinomialCoefficient(10, 2)
+	if output != 45 {
+		t.Fatalf(`Expected 10C2 to be 45 but found  %v`, output)
+	}
+}

@@ -152,3 +152,11 @@ func Permutate(str string) []string {
 	}
 	return permutateInner(str)
 }
+
+func BinomialCoefficient(n int, k int) int {
+	if k == 0 || k == n {
+		return 1
+	} else {
+		return BinomialCoefficient(n-1, k-1) + BinomialCoefficient(n-1, k)
+	}
+}
