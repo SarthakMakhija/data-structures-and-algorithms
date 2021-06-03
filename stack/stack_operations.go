@@ -159,8 +159,8 @@ func DecimalToBinary(n int) string {
 	for n >= 1 {
 		by2 := n >> 1
 		remainder := n - by2*2
-		stack.Push(remainder)
 		n = by2
+		stack.Push(remainder)
 	}
 	output := ""
 	for stack.stackTop > 0 {
