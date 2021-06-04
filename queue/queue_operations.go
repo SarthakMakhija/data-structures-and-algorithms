@@ -11,9 +11,8 @@ type LinearQueue struct {
 	Size     int
 }
 
-const fixedSize = 5
-
 func (l *LinearQueue) Add(element int) (bool, error) {
+	const fixedSize = 5
 	if l.IsEmpty() {
 		var size = l.Size
 		if l.Size == 0 {
