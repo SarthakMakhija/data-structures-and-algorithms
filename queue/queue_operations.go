@@ -8,13 +8,20 @@ type LinearQueue struct {
 	elements []int
 	front    int
 	rear     int
+	Size     int
 }
 
 const fixedSize = 5
 
 func (l *LinearQueue) Add(element int) (bool, error) {
 	if l.IsEmpty() {
-		l.elements = make([]int, fixedSize)
+		var size int
+		if l.Size == 0 {
+			size = fixedSize
+		} else {
+			size = l.Size
+		}
+		l.elements = make([]int, size)
 		l.front = 0
 		l.rear = -1
 	} else if l.IsFull() {
