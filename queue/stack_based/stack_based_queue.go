@@ -14,6 +14,8 @@ func (s *StackBasedQueue) Add(element int) {
 	s.WriteStack.Push(element)
 }
 
+//Get
+//Requires entire stack to be copied, we can optimize by copying uptil front position, but copy is needed
 func (s *StackBasedQueue) Get() int {
 	s.ReadStack.Clear()
 	writtenElements := s.WriteStack.All()
