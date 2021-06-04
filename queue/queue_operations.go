@@ -53,6 +53,5 @@ func (l *LinearQueue) IsEmpty() bool {
 }
 
 func (l *LinearQueue) IsFull() bool {
-
 	return l.rear == l.Size-1
 }
