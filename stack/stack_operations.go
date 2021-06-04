@@ -40,8 +40,8 @@ func PostFixEvaluate(expression string) (int, error) {
 			stack.Push(v)
 		}
 		if element == "+" || element == "*" || element == "-" || element == "/" {
-			operand1 := stack.pop()
-			operand2 := stack.pop()
+			operand1 := stack.Pop()
+			operand2 := stack.Pop()
 
 			if operand1 == -1 || operand2 == -1 {
 				return -1, errors.New("incorrect postfix expressions")
@@ -136,11 +136,11 @@ func InFixToPostFix(expression string) string {
 func (s *IntStack) CopyTo(destination *IntStack) {
 	temporaryStack := IntStack{}
 	for s.stackTop > 0 {
-		temporaryStack.Push(s.pop())
+		temporaryStack.Push(s.Pop())
 	}
 
 	for temporaryStack.stackTop > 0 {
-		destination.Push(temporaryStack.pop())
+		destination.Push(temporaryStack.Pop())
 	}
 }
 
@@ -165,7 +165,7 @@ func DecimalToBinary(n int) string {
 	}
 	output := ""
 	for stack.stackTop > 0 {
-		output = output + strconv.Itoa(stack.pop())
+		output = output + strconv.Itoa(stack.Pop())
 	}
 	return output
 }
@@ -175,7 +175,7 @@ func DecimalToBinary(n int) string {
 func (s *IntStack) Reverse() {
 	linearQueue := queue.LinearQueue{Size: len(s.stack)}
 	for s.stackTop > 0 {
-		pop := s.pop()
+		pop := s.Pop()
 		_, _ = linearQueue.Add(pop)
 	}
 	allQueueElements := linearQueue.All()
@@ -194,7 +194,12 @@ func (s *IntStack) Push(element int) {
 	s.stackTop = s.stackTop + 1
 }
 
-func (s *IntStack) pop() int {
+func (s *IntStack) Clear() {
+	s.stack = []int{}
+	s.stackTop = 0
+}
+
+func (s *IntStack) Pop() int {
 	s.stackTop = s.stackTop - 1
 	if s.stackTop < 0 {
 		return -1
