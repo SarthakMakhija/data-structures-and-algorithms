@@ -21,6 +21,7 @@ func (l *LinearQueue) Add(element int) (bool, error) {
 		l.elements = make([]int, size)
 		l.front = 0
 		l.rear = -1
+		l.Size = size
 	} else if l.IsFull() {
 		return false, errors.New("OVERFLOW")
 	}
