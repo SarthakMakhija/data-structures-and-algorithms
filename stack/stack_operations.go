@@ -2,6 +2,7 @@ package stack
 
 import (
 	"errors"
+	"github.com/SarthakMakhija/data-structures-and-algorithms/queue"
 	"strconv"
 )
 
@@ -167,6 +168,20 @@ func DecimalToBinary(n int) string {
 		output = output + strconv.Itoa(stack.pop())
 	}
 	return output
+}
+
+//Reverse
+//Reverse a stack using a queue
+func (s *IntStack) Reverse() {
+	linearQueue := queue.LinearQueue{Size: len(s.stack)}
+	for s.stackTop > 0 {
+		pop := s.pop()
+		_, _ = linearQueue.Add(pop)
+	}
+	allQueueElements := linearQueue.All()
+	for index := 0; index < len(allQueueElements); index++ {
+		s.Push(allQueueElements[index])
+	}
 }
 
 type IntStack struct {

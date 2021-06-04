@@ -222,3 +222,40 @@ func TestDecimalToBinary_4(t *testing.T) {
 		t.Fatalf("Expected 111 received %v", output)
 	}
 }
+
+func TestReverse_1(t *testing.T) {
+	intStack := stack.IntStack{}
+	intStack.Push(10)
+	intStack.Push(20)
+	intStack.Push(30)
+	intStack.Push(40)
+	intStack.Push(50)
+	intStack.Push(60)
+
+	intStack.Reverse()
+	reversed := intStack.All()
+	expected := []int{10, 20, 30, 40, 50, 60}
+
+	if !reflect.DeepEqual(reversed, expected) {
+		t.Fatalf("Expected %v received %v", expected, reversed)
+	}
+}
+
+func TestReverse_2(t *testing.T) {
+	intStack := stack.IntStack{}
+	intStack.Push(10)
+	intStack.Push(20)
+	intStack.Push(30)
+	intStack.Push(40)
+	intStack.Push(50)
+	intStack.Push(60)
+	intStack.Push(80)
+
+	intStack.Reverse()
+	reversed := intStack.All()
+	expected := []int{10, 20, 30, 40, 50, 60, 80}
+
+	if !reflect.DeepEqual(reversed, expected) {
+		t.Fatalf("Expected %v received %v", expected, reversed)
+	}
+}

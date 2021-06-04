@@ -15,11 +15,9 @@ const fixedSize = 5
 
 func (l *LinearQueue) Add(element int) (bool, error) {
 	if l.IsEmpty() {
-		var size int
+		var size = l.Size
 		if l.Size == 0 {
 			size = fixedSize
-		} else {
-			size = l.Size
 		}
 		l.elements = make([]int, size)
 		l.front = 0
@@ -55,5 +53,6 @@ func (l *LinearQueue) IsEmpty() bool {
 }
 
 func (l *LinearQueue) IsFull() bool {
-	return l.rear == fixedSize-1
+
+	return l.rear == l.Size-1
 }
