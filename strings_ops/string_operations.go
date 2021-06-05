@@ -133,7 +133,6 @@ func ToIntegerFrom(str string) (int32, error) {
 			numericValue = numericValue + digit*tenRaiseTo(length-index-1)
 		} else {
 			return -1, errors.New(fmt.Sprintf("CAN NOT CONVERT %v TO INTEGER", str))
-
 		}
 	}
 	return numericValue, nil
