@@ -12,10 +12,11 @@ Current solutions cover different problems from the following areas -
 
 - **Recursion**
 - **Stack**
+- **Queue**
 - **Linked List**
 - **Binary Tree**
 - **Binary Search Tree**
-- **Arrays**
+- **Array**
 - **Bit Manipulation**
 - **Hashing**
   - Chaining
