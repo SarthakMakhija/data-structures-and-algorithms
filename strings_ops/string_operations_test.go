@@ -102,3 +102,30 @@ func TestStringDuplicatesGivenThereAreNoDuplicates_8(t *testing.T) {
 		t.Fatalf("Expecting duplicates but found %v", duplicateExists)
 	}
 }
+
+func TestToIntegerFrom_1(t *testing.T) {
+	str := "546"
+	output, _ := stringsops.ToIntegerFrom(str)
+
+	if output != 546 {
+		t.Fatalf("Expected 546, received %v", output)
+	}
+}
+
+func TestToIntegerFrom_2(t *testing.T) {
+	str := "980189"
+	output, _ := stringsops.ToIntegerFrom(str)
+
+	if output != 980189 {
+		t.Fatalf("Expected 980189, received %v", output)
+	}
+}
+
+func TestToIntegerFrom_3(t *testing.T) {
+	str := "987654a"
+	_, err := stringsops.ToIntegerFrom(str)
+
+	if err == nil {
+		t.Fatalf("Expected an error while converting string to integer but received %v", err)
+	}
+}

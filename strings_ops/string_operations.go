@@ -1,6 +1,8 @@
 package stringsops
 
 import (
+	"errors"
+	"fmt"
 	"math"
 	"strings"
 )
@@ -110,4 +112,29 @@ func Duplicates3(str string) bool {
 		}
 	}
 	return duplicateExists
+}
+
+func ToIntegerFrom(str string) (int32, error) {
+	length := len(str)
+	if length == 0 {
+		return -1, errors.New("EMPTY STRING")
+	}
+	tenRaiseTo := func(n int) int32 {
+		var output int32 = 1
+		for count := 1; count <= n; count++ {
+			output = output * 10
+		}
+		return output
+	}
+	var numericValue int32 = 0
+	for index, ch := range str {
+		if ch >= 48 && ch <= 57 {
+			digit := ch - 48
+			numericValue = numericValue + digit*tenRaiseTo(length-index-1)
+		} else {
+			return -1, errors.New(fmt.Sprintf("CAN NOT CONVERT %v TO INTEGER", str))
+
+		}
+	}
+	return numericValue, nil
 }
