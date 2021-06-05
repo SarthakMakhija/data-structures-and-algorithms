@@ -484,6 +484,38 @@ func TestPairWithSumEqualToKForSortedArray_7(t *testing.T) {
 	}
 }
 
+func TestPairWithSumEqualToKForSortedArray_8(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	expected := []array.Pair{
+		{
+			Element1: 2,
+			Element2: 7,
+		},
+		{
+			Element1: 3,
+			Element2: 6,
+		},
+		{
+			Element1: 4,
+			Element2: 5,
+		},
+	}
+	pairs := arr.PairWithSumEqualTo1(9)
+	if !reflect.DeepEqual(pairs, expected) {
+		t.Fatalf("Expected %v but received %v", expected, pairs)
+	}
+}
+
 func TestPairWithSumEqualToKForUnSortedArray_1(t *testing.T) {
 	arr := array.Array{
 		Size: 7,
