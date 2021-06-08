@@ -7,7 +7,7 @@ import (
 type BinaryHeap struct {
 	elements     []int
 	Size         int
-	currentIndex int
+	CurrentIndex int
 }
 
 //MaxHeapWith
@@ -20,18 +20,54 @@ func (b *BinaryHeap) MaxHeapWith(element int) (bool, error) {
 	}
 	b.add(element)
 	b.reAdjustElementsOnAdding(element)
-	b.currentIndex = b.currentIndex + 1
+	b.CurrentIndex = b.CurrentIndex + 1
 	return true, nil
+}
+
+func (b *BinaryHeap) Delete() {
+	if b.isEmpty() {
+		return
+	}
+	swap := func(aIndex int, bIndex int) {
+		hold := b.elements[aIndex]
+		b.elements[aIndex] = b.elements[bIndex]
+		b.elements[bIndex] = hold
+	}
+
+	rootIndex := 1
+	b.elements[rootIndex] = b.elements[b.CurrentIndex-1]
+	b.CurrentIndex = b.CurrentIndex - 1
+
+	for rootIndex <= (b.CurrentIndex-1)/2 {
+		leftChild := b.elements[2*rootIndex]
+		rightChild := b.elements[2*rootIndex+1]
+
+		if leftChild > rightChild {
+			if b.elements[rootIndex] < leftChild {
+				swap(rootIndex, 2*rootIndex)
+				rootIndex = 2 * rootIndex
+			} else {
+				break
+			}
+		} else {
+			if b.elements[rootIndex] < rightChild {
+				swap(rootIndex, 2*rootIndex+1)
+				rootIndex = 2*rootIndex + 1
+			} else {
+				break
+			}
+		}
+	}
 }
 
 func (b *BinaryHeap) All() []int {
 	destination := make([]int, len(b.elements))
 	copy(destination, b.elements)
-	return destination[1:]
+	return destination[1:b.CurrentIndex]
 }
 
 func (b *BinaryHeap) reAdjustElementsOnAdding(element int) {
-	currentIndex := b.currentIndex
+	currentIndex := b.CurrentIndex
 	parentIndex := currentIndex / 2
 
 	for currentIndex > 1 && b.elements[currentIndex] > b.elements[parentIndex] {
@@ -44,7 +80,7 @@ func (b *BinaryHeap) reAdjustElementsOnAdding(element int) {
 }
 
 func (b *BinaryHeap) add(element int) {
-	b.elements[b.currentIndex] = element
+	b.elements[b.CurrentIndex] = element
 }
 
 func (b *BinaryHeap) isEmpty() bool {
@@ -52,10 +88,10 @@ func (b *BinaryHeap) isEmpty() bool {
 }
 
 func (b *BinaryHeap) isFull() bool {
-	return b.currentIndex == len(b.elements)
+	return b.CurrentIndex == len(b.elements)
 }
 
 func (b *BinaryHeap) initialize() {
-	b.currentIndex = 1
+	b.CurrentIndex = 1
 	b.elements = make([]int, b.Size)
 }
