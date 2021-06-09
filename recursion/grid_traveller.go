@@ -10,6 +10,7 @@ func PossibleWaysToTravelEndOfGridSized(rows int, columns int) int {
 	isBottomMoveAllowed := func(rowPosition int) bool {
 		return rowPosition < rows-1
 	}
+
 	var waysPossibleToTravelGridSizedInner func(int, int) int
 	waysPossibleToTravelGridSizedInner = func(rowPosition int, columnPosition int) int {
 		if rowPosition == endRowPosition && columnPosition == endColumnPosition {
