@@ -93,7 +93,7 @@ func (l *LinkedList) AllAsString() string {
 	}
 
 	var iterate func(*Node) string
-	var output string = ""
+	var output = ""
 
 	iterate = func(p *Node) string {
 		output = output + fmt.Sprint(p.value)
@@ -175,7 +175,7 @@ func (l *LinkedList) Reverse() *LinkedList {
 		return nil
 	}
 
-	var list LinkedList = LinkedList{}
+	var list = LinkedList{}
 	var reverseInner func(head *Node)
 
 	reverseInner = func(head *Node) {
