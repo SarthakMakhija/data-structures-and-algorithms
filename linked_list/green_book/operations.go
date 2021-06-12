@@ -31,6 +31,21 @@ func (l *LinkedList) Add(element int) *Node {
 	return &node
 }
 
+func (l *LinkedList) AddWithNext(element int, next *Node) {
+
+	node := Node{
+		value: element,
+		next:  nil,
+	}
+	if l.first == nil {
+		l.first = &node
+		l.current = l.first
+	} else {
+		l.current.next = next
+		l.current = &node
+	}
+}
+
 func (l LinkedList) AddDigitsOf(other LinkedList) *LinkedList {
 
 	carryOver := 0
@@ -101,4 +116,34 @@ func (l *LinkedList) AllAsString() string {
 		}
 	}
 	return iterate(l.first)
+}
+
+func (l *LinkedList) HasCycle() bool {
+	var tail *Node = nil
+	head := l.first
+
+	moveHead2Steps := func() {
+		head = head.next
+		if head != nil {
+			head = head.next
+		}
+	}
+	moveTail1Step := func() {
+		if tail == nil {
+			tail = l.first
+		} else {
+			tail = tail.next
+		}
+	}
+	for head != nil {
+		moveHead2Steps()
+		moveTail1Step()
+		if head == nil {
+			return false
+		}
+		if head == tail || head.next == tail {
+			return true
+		}
+	}
+	return false
 }
