@@ -73,7 +73,7 @@ func (a *Array) Max() int {
 }
 
 //Rotate
-//Assume by is less than the size of the array
+//Assume by is less than the size of the array (rotates left)
 func (a *Array) Rotate(by int) {
 	if by == 0 {
 		return
@@ -94,6 +94,26 @@ func (a *Array) Rotate(by int) {
 			element = a.elements[targetIndex]
 		}
 		a.elements[index] = element
+	}
+}
+
+//Rotate1
+//Assume by is less than the size of the array (rotates right)
+func (a *Array) Rotate1(by int) {
+	if by == 0 {
+		return
+	}
+	var replacementCount = 0
+	index := 0
+	replacementValue := a.elements[index]
+	length := len(a.elements)
+	for replacementCount <= length {
+		nextIndex := int(math.Mod(float64(index+by), float64(length)))
+		backUp := a.elements[nextIndex]
+		a.elements[nextIndex] = replacementValue
+		replacementValue = backUp
+		replacementCount = replacementCount + 1
+		index = nextIndex
 	}
 }
 

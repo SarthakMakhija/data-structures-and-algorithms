@@ -251,6 +251,82 @@ func TestRotate_4(t *testing.T) {
 	}
 }
 
+func TestRotate_5(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	arr.Rotate1(2) //rotate right by 2
+	expected := []int{6, 7, 1, 2, 3, 4, 5}
+	if !reflect.DeepEqual(arr.All(), expected) {
+		t.Fatalf("Expected %v but received %v", expected, arr.All())
+	}
+}
+
+func TestRotate_6(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	arr.Rotate1(1)
+	expected := []int{7, 1, 2, 3, 4, 5, 6}
+	if !reflect.DeepEqual(arr.All(), expected) {
+		t.Fatalf("Expected %v but received %v", expected, arr.All())
+	}
+}
+
+func TestRotate_7(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	arr.Rotate1(0)
+	expected := []int{1, 2, 3, 4, 5, 6, 7}
+	if !reflect.DeepEqual(arr.All(), expected) {
+		t.Fatalf("Expected %v but received %v", expected, arr.All())
+	}
+}
+
+func TestRotate_8(t *testing.T) {
+	arr := array.Array{
+		Size: 7,
+	}
+	arr.Insert(1)
+	arr.Insert(2)
+	arr.Insert(3)
+	arr.Insert(4)
+	arr.Insert(5)
+	arr.Insert(6)
+	arr.Insert(7)
+
+	arr.Rotate1(5)
+	expected := []int{3, 4, 5, 6, 7, 1, 2}
+	if !reflect.DeepEqual(arr.All(), expected) {
+		t.Fatalf("Expected %v but received %v", expected, arr.All())
+	}
+}
+
 func TestDuplicate_1(t *testing.T) {
 	arr := array.Array{
 		Size: 7,
