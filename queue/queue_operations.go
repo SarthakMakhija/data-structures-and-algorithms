@@ -49,7 +49,7 @@ func (l *LinearQueue) All() []int {
 }
 
 func (l *LinearQueue) IsEmpty() bool {
-	return len(l.elements) == 0
+	return len(l.elements) == 0 || l.front > l.rear
 }
 
 func (l *LinearQueue) IsFull() bool {

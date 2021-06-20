@@ -42,7 +42,8 @@ func (c *CircularBuffer) Delete() (int, error) {
 	c.front = int(math.Mod(float64(c.front+1), float64(c.Size)))
 	element := c.buffer[c.front]
 
-	if c.front == c.rear {
+	//both of them are at len-1
+	if (c.front == c.rear) && c.front == (len(c.buffer)-1) {
 		c.front, c.rear = -1, -1
 	}
 	return element, nil
