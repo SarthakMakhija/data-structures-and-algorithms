@@ -1,7 +1,6 @@
 package green_book_test
 
 import (
-	"fmt"
 	"github.com/SarthakMakhija/data-structures-and-algorithms/bitwise/green_book"
 	"testing"
 )
@@ -64,14 +63,4 @@ func TestBitsToFlipToConvertAToB_6(t *testing.T) {
 	if result != 2 {
 		t.Fatalf("Expected 2, found %v", result)
 	}
-}
-
-func TestName(t *testing.T) {
-	e1 := []int{1, 2, 3, 4, 5}
-	s1 := e1[0:3]
-
-	s1 = append(s1, 50)
-	fmt.Println(e1, s1)
-	t.Fail()
-
 }
