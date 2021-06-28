@@ -47,9 +47,6 @@ func (s *Solution) GetRandom() int {
 		return node.Next.Next
 	}
 	valueOf := func(node *ListNode) int {
-		if isNil(node) {
-			return -1
-		}
 		return node.Val
 	}
 	if isNil(s.forward) && isNil(s.tail) {

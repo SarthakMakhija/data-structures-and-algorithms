@@ -51,3 +51,16 @@ func TestGetRandom3(t *testing.T) {
 		t.Fatalf("Expected %v, received %v", expected, output)
 	}
 }
+
+func TestGetRandom4(t *testing.T) {
+
+	firstNode := leetcode.ListNode{Val: 1, Next: nil}
+
+	solution := leetcode.Constructor(&firstNode)
+	output := []int{solution.GetRandom(), solution.GetRandom()}
+	expected := []int{1, 1}
+
+	if !reflect.DeepEqual(output, expected) {
+		t.Fatalf("Expected %v, received %v", expected, output)
+	}
+}
