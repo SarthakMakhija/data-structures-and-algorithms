@@ -37,23 +37,26 @@ func OriginalStateOfTail(head *ListNode) *ListNode {
 }
 
 func (s *Solution) GetRandom() int {
+	isNil := func(node *ListNode) bool {
+		return node == nil
+	}
 	advanceBy2 := func(node *ListNode) *ListNode {
-		if node == nil || node.Next == nil {
+		if isNil(node) || isNil(node.Next) {
 			return nil
 		}
 		return node.Next.Next
 	}
 	valueOf := func(node *ListNode) int {
-		if node == nil {
+		if isNil(node) {
 			return -1
 		}
 		return node.Val
 	}
-	if s.forward == nil && s.tail == nil {
+	if isNil(s.forward) && isNil(s.tail) {
 		s.forward = OriginalStateOfForward(s.head)
 		s.tail = OriginalStateOfTail(s.head)
 	}
-	if s.randomSelectionPointer == Forward && s.forward != nil {
+	if s.randomSelectionPointer == Forward && !isNil(s.forward) {
 		v := valueOf(s.forward)
 		s.forward = advanceBy2(s.forward)
 		s.randomSelectionPointer = Tail
