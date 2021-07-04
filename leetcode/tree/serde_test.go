@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestIntBinaryTreeSerialize1(t *testing.T) {
+func TestSerialize1(t *testing.T) {
 	tree := binaryTree1()
 	output := tree.Serialize()
 	expected := "12XX34XX5XX"
@@ -15,13 +15,33 @@ func TestIntBinaryTreeSerialize1(t *testing.T) {
 	}
 }
 
-func TestIntBinaryTreeSerialize2(t *testing.T) {
+func TestSerialize2(t *testing.T) {
 	tree := binaryTree2()
 	output := tree.Serialize()
 	expected := "1248XXX5XX36XX7XX"
 
 	if output != expected {
 		t.Fatalf("Expected %v, received %v", expected, output)
+	}
+}
+
+func TestDeserialize1(t *testing.T) {
+	serialized := "12XX34XX5XX"
+	tree := serde.Deserialize(serialized)
+	output := tree.Serialize()
+
+	if output != serialized {
+		t.Fatalf("Expected %v, received %v", serialized, output)
+	}
+}
+
+func TestDeserialize2(t *testing.T) {
+	serialized := "1248XXX5XX36XX7XX"
+	tree := serde.Deserialize(serialized)
+	output := tree.Serialize()
+
+	if output != serialized {
+		t.Fatalf("Expected %v, received %v", serialized, output)
 	}
 }
 
