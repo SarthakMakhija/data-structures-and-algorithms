@@ -81,21 +81,3 @@ func Deserialize(str string) *IntBinaryTree {
 	deserializeInner(tree.Root)
 	return &tree
 }
-
-func (t *IntBinaryTree) Traverse() string {
-	if t.Root == nil {
-		return ""
-	}
-
-	var traverseInner func(t *IntNode) string
-	traverseInner = func(t *IntNode) string {
-		if t == nil {
-			return ""
-		} else if t.Left == nil && t.Right == nil {
-			return strconv.Itoa(t.Value)
-		} else {
-			return traverseInner(t.Left) + strconv.Itoa(t.Value) + traverseInner(t.Right)
-		}
-	}
-	return traverseInner(t.Root)
-}
