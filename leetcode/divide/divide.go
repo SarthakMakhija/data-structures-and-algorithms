@@ -19,6 +19,3 @@ func Divide(dividend int, divisor int) int {
 	}
 	return 0 - result
 }
-
-//10 // 1 0 1 0
-//3 //  0 0 1 1
