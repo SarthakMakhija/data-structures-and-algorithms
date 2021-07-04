@@ -27,7 +27,6 @@ func FindTheDifference(source string, transformed string) byte {
 		return position
 	}
 
-	//duplicates to be handled
 	for index, transformedRune := range transformed {
 		transformedBitIndication := transformedRune - 97
 		characterPresenceIndication = characterPresenceIndication ^ leftShiftBy(base, int(transformedBitIndication))
