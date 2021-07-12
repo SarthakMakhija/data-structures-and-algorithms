@@ -15,9 +15,9 @@ func MatchParentheses(expression string) bool {
 	for index := 0; index < len(expression); index++ {
 		element := string(expression[index])
 		if element == "(" {
-			stack.push(element)
+			stack.Push(element)
 		} else if element == ")" {
-			stack.pop()
+			stack.Pop()
 		}
 	}
 
@@ -93,42 +93,42 @@ func InFixToPostFix(expression string) string {
 	for index := 0; index < len(expression); index++ {
 		element := string(expression[index])
 		if _, err := strconv.Atoi(element); err == nil {
-			operandStack.push(element)
+			operandStack.Push(element)
 		}
 		if element == "+" || element == "*" || element == "/" {
-			topOperator := operatorStack.top()
+			topOperator := operatorStack.Top()
 
 			if len(topOperator) == 0 {
-				operatorStack.push(element)
+				operatorStack.Push(element)
 			} else {
 				if operatorPrecedence(element, topOperator) == Eq || operatorPrecedence(element, topOperator) == Lt {
-					operand2 := operandStack.pop()
-					operand1 := operandStack.pop()
-					operator := operatorStack.pop()
+					operand2 := operandStack.Pop()
+					operand1 := operandStack.Pop()
+					operator := operatorStack.Pop()
 
-					operandStack.push(operand1 + operand2 + operator)
-					operatorStack.push(element)
+					operandStack.Push(operand1 + operand2 + operator)
+					operatorStack.Push(element)
 				}
 				if operatorPrecedence(element, topOperator) == Gt {
 
 					nextElement := string(expression[index+1])
-					operatorStack.push(element)
-					operandStack.push(nextElement)
+					operatorStack.Push(element)
+					operandStack.Push(nextElement)
 
-					operand2 := operandStack.pop()
-					operand1 := operandStack.pop()
-					operator := operatorStack.pop()
+					operand2 := operandStack.Pop()
+					operand1 := operandStack.Pop()
+					operator := operatorStack.Pop()
 
-					operandStack.push(operand1 + operand2 + operator)
+					operandStack.Push(operand1 + operand2 + operator)
 					index = index + 1
 				}
 			}
 		}
 	}
 
-	operand2 := operandStack.pop()
-	operand1 := operandStack.pop()
-	operator := operatorStack.pop()
+	operand2 := operandStack.Pop()
+	operand1 := operandStack.Pop()
+	operator := operatorStack.Pop()
 
 	return operand1 + operand2 + operator
 }
@@ -222,14 +222,15 @@ type StringStack struct {
 	stackTop int
 }
 
-func (s *StringStack) push(element string) {
+func (s *StringStack) Push(element string) {
 	s.stack = append(s.stack, element)
 	s.stackTop = s.stackTop + 1
 }
 
-func (s *StringStack) pop() string {
+func (s *StringStack) Pop() string {
 	s.stackTop = s.stackTop - 1
 	if s.stackTop < 0 {
+		s.stackTop = 0
 		return ""
 	}
 	top := s.stack[s.stackTop]
@@ -237,7 +238,14 @@ func (s *StringStack) pop() string {
 	return top
 }
 
-func (s *StringStack) top() string {
+func (s *StringStack) IsEmpty() bool {
+	if s.stackTop == 0 {
+		return true
+	}
+	return false
+}
+
+func (s *StringStack) Top() string {
 	stackTop := s.stackTop - 1
 	if stackTop < 0 {
 		return ""
