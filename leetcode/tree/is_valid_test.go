@@ -91,6 +91,45 @@ func TestIsValid4(t *testing.T) {
 	}
 }
 
+func TestIsValid5(t *testing.T) {
+	node50 := tree.IntNode{
+		Value: 50,
+		Left: &tree.IntNode{
+			Value: 40,
+			Left: &tree.IntNode{
+				Value: 30,
+				Left: &tree.IntNode{
+					Value: 29,
+				},
+				Right: &tree.IntNode{
+					Value: 38,
+				},
+			},
+			Right: &tree.IntNode{
+				Value: 45,
+				Left: &tree.IntNode{
+					Value: 26,
+				},
+				Right: &tree.IntNode{
+					Value: 47,
+				},
+			},
+		},
+		Right: &tree.IntNode{
+			Value: 60,
+		},
+	}
+	searchTree := &tree.IntBinarySearchTree{
+		Root: &node50,
+	}
+
+	isValid := searchTree.IsValid()
+
+	if isValid != false {
+		t.Fatalf("Expected false, recevied %v", isValid)
+	}
+}
+
 func binarySearchTree1() *tree.IntBinarySearchTree {
 	node10 := tree.IntNode{
 		Value: 10,
