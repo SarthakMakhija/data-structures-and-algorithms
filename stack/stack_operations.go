@@ -21,7 +21,7 @@ func MatchParentheses(expression string) bool {
 		}
 	}
 
-	if stack.stackTop == 0 {
+	if stack.extraPopRequested == false && stack.stackTop == 0 {
 		return true
 	} else {
 		return false
@@ -218,8 +218,9 @@ func (s *IntStack) get(stackTop int) int {
 }
 
 type StringStack struct {
-	stack    []string
-	stackTop int
+	stack             []string
+	stackTop          int
+	extraPopRequested bool
 }
 
 func (s *StringStack) Push(element string) {
@@ -230,6 +231,7 @@ func (s *StringStack) Push(element string) {
 func (s *StringStack) Pop() string {
 	s.stackTop = s.stackTop - 1
 	if s.stackTop < 0 {
+		s.extraPopRequested = true
 		s.stackTop = 0
 		return ""
 	}
