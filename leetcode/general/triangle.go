@@ -1,7 +1,6 @@
 package general
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -12,12 +11,8 @@ func MinimumTriangleSum(elements [][]int) int {
 	totalsRows := len(elements)
 	minimumSum := math.MaxInt32
 
-	fmt.Println("totalRows ", totalsRows)
-
 	var minimumTriangleSumInner func(int, int, int)
 	minimumTriangleSumInner = func(rowIndex int, elementIndex int, sum int) {
-		//fmt.Println(rowIndex)
-		//fmt.Println(sum)
 		if rowIndex == totalsRows-1 {
 			if sum < minimumSum {
 				minimumSum = sum
