@@ -50,3 +50,49 @@ func TestPivotOnK2(t *testing.T) {
 		t.Fatalf("Expected %v, recevied %v", expected, output)
 	}
 }
+
+func TestPivotOnKAlternative1(t *testing.T) {
+	l := linkedlist.LinkedList{}
+	l.Add(3)
+	l.Add(2)
+	l.Add(12)
+	l.Add(11)
+	l.Add(5)
+	l.Add(15)
+	l.Add(7)
+	l.Add(9)
+	l.Add(8)
+	l.Add(7)
+	l.Add(4)
+
+	list := l.PivotOnAlternative(7)
+	output := list.AllAsString()
+	expected := "32547712111598"
+
+	if output != expected {
+		t.Fatalf("Expected %v, recevied %v", expected, output)
+	}
+}
+
+func TestPivotOnKAlternative2(t *testing.T) {
+	l := linkedlist.LinkedList{}
+	l.Add(3)
+	l.Add(2)
+	l.Add(12)
+	l.Add(11)
+	l.Add(5)
+	l.Add(15)
+	l.Add(7)
+	l.Add(9)
+	l.Add(8)
+	l.Add(7)
+	l.Add(4)
+
+	list := l.PivotOnAlternative(11)
+	output := list.AllAsString()
+	expected := "32579874111215"
+
+	if output != expected {
+		t.Fatalf("Expected %v, recevied %v", expected, output)
+	}
+}
