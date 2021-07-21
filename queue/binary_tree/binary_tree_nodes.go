@@ -1,7 +1,8 @@
-package queue
+package binary_tree
 
 import (
 	"errors"
+	"github.com/SarthakMakhija/data-structures-and-algorithms/stack"
 	binarytree "github.com/SarthakMakhija/data-structures-and-algorithms/tree/binary"
 )
 
@@ -25,6 +26,35 @@ func BinaryTreeNodesInOrderOfIncreasingDepth(tree binarytree.IntBinaryTree) []in
 		if node.Right != nil {
 			_, _ = queue.enqueue(node.Right)
 		}
+	}
+	return nodeValues
+}
+
+func BinaryTreeNodesBottomUpLeftRight(tree binarytree.IntBinaryTree) []int {
+	if tree.Root == nil {
+		return []int{}
+	}
+	queue := Queue{
+		Size: 100,
+	}
+	intStack := stack.IntStack{}
+
+	_, _ = queue.enqueue(tree.Root)
+	for !queue.isEmpty() {
+		node, _ := queue.dequeue()
+		intStack.Push(node.Value)
+
+		if node.Right != nil {
+			_, _ = queue.enqueue(node.Right)
+		}
+		if node.Left != nil {
+			_, _ = queue.enqueue(node.Left)
+		}
+	}
+
+	var nodeValues []int
+	for e := intStack.Pop(); e != -1; e = intStack.Pop() {
+		nodeValues = append(nodeValues, e)
 	}
 	return nodeValues
 }
