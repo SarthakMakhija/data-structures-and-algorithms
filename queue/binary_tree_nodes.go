@@ -29,6 +29,44 @@ func BinaryTreeNodesInOrderOfIncreasingDepth(tree binarytree.IntBinaryTree) []in
 	return nodeValues
 }
 
+func BinaryTreeNodesAverageAtEachLevel(tree binarytree.IntBinaryTree) []float64 {
+	if tree.Root == nil {
+		return []float64{}
+	}
+	queue := Queue{
+		Size: 100,
+	}
+	var averageValues []float64
+	_, _ = queue.enqueue(tree.Root)
+
+	levelAverageWithNodes := func() (float64, []*binarytree.IntNode) {
+		sum := 0.0
+		count := 0
+		var nodes []*binarytree.IntNode
+
+		for !queue.isEmpty() {
+			node, _ := queue.dequeue()
+			count = count + 1
+			sum = sum + float64(node.Value)
+			nodes = append(nodes, node)
+		}
+		return sum / float64(count), nodes
+	}
+	for !queue.isEmpty() {
+		average, levelNodes := levelAverageWithNodes()
+		for _, node := range levelNodes {
+			if node.Left != nil {
+				_, _ = queue.enqueue(node.Left)
+			}
+			if node.Right != nil {
+				_, _ = queue.enqueue(node.Right)
+			}
+		}
+		averageValues = append(averageValues, average)
+	}
+	return averageValues
+}
+
 type Queue struct {
 	elements []*binarytree.IntNode
 	front    int
