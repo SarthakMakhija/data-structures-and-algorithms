@@ -2,6 +2,7 @@ package binary_tree
 
 import (
 	"errors"
+	"github.com/SarthakMakhija/data-structures-and-algorithms/recursion"
 	"github.com/SarthakMakhija/data-structures-and-algorithms/stack"
 	binarytree "github.com/SarthakMakhija/data-structures-and-algorithms/tree/binary"
 )
@@ -25,6 +26,53 @@ func BinaryTreeNodesInOrderOfIncreasingDepth(tree binarytree.IntBinaryTree) []in
 		}
 		if node.Right != nil {
 			_, _ = queue.enqueue(node.Right)
+		}
+	}
+	return nodeValues
+}
+
+func BinaryTreeNodesTopDownLeftRightAlternating(tree binarytree.IntBinaryTree) []int {
+	if tree.Root == nil {
+		return []int{}
+	}
+	queue := Queue{
+		Size: 100,
+	}
+	var nodeValues []int
+	direction := 'L'
+
+	nodesInDirection := func(direction rune) ([]int, []*binarytree.IntNode) {
+		var values []int
+		var nodes []*binarytree.IntNode
+
+		for !queue.isEmpty() {
+			node, _ := queue.dequeue()
+			values = append(values, node.Value)
+			nodes = append(nodes, node)
+		}
+		if direction == 'R' {
+			return recursion.Reverse(values), nodes
+		}
+		return values, nodes
+	}
+
+	_, _ = queue.enqueue(tree.Root)
+	for !queue.isEmpty() {
+		values, levelNodes := nodesInDirection(direction)
+		nodeValues = append(nodeValues, values...)
+
+		for _, node := range levelNodes {
+			if node.Left != nil {
+				_, _ = queue.enqueue(node.Left)
+			}
+			if node.Right != nil {
+				_, _ = queue.enqueue(node.Right)
+			}
+		}
+		if direction == 'R' {
+			direction = 'L'
+		} else {
+			direction = 'R'
 		}
 	}
 	return nodeValues
