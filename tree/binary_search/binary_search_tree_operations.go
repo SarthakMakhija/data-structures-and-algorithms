@@ -34,7 +34,7 @@ func (tree *IntBinarySearchTree) Search(element int) bool {
 	return treeInner(tree.Root)
 }
 
-func (tree *IntBinarySearchTree) InOrder_Traversal() string {
+func (tree *IntBinarySearchTree) InorderTraversal() string {
 
 	if tree.Root == nil {
 		return ""
