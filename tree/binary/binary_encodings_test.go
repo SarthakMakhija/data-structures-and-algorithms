@@ -104,3 +104,122 @@ func TestBinaryEncodings2(t *testing.T) {
 		t.Fatalf("Expected %v, received %v", expected, encodings)
 	}
 }
+
+func TestBinaryEncodingsSum1(t *testing.T) {
+	root := binarytree.IntNode{
+		Value: 1,
+		Left: &binarytree.IntNode{
+			Value: 0,
+			Left: &binarytree.IntNode{
+				Value: 0,
+				Right: &binarytree.IntNode{
+					Value: 1,
+				},
+			},
+			Right: &binarytree.IntNode{
+				Value: 1,
+				Left: &binarytree.IntNode{
+					Value: 0,
+					Right: &binarytree.IntNode{
+						Value: 1,
+					},
+				},
+				Right: &binarytree.IntNode{
+					Value: 1,
+					Right: &binarytree.IntNode{
+						Value: 0,
+					},
+				},
+			},
+		},
+	}
+	tree := binarytree.IntBinaryTree{
+		Root: &root,
+	}
+	sum := tree.BinaryEncodingsSum()
+	expected := 52
+
+	if sum != expected {
+		t.Fatalf("Expected %v, received %v", expected, sum)
+	}
+}
+
+func TestBinaryEncodingsSum2(t *testing.T) {
+	root := binarytree.IntNode{
+		Value: 1,
+		Left: &binarytree.IntNode{
+			Value: 0,
+			Left: &binarytree.IntNode{
+				Value: 0,
+				Left: &binarytree.IntNode{
+					Value: 0,
+				},
+				Right: &binarytree.IntNode{
+					Value: 1,
+				},
+			},
+			Right: &binarytree.IntNode{
+				Value: 1,
+				Right: &binarytree.IntNode{
+					Value: 1,
+					Left: &binarytree.IntNode{
+						Value: 0,
+					},
+				},
+			},
+		},
+		Right: &binarytree.IntNode{
+			Value: 1,
+			Left: &binarytree.IntNode{
+				Value: 0,
+				Right: &binarytree.IntNode{
+					Value: 0,
+					Left: &binarytree.IntNode{
+						Value: 1,
+						Right: &binarytree.IntNode{
+							Value: 1,
+						},
+					},
+					Right: &binarytree.IntNode{
+						Value: 0,
+					},
+				},
+			},
+			Right: &binarytree.IntNode{
+				Value: 0,
+				Right: &binarytree.IntNode{
+					Value: 0,
+				},
+			},
+		},
+	}
+	tree := binarytree.IntBinaryTree{
+		Root: &root,
+	}
+	sum := tree.BinaryEncodingsSum()
+	expected := 126
+
+	if sum != expected {
+		t.Fatalf("Expected %v, received %v", expected, sum)
+	}
+}
+
+func TestBinaryToDecimal1(t *testing.T) {
+	binary := "1001"
+	expected := 9
+	output := binarytree.BinaryToDecimal(binary)
+
+	if output != expected {
+		t.Fatalf("Expected %v, received %v", expected, output)
+	}
+}
+
+func TestBinaryToDecimal2(t *testing.T) {
+	binary := "10011"
+	expected := 19
+	output := binarytree.BinaryToDecimal(binary)
+
+	if output != expected {
+		t.Fatalf("Expected %v, received %v", expected, output)
+	}
+}
