@@ -1,8 +1,9 @@
 package green_book_test
 
 import (
-	"github.com/SarthakMakhija/data-structures-and-algorithms/linked_list/green_book"
 	"testing"
+
+	"github.com/SarthakMakhija/data-structures-and-algorithms/linked_list/green_book"
 )
 
 func TestLinkedListAddDigitsOf_1(t *testing.T) {

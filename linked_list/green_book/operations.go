@@ -2,8 +2,9 @@ package green_book
 
 import (
 	"fmt"
-	"github.com/SarthakMakhija/data-structures-and-algorithms/stack"
 	"math"
+
+	"github.com/SarthakMakhija/data-structures-and-algorithms/stack"
 )
 
 type LinkedList struct {
@@ -46,6 +47,9 @@ func (l *LinkedList) AddWithNext(element int, next *Node) {
 	}
 }
 
+//AddDigitsOf
+//If the numbers (say 617) were represented as 7 -> 1 -> 6, then one of the solutions could have been
+//to reverse the list
 func (l LinkedList) AddDigitsOf(other LinkedList) *LinkedList {
 
 	carryOver := 0
