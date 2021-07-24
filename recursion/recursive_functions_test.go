@@ -339,3 +339,69 @@ func TestDecimalToBinary_4(t *testing.T) {
 		t.Fatalf(`Expected binary to be 1001 but was %v`, binary)
 	}
 }
+
+func TestIsPalindromeWithEmptyStringUsingImplementation3(t *testing.T) {
+
+	isPalindrome := recursion.IsPalindrome3("")
+	if isPalindrome != false {
+		t.Fatalf(`Expected false but found %v`, isPalindrome)
+	}
+}
+
+func TestIsPalindromeWithOddCharactersUsingImplementation3(t *testing.T) {
+
+	isPalindrome := recursion.IsPalindrome3("MALAYALAM")
+	if isPalindrome != true {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
+	}
+}
+
+func TestIsPalindromeWithEvenCharactersUsingImplementation3(t *testing.T) {
+
+	isPalindrome := recursion.IsPalindrome3("ABBA")
+	if isPalindrome != true {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
+	}
+}
+
+func TestIsNotPalindromeWithEvenCharactersUsingImplementation3(t *testing.T) {
+
+	isPalindrome := recursion.IsPalindrome2("ABCFBA")
+	if isPalindrome != false {
+		t.Fatalf(`Expected true but found %v`, isPalindrome)
+	}
+}
+
+func TestPermutationsOf2CharacterStringUsingBruteForce(t *testing.T) {
+
+	var expected = []string{"12", "21"}
+	permutations := recursion.PermutateBruteForce("12")
+
+	if !reflect.DeepEqual(expected, permutations) {
+		t.Fatalf(`Expected %v but found %v`, expected, permutations)
+	}
+}
+
+func TestPermutationsOf3CharacterStringUsingBruteForce(t *testing.T) {
+
+	var expected = []string{"123", "132", "213", "231", "312", "321"}
+	permutations := recursion.PermutateBruteForce("123")
+
+	if !reflect.DeepEqual(expected, permutations) {
+		t.Fatalf(`Expected %v but found %v`, expected, permutations)
+	}
+}
+
+func TestPermutationsOf4CharacterStringUsingBruteForce(t *testing.T) {
+
+	var expected = []string{"1234", "1243", "1324", "1342", "1423", "1432",
+		"2134", "2143", "2314", "2341", "2413", "2431",
+		"3124", "3142", "3214", "3241", "3412", "3421",
+		"4123", "4132", "4213", "4231", "4312", "4321"}
+
+	permutations := recursion.PermutateBruteForce("1234")
+
+	if !reflect.DeepEqual(expected, permutations) {
+		t.Fatalf(`Expected %v but found %v`, expected, permutations)
+	}
+}

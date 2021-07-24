@@ -111,6 +111,32 @@ func IsPalindrome2(str string) bool {
 	return palindromeInner(0)
 }
 
+func IsPalindrome3(str string) bool {
+
+	length := len(str)
+	if length == 0 {
+		return false
+	}
+
+	var isPalindromeInner func(string, int) bool
+	charactersMatchAt := func(s string, firstIndex int, other string, secondIndex int) bool {
+		return s[firstIndex] == other[secondIndex]
+	}
+	isPalindromeInner = func(s string, count int) bool {
+		if count == length/2 {
+			return charactersMatchAt(s, 0, str, length-count)
+		} else {
+			result := isPalindromeInner(s[1:], count+1)
+			if !result {
+				return result
+			} else {
+				return charactersMatchAt(s, 0, str, length-count)
+			}
+		}
+	}
+	return isPalindromeInner(str, 1)
+}
+
 func Permutate(str string) []string {
 
 	var permutateInner func(string) []string
@@ -152,6 +178,35 @@ func Permutate(str string) []string {
 		}
 	}
 	return permutateInner(str)
+}
+
+func PermutateBruteForce(str string) []string {
+
+	var permutations []string
+	var result = make([]byte, len(str))
+	var availability = make([]bool, len(str))
+
+	for index := 0; index < len(str); index++ {
+		availability[index] = true
+	}
+
+	var permutateInner func(int)
+	permutateInner = func(level int) {
+		if level == len(str) {
+			permutations = append(permutations, string(result))
+		}
+		for index := 0; index < len(str); index++ {
+			if availability[index] {
+				result[level] = str[index]
+				availability[index] = false
+				permutateInner(level + 1)
+				availability[index] = true
+			}
+		}
+	}
+	permutateInner(0)
+
+	return permutations
 }
 
 func BinomialCoefficient(n int, k int) int {
