@@ -4,8 +4,8 @@ func FromPreOrderTraversalWithMarkers(nodeValues []string) *StringBinaryTree {
 	if len(nodeValues) == 0 {
 		return nil
 	}
+	stack := nodeStatusStack{}
 
-	stack := NodeStatusStack{}
 	createNode := func(nodeValue string) *StringNode {
 		return &StringNode{
 			Value: nodeValue,
@@ -25,40 +25,39 @@ func FromPreOrderTraversalWithMarkers(nodeValues []string) *StringBinaryTree {
 		}
 	}
 	push := func(node *StringNode, status status) {
-		stack.Push(NodeStatus{
+		stack.push(nodeStatus{
 			node:   node,
 			status: status,
 		})
 	}
-	pop := func() NodeStatus {
-		nodeStatus := stack.Pop()
-		for nodeStatus.status == Done {
-			nodeStatus = stack.Pop()
+	pop := func() nodeStatus {
+		poppedNodeStatus := stack.pop()
+		for poppedNodeStatus.status == Done {
+			poppedNodeStatus = stack.pop()
 		}
-		return nodeStatus
+		return poppedNodeStatus
 	}
 
 	root := createNode(nodeValues[0]) //assume root is not null or is not a marker
 	push(root, LeftPending)
 
 	for index := 1; index < len(nodeValues); index++ {
-		nodeStatus := pop()
-		//fmt.Println(nodeStatus.node.Value)
+		poppedNodeStatus := pop()
 		newNode := newNodeOrNil(nodeValues[index])
 
-		switch nodeStatus.status {
+		switch poppedNodeStatus.status {
 		case LeftPending:
-			nodeStatus.node.Left = newNode
-			push(nodeStatus.node, RightPending)
+			poppedNodeStatus.node.Left = newNode
+			push(poppedNodeStatus.node, RightPending)
 		case RightPending:
-			nodeStatus.node.Right = newNode
-			push(nodeStatus.node, Done)
+			poppedNodeStatus.node.Right = newNode
+			push(poppedNodeStatus.node, Done)
 		}
 		if newNode != nil {
 			push(newNode, LeftPending)
 		}
 	}
-
+	stack.clear()
 	return &StringBinaryTree{
 		Root: root,
 	}
@@ -72,27 +71,32 @@ const (
 	Done
 )
 
-type NodeStatus struct {
+type nodeStatus struct {
 	node   *StringNode
 	status status
 }
 
-type NodeStatusStack struct {
-	stack    []NodeStatus
+type nodeStatusStack struct {
+	stack    []nodeStatus
 	stackTop int
 }
 
-func (s *NodeStatusStack) Push(element NodeStatus) {
+func (s *nodeStatusStack) push(element nodeStatus) {
 	s.stack = append(s.stack, element)
 	s.stackTop = s.stackTop + 1
 }
 
-func (s *NodeStatusStack) Pop() NodeStatus {
+func (s *nodeStatusStack) pop() nodeStatus {
 	s.stackTop = s.stackTop - 1
 	if s.stackTop < 0 {
-		return NodeStatus{}
+		return nodeStatus{}
 	}
 	top := s.stack[s.stackTop]
 	s.stack = s.stack[0:s.stackTop]
 	return top
+}
+
+func (s *nodeStatusStack) clear() {
+	s.stack = []nodeStatus{}
+	s.stackTop = 0
 }
