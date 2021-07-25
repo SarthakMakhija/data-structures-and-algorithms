@@ -44,6 +44,24 @@ func (tree *StringBinaryTree) Traverse() string {
 	return traverseInner(tree.Root)
 }
 
+func (tree *StringBinaryTree) Preorder() string {
+	if tree.Root == nil {
+		return ""
+	}
+
+	var traverseInner func(t *StringNode) string
+	traverseInner = func(t *StringNode) string {
+		if t == nil {
+			return ""
+		} else if t.Left == nil && t.Right == nil {
+			return t.Value
+		} else {
+			return t.Value + traverseInner(t.Left) + traverseInner(t.Right)
+		}
+	}
+	return traverseInner(tree.Root)
+}
+
 func (tree *IntBinaryTree) Traverse() string {
 	if tree.Root == nil {
 		return ""
