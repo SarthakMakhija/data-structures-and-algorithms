@@ -19,7 +19,7 @@ func IsPalindromic(str string) bool {
 	}
 
 	lowerCased := strings.ToLower(str)
-	for forwardIndex, backwardIndex := 0, len(lowerCased)-1; forwardIndex < len(lowerCased) && backwardIndex >= 0; {
+	for forwardIndex, backwardIndex := 0, len(lowerCased)-1; forwardIndex < len(lowerCased) && backwardIndex >= forwardIndex; {
 		forwardValue := rune(lowerCased[forwardIndex])
 		backwardValue := rune(lowerCased[backwardIndex])
 
