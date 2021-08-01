@@ -48,7 +48,7 @@ func TestLookAndSayValueForK5(t *testing.T) {
 func TestLookAndSayValueForK6(t *testing.T) {
 	k := 6
 	result := stringsops.LookAndSayValueFor(k)
-	expected := "Im312211"
+	expected := "312211"
 
 	if result != expected {
 		t.Fatalf("Expected %v, received %v", expected, result)
