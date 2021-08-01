@@ -1,13 +1,14 @@
-package stringsops
+package stringsops_test
 
 import (
+	stringsops "github.com/SarthakMakhija/data-structures-and-algorithms/strings_ops"
 	"reflect"
 	"testing"
 )
 
 func TestPhoneMnemonicFor1(t *testing.T) {
 	phoneNumber := "23"
-	allMnemonics := PhoneMnemonicFor(phoneNumber)
+	allMnemonics := stringsops.PhoneMnemonicFor(phoneNumber)
 
 	expectedMnemonics := []string{"AD", "AE", "AF", "BD", "BE", "BF", "CD", "CE", "CF"}
 
@@ -18,7 +19,7 @@ func TestPhoneMnemonicFor1(t *testing.T) {
 
 func TestPhoneMnemonicFor2(t *testing.T) {
 	phoneNumber := "27"
-	allMnemonics := PhoneMnemonicFor(phoneNumber)
+	allMnemonics := stringsops.PhoneMnemonicFor(phoneNumber)
 
 	expectedMnemonics := []string{"AP", "AQ", "AR", "AS", "BP", "BQ", "BR", "BS", "CP", "CQ", "CR", "CS"}
 
@@ -29,7 +30,7 @@ func TestPhoneMnemonicFor2(t *testing.T) {
 
 func TestPhoneMnemonicFor3(t *testing.T) {
 	phoneNumber := "1*"
-	allMnemonics := PhoneMnemonicFor(phoneNumber)
+	allMnemonics := stringsops.PhoneMnemonicFor(phoneNumber)
 
 	var expectedMnemonics []string
 
@@ -40,7 +41,7 @@ func TestPhoneMnemonicFor3(t *testing.T) {
 
 func TestPhoneMnemonicFor4(t *testing.T) {
 	phoneNumber := "237"
-	allMnemonics := PhoneMnemonicFor(phoneNumber)
+	allMnemonics := stringsops.PhoneMnemonicFor(phoneNumber)
 
 	expectedMnemonics := []string{"ADP", "ADQ", "ADR", "ADS", "AEP", "AEQ", "AER", "AES", "AFP", "AFQ", "AFR", "AFS",
 		"BDP", "BDQ", "BDR", "BDS", "BEP", "BEQ", "BER", "BES", "BFP", "BFQ", "BFR", "BFS",
