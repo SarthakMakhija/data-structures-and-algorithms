@@ -25,4 +25,4 @@ Current solutions cover different problems from the following areas -
   - Double hashing
 
 One of the other things that I wish to get out of this repository is figure out some real life use-cases of various data structures. 
-A simple example, Java's Hashmap uses Red-Black tree, figure out such uses and add them here.
+A simple example, Java's Hashmap uses Red-Black tree, figure out such uses, their reasoning and add them here.
