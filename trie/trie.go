@@ -65,10 +65,10 @@ func (t *TrieNode) ExistsPrefix(prefix string) bool {
 }
 
 func (t *TrieNode) AllWords() []string {
-	return t.allWordsFrom("")
+	return t.allWordsPrefixedBy("")
 }
 
-func (t *TrieNode) allWordsFrom(word string) []string {
+func (t *TrieNode) allWordsPrefixedBy(word string) []string {
 	var allWords []string
 
 	var allWordsInner func(node *TrieNode, word string)
@@ -95,5 +95,5 @@ func (t *TrieNode) AutoCompleteWithPrefix(prefix string) []string {
 		}
 		node = trieNode
 	}
-	return node.allWordsFrom(prefix)
+	return node.allWordsPrefixedBy(prefix)
 }
