@@ -107,3 +107,39 @@ func TestExistsCompleteWord4(t *testing.T) {
 		t.Fatalf("Expected cards to not exist but found %v", exists)
 	}
 }
+
+func TestExistsPrefix1(t *testing.T) {
+	node := trie.NewTrieNode()
+	node.Add("camera")
+	node.Add("came")
+
+	exists := node.ExistsPrefix("cam")
+
+	if exists != true {
+		t.Fatalf("Expected prefix cam to exist but found %v", exists)
+	}
+}
+
+func TestExistsPrefix2(t *testing.T) {
+	node := trie.NewTrieNode()
+	node.Add("hellos")
+	node.Add("hail")
+
+	exists := node.ExistsPrefix("hell")
+
+	if exists != true {
+		t.Fatalf("Expected prefix hell to exist but found %v", exists)
+	}
+}
+
+func TestExistsPrefix3(t *testing.T) {
+	node := trie.NewTrieNode()
+	node.Add("hellos")
+	node.Add("hail")
+
+	exists := node.ExistsPrefix("heli")
+
+	if exists != false {
+		t.Fatalf("Expected prefix heli to exist but found %v", exists)
+	}
+}

@@ -49,6 +49,21 @@ func (t *TrieNode) ExistsCompleteWord(word string) bool {
 	return false
 }
 
+func (t *TrieNode) ExistsPrefix(prefix string) bool {
+	if prefix == "" {
+		return false
+	}
+	root := t
+	for _, ch := range prefix {
+		trieNode, characterExists := root.nodeByCharacter[ch]
+		if !characterExists {
+			return false
+		}
+		root = trieNode
+	}
+	return true
+}
+
 func (t *TrieNode) AllWords() []string {
 	var allWords []string
 
