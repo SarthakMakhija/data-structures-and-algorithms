@@ -31,6 +31,24 @@ func (t *TrieNode) Add(word string) {
 	root.isEndOfWord = true
 }
 
+func (t *TrieNode) ExistsCompleteWord(word string) bool {
+	if word == "" {
+		return false
+	}
+	root := t
+	for _, ch := range word {
+		trieNode, characterExists := root.nodeByCharacter[ch]
+		if !characterExists {
+			return false
+		}
+		root = trieNode
+	}
+	if root.isEndOfWord {
+		return true
+	}
+	return false
+}
+
 func (t *TrieNode) AllWords() []string {
 	var allWords []string
 
