@@ -143,3 +143,40 @@ func TestExistsPrefix3(t *testing.T) {
 		t.Fatalf("Expected prefix heli to exist but found %v", exists)
 	}
 }
+
+func TestAutoCompleteWithPrefix1(t *testing.T) {
+	node := trie.NewTrieNode()
+	node.Add("hellos")
+	node.Add("hello")
+	node.Add("helicopter")
+	node.Add("help")
+	node.Add("held")
+
+	words := node.AutoCompleteWithPrefix("hel")
+	sort.Strings(words)
+
+	expected := []string{"hellos", "hello", "helicopter", "help", "held"}
+	sort.Strings(expected)
+
+	if !reflect.DeepEqual(words, expected) {
+		t.Fatalf("Expected autocompleted words to be %v, received %v", expected, words)
+	}
+}
+
+func TestAutoCompleteWithPrefix2(t *testing.T) {
+	node := trie.NewTrieNode()
+	node.Add("technical")
+	node.Add("techno")
+	node.Add("tech debt")
+	node.Add("tech fest")
+
+	words := node.AutoCompleteWithPrefix("tech")
+	sort.Strings(words)
+
+	expected := []string{"technical", "techno", "tech debt", "tech fest"}
+	sort.Strings(expected)
+
+	if !reflect.DeepEqual(words, expected) {
+		t.Fatalf("Expected autocompleted words to be %v, received %v", expected, words)
+	}
+}

@@ -65,6 +65,10 @@ func (t *TrieNode) ExistsPrefix(prefix string) bool {
 }
 
 func (t *TrieNode) AllWords() []string {
+	return t.allWordsFrom("")
+}
+
+func (t *TrieNode) allWordsFrom(word string) []string {
 	var allWords []string
 
 	var allWordsInner func(node *TrieNode, word string)
@@ -78,6 +82,18 @@ func (t *TrieNode) AllWords() []string {
 			}
 		}
 	}
-	allWordsInner(t, "")
+	allWordsInner(t, word)
 	return allWords
+}
+
+func (t *TrieNode) AutoCompleteWithPrefix(prefix string) []string {
+	node := t
+	for _, ch := range prefix {
+		trieNode, characterExists := node.nodeByCharacter[ch]
+		if !characterExists {
+			return []string{}
+		}
+		node = trieNode
+	}
+	return node.allWordsFrom(prefix)
 }
