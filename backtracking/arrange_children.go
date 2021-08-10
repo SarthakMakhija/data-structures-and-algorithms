@@ -1,32 +1,32 @@
 package backtracking
 
-func AllPossibleWaysToArrangeChildrenInChairs(children []string) []string {
-	if len(children) == 0 {
+func AllPossibleWaysToArrangeChildrenInChairs(allChildren []string) []string {
+	if len(allChildren) == 0 {
 		return []string{}
-	} else if len(children) == 1 {
-		return []string{children[0]}
+	} else if len(allChildren) == 1 {
+		return []string{allChildren[0]}
 	}
 
 	var arrangements []string
-	var allPossibleWaysToArrangeChildrenInChairsInner func(arrangement string, parts []string)
-	allPossibleWaysToArrangeChildrenInChairsInner = func(arrangement string, parts []string) {
-		var copiedParts = make([]string, len(parts))
-		copy(copiedParts, parts)
+	var allPossibleWaysToArrangeChildrenInChairsInner func(arrangement string, children []string)
+	allPossibleWaysToArrangeChildrenInChairsInner = func(arrangement string, children []string) {
+		var copied = make([]string, len(children))
+		copy(copied, children)
 
-		if len(copiedParts) == 0 {
+		if len(copied) == 0 {
 			arrangements = append(arrangements, arrangement)
 			return
 		}
-		for index := 0; index < len(copiedParts); index++ {
-			allPossibleWaysToArrangeChildrenInChairsInner(arrangement+copiedParts[0], copiedParts[1:])
-			if index+1 < len(copiedParts) {
-				backup := copiedParts[0]
-				copiedParts[0] = copiedParts[index+1]
-				copiedParts[index+1] = backup
+		for index := 0; index < len(copied); index++ {
+			allPossibleWaysToArrangeChildrenInChairsInner(arrangement+copied[0], copied[1:])
+			if index+1 < len(copied) {
+				backup := copied[0]
+				copied[0] = copied[index+1]
+				copied[index+1] = backup
 			}
 		}
 	}
 
-	allPossibleWaysToArrangeChildrenInChairsInner("", children)
+	allPossibleWaysToArrangeChildrenInChairsInner("", allChildren)
 	return arrangements
 }
