@@ -1,48 +1,40 @@
 package binary_indexed
 
 type BinaryIndexedTree struct {
-	Tree []int
+	values []int
 }
 
-func New(elements []int) BinaryIndexedTree {
-	var tree = make([]int, len(elements)+1)
-	var updateNextIndexOfWith func(int, int)
-
-	nextIndexOf := func(index int) int {
-		return index + index&(-index)
+func New(elements []int) *BinaryIndexedTree {
+	tree := &BinaryIndexedTree{values: make([]int, len(elements)+1)}
+	for index, element := range elements {
+		tree.updateAt(uint(index+1), element)
 	}
-	updateNextIndexOfWith = func(index int, element int) {
-		treeIndex := nextIndexOf(index)
-		if index >= len(tree) || treeIndex >= len(tree) {
-			return
+	return tree
+}
+
+func (tree *BinaryIndexedTree) SumUptoIndex(n int) int {
+	var sumInner func(index uint, sum int) int
+	sumInner = func(index uint, sum int) int {
+		if index == 0 || index >= uint(len(tree.values)) {
+			return sum
 		}
-		tree[treeIndex] = tree[treeIndex] + element
-		updateNextIndexOfWith(treeIndex, element)
+		return sumInner(parentIndexOf(index), sum+tree.values[index])
 	}
-	for index := 0; index < len(elements); index++ {
-		element := elements[index]
-		indexInTree := index + 1
-		tree[indexInTree] = tree[indexInTree] + element
-		updateNextIndexOfWith(indexInTree, element)
-	}
-	return BinaryIndexedTree{
-		Tree: tree,
-	}
+	return sumInner(uint(n+1), 0)
 }
 
-func (t BinaryIndexedTree) FindSumOfFirst(n int) int {
-	if n >= len(t.Tree) {
-		return -1
+func (tree *BinaryIndexedTree) updateAt(index uint, element int) {
+	if index >= uint(len(tree.values)) {
+		return
 	}
-	sum := 0
-	index := n
-	parentIndexOf := func(index int) int {
-		x := index - index&(-index)
-		return x
-	}
-	for index > 0 {
-		sum = sum + t.Tree[index]
-		index = parentIndexOf(index)
-	}
-	return sum
+	tree.values[index] = tree.values[index] + element
+	tree.updateAt(nextIndexOf(index), element)
+}
+
+func nextIndexOf(index uint) uint {
+	return index + (((^index) + 1) & index)
+}
+
+func parentIndexOf(index uint) uint {
+	return index - (((^index) + 1) & index)
 }
