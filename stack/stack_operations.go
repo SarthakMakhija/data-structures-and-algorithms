@@ -173,12 +173,15 @@ func DecimalToBinary(n int) string {
 //Reverse
 //Reverse a stack using a queue
 func (s *IntStack) Reverse() {
-	linearQueue := queue.LinearQueue{Size: len(s.stack)}
+	linearQueue := queue.NewLinear(len(s.stack))
 	for s.stackTop > 0 {
 		pop := s.Pop()
-		_, _ = linearQueue.Add(pop)
+		_, _ = linearQueue.Enqueue(pop)
 	}
-	allQueueElements := linearQueue.All()
+	var allQueueElements []int
+	for _, e := range linearQueue.AllElements() {
+		allQueueElements = append(allQueueElements, e.(int))
+	}
 	for index := 0; index < len(allQueueElements); index++ {
 		s.Push(allQueueElements[index])
 	}

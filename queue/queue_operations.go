@@ -5,53 +5,59 @@ import (
 )
 
 type LinearQueue struct {
-	elements []int
+	elements []interface{}
 	front    int
 	rear     int
-	Size     int
+	read     int
 }
 
-func (l *LinearQueue) Add(element int) (bool, error) {
-	const fixedSize = 5
-	if l.IsEmpty() {
-		var size = l.Size
-		if l.Size == 0 {
-			size = fixedSize
-		}
-		l.elements = make([]int, size)
-		l.front = 0
-		l.rear = -1
-		l.Size = size
-	} else if l.IsFull() {
-		return false, errors.New("OVERFLOW")
+func NewLinear(size int) *LinearQueue {
+	return &LinearQueue{
+		elements: make([]interface{}, size),
+		front:    -1,
+		rear:     -1,
+		read:     -1,
+	}
+}
+
+func (l *LinearQueue) Enqueue(element interface{}) (bool, error) {
+	if l.isFull() {
+		return false, errors.New("overflow")
 	}
 	l.rear = l.rear + 1
 	l.elements[l.rear] = element
 	return true, nil
 }
 
-func (l *LinearQueue) Get() (int, error) {
-	if l.IsEmpty() {
-		return -1, errors.New("EMPTY")
+func (l *LinearQueue) Dequeue() (interface{}, error) {
+	if l.isEmpty() {
+		return false, errors.New("underflow")
 	}
-	element := l.elements[l.front]
 	l.front = l.front + 1
-	return element, nil
+	return l.elements[l.front], nil
 }
 
-func (l *LinearQueue) All() []int {
-	var elements []int
-	for l.front <= l.rear {
-		e, _ := l.Get()
+func (l *LinearQueue) AllElements() []interface{} {
+	var elements []interface{}
+	for l.read < l.rear {
+		e, _ := l.get()
 		elements = append(elements, e)
 	}
 	return elements
 }
 
-func (l *LinearQueue) IsEmpty() bool {
-	return len(l.elements) == 0 || l.front > l.rear
+func (l *LinearQueue) get() (interface{}, error) {
+	if l.isEmpty() {
+		return false, errors.New("underflow")
+	}
+	l.read = l.read + 1
+	return l.elements[l.read], nil
 }
 
-func (l *LinearQueue) IsFull() bool {
-	return l.rear == l.Size-1
+func (l *LinearQueue) isFull() bool {
+	return l.rear == len(l.elements)-1
+}
+
+func (l *LinearQueue) isEmpty() bool {
+	return l.rear == l.front
 }
