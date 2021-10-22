@@ -14,7 +14,7 @@ func TestCreatesASkipListAndGetsAValueByKey1(t *testing.T) {
 	skipList.Put(20, 200)
 	skipList.Put(39, 390)
 
-	value, _, _ := skipList.GetByKey(25)
+	value, _ := skipList.GetByKey(25)
 	if value != 250 {
 		t.Fatalf("Expected value to be %v, received %v", 250, value)
 	}
@@ -29,7 +29,7 @@ func TestCreatesASkipListAndGetsAValueByKey2(t *testing.T) {
 	skipList.Put(20, 200)
 	skipList.Put(39, 390)
 
-	value, _, _ := skipList.GetByKey(39)
+	value, _ := skipList.GetByKey(39)
 	if value != 390 {
 		t.Fatalf("Expected value to be %v, received %v", 390, value)
 	}
@@ -44,7 +44,7 @@ func TestCreatesASkipListAndGetsAValueByKey3(t *testing.T) {
 	skipList.Put(20, 200)
 	skipList.Put(39, 390)
 
-	value, _, _ := skipList.GetByKey(90)
+	value, _ := skipList.GetByKey(90)
 	if value != -1 {
 		t.Fatalf("Expected value to be %v, received %v", -1, value)
 	}

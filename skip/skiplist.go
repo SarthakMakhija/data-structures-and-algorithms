@@ -43,23 +43,18 @@ func NewList(towerSize int) *List {
 	return list
 }
 
-func (list *List) GetByKey(key int) (int, int, bool) {
-	var getByKeyInner func(*node, int) (int, int, bool)
-	getByKeyInner = func(targetNode *node, level int) (int, int, bool) {
-		switch {
-		case targetNode == nil:
-			return -1, -1, false
-		case targetNode.key == key:
-			return targetNode.value, level, true
-		case targetNode.right == nil:
-			return getByKeyInner(targetNode.down, level-1)
-		case targetNode.right.key <= key:
-			return getByKeyInner(targetNode.right, level)
-		default:
-			return getByKeyInner(targetNode.down, level-1)
+func (list *List) GetByKey(key int) (int, bool) {
+	targetNode := list.tower[len(list.tower)-1]
+	for targetNode != nil {
+		for targetNode.right != nil && targetNode.right.key <= key {
+			targetNode = targetNode.right
 		}
+		if targetNode.key == key {
+			return targetNode.value, true
+		}
+		targetNode = targetNode.down
 	}
-	return getByKeyInner(list.tower[len(list.tower)-1], len(list.tower)-1)
+	return -1, false
 }
 
 func (list List) Put(key, value int) {
