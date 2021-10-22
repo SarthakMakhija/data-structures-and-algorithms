@@ -14,6 +14,24 @@ type node struct {
 	left, right, down *node
 }
 
+type parentNodes struct {
+	nodes []*node
+}
+
+func (parentNodes *parentNodes) add(n *node) {
+	parentNodes.nodes = append(parentNodes.nodes, n)
+}
+
+func (parentNodes *parentNodes) pop() *node {
+	n := parentNodes.nodes[len(parentNodes.nodes)-1]
+	parentNodes.nodes = parentNodes.nodes[0 : len(parentNodes.nodes)-1]
+	return n
+}
+
+func (parentNodes *parentNodes) isEmpty() bool {
+	return len(parentNodes.nodes) == 0
+}
+
 func (n *node) copy() *node {
 	return &node{key: n.key, value: n.value}
 }
@@ -67,27 +85,23 @@ func (list *List) GetByKey(key int) (int, bool) {
 	return -1, false
 }
 
-func (list List) PutNew(key, value int) {
-	var parents []*node
+func (list *List) Put(key, value int) {
+	parents := &parentNodes{}
 	targetNode := list.tower[len(list.tower)-1]
 	for ; targetNode != nil; targetNode = targetNode.down {
 		for targetNode.right != nil && targetNode.right.key <= key {
 			targetNode = targetNode.right
 		}
-		parents = append(parents, targetNode)
+		parents.add(targetNode)
 	}
-	if parents != nil {
-		leftSibling := parents[len(parents)-1]
-		node := addNewNode(key, value, leftSibling)
-		for flipCoin() && len(parents) > 0 { //handle parents empty .. when tower needs to increase
-			parents = parents[0 : len(parents)-1]
-			if len(parents) > 0 {
-				leftSibling = parents[len(parents)-1]
-				newNode := addNewNode(key, value, leftSibling)
-				newNode.updateDown(node)
-				node = newNode
-			}
-		}
+
+	leftSibling := parents.pop()
+	node := addNewNode(key, value, leftSibling)
+	for flipCoin() && !parents.isEmpty() { //handle parents empty .. when tower needs to increase
+		leftSibling = parents.pop()
+		newNode := addNewNode(key, value, leftSibling)
+		newNode.updateDown(node)
+		node = newNode
 	}
 }
 
