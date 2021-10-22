@@ -85,15 +85,15 @@ func (list *List) Put(key, value int) {
 		parents.add(targetNode)
 	}
 
-	leftSibling := parents.pop()
-	node := addNewNode(key, value, leftSibling)
+	left := parents.pop()
+	node := addNewNode(key, value, left)
 	for flipCoin() {
 		if parents.isEmpty() {
 			sentinelNode := list.increaseTowerSize()
 			parents.add(sentinelNode)
 		}
-		leftSibling = parents.pop()
-		newNode := addNewNode(key, value, leftSibling)
+		left = parents.pop()
+		newNode := addNewNode(key, value, left)
 		newNode.updateDown(node)
 		node = newNode
 	}
