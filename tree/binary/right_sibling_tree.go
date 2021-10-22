@@ -1,6 +1,8 @@
 package binarytree
 
-import "errors"
+import (
+	linearQueue "github.com/SarthakMakhija/data-structures-and-algorithms/queue"
+)
 
 type StringBinaryTreeWithLevelNext struct {
 	Root *StringNodeWithLevelNext
@@ -64,11 +66,9 @@ func (t StringBinaryTreeWithLevelNext) LevelOrderTraversal() []NodeSiblingPair {
 	if t.Root == nil {
 		return []NodeSiblingPair{}
 	}
-	queue := queue{
-		Size: 100,
-	}
-	_, _ = queue.enqueue(t.Root.Left)
-	_, _ = queue.enqueue(t.Root.Right)
+	queue := linearQueue.NewLinear(100)
+	_, _ = queue.Enqueue(t.Root.Left)
+	_, _ = queue.Enqueue(t.Root.Right)
 
 	siblingOf := func(node *StringNodeWithLevelNext) string {
 		sibling := "NA"
@@ -79,17 +79,18 @@ func (t StringBinaryTreeWithLevelNext) LevelOrderTraversal() []NodeSiblingPair {
 	}
 
 	var elements []NodeSiblingPair
-	for !queue.isEmpty() {
-		node, _ := queue.dequeue()
+	for !queue.IsEmpty() {
+		node, _ := queue.Dequeue()
+		stringNodeWithLevelNext := node.(*StringNodeWithLevelNext)
 		elements = append(elements, NodeSiblingPair{
-			Node:    node.Value,
-			Sibling: siblingOf(node),
+			Node:    stringNodeWithLevelNext.Value,
+			Sibling: siblingOf(stringNodeWithLevelNext),
 		})
-		if node.Left != nil {
-			_, _ = queue.enqueue(node.Left)
+		if stringNodeWithLevelNext.Left != nil {
+			_, _ = queue.Enqueue(stringNodeWithLevelNext.Left)
 		}
-		if node.Right != nil {
-			_, _ = queue.enqueue(node.Right)
+		if stringNodeWithLevelNext.Right != nil {
+			_, _ = queue.Enqueue(stringNodeWithLevelNext.Right)
 		}
 	}
 	return elements
@@ -98,47 +99,4 @@ func (t StringBinaryTreeWithLevelNext) LevelOrderTraversal() []NodeSiblingPair {
 type NodeSiblingPair struct {
 	Node    string
 	Sibling string
-}
-
-type queue struct {
-	elements []*StringNodeWithLevelNext
-	front    int
-	rear     int
-	Size     int
-}
-
-func (l *queue) enqueue(element *StringNodeWithLevelNext) (bool, error) {
-	const fixedSize = 5
-	if l.isEmpty() {
-		var size = l.Size
-		if l.Size == 0 {
-			size = fixedSize
-		}
-		l.elements = make([]*StringNodeWithLevelNext, size)
-		l.front = 0
-		l.rear = -1
-		l.Size = size
-	} else if l.isFull() {
-		return false, errors.New("OVERFLOW")
-	}
-	l.rear = l.rear + 1
-	l.elements[l.rear] = element
-	return true, nil
-}
-
-func (l *queue) dequeue() (*StringNodeWithLevelNext, error) {
-	if l.isEmpty() {
-		return nil, errors.New("EMPTY")
-	}
-	element := l.elements[l.front]
-	l.front = l.front + 1
-	return element, nil
-}
-
-func (l *queue) isEmpty() bool {
-	return len(l.elements) == 0 || l.front > l.rear
-}
-
-func (l *queue) isFull() bool {
-	return l.rear == l.Size-1
 }
