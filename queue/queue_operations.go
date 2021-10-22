@@ -43,6 +43,7 @@ func (l *LinearQueue) AllElements() []interface{} {
 		e, _ := l.get()
 		elements = append(elements, e)
 	}
+	l.read = -1
 	return elements
 }
 
