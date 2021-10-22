@@ -73,6 +73,8 @@ func (list *List) GetByKey(key int) (int, bool) {
 	return -1, false
 }
 
+//Put
+//assume key does not exist
 func (list *List) Put(key, value int) {
 	parents := &parentNodes{}
 	targetNode := list.tower[len(list.tower)-1]
