@@ -85,7 +85,11 @@ func (list *List) Put(key, value int) {
 
 	leftSibling := parents.pop()
 	node := addNewNode(key, value, leftSibling)
-	for flipCoin() && !parents.isEmpty() { //handle parents empty .. when tower needs to increase
+	for flipCoin() {
+		if parents.isEmpty() {
+			sentinelNode := list.increaseTowerSize()
+			parents.add(sentinelNode)
+		}
 		leftSibling = parents.pop()
 		newNode := addNewNode(key, value, leftSibling)
 		newNode.updateDown(node)
@@ -95,6 +99,14 @@ func (list *List) Put(key, value int) {
 
 func flipCoin() bool {
 	return rand.Intn(2) == 1
+}
+
+func (list *List) increaseTowerSize() *node {
+	sentinelNode := newSentinelNode()
+	list.tower = append(list.tower, sentinelNode)
+	topIndex := len(list.tower) - 1
+	list.tower[topIndex].down = list.tower[topIndex-1].down
+	return sentinelNode
 }
 
 func (list *List) initializeWithSentinelNodesOf(towerSize int) {
