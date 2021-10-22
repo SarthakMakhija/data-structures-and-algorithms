@@ -32,10 +32,6 @@ func (parentNodes *parentNodes) isEmpty() bool {
 	return len(parentNodes.nodes) == 0
 }
 
-func (n *node) copy() *node {
-	return &node{key: n.key, value: n.value}
-}
-
 func (n *node) updateRight(right *node) *node {
 	n.right = right
 	return n
@@ -67,7 +63,7 @@ func newSentinelNode() *node {
 
 func NewList(towerSize int) *List {
 	list := &List{tower: make([]*node, towerSize)}
-	list.initializeSentinelNode(towerSize)
+	list.initializeWithSentinelNodesOf(towerSize)
 	return list
 }
 
@@ -109,6 +105,16 @@ func flipCoin() bool {
 	return rand.Intn(2) == 1
 }
 
+func (list *List) initializeWithSentinelNodesOf(towerSize int) {
+	for index := 0; index < towerSize; index++ {
+		sentinelNode := newSentinelNode()
+		list.tower[index] = sentinelNode
+		if index > 0 {
+			sentinelNode.down = list.tower[index-1]
+		}
+	}
+}
+
 func (list *List) Debug() {
 	var debug func(*node, int)
 	debug = func(node *node, level int) {
@@ -121,15 +127,5 @@ func (list *List) Debug() {
 	for index := len(list.tower) - 1; index >= 0; index-- {
 		debug(list.tower[index], index)
 		fmt.Println()
-	}
-}
-
-func (list *List) initializeSentinelNode(towerSize int) {
-	for index := 0; index < towerSize; index++ {
-		sentinelNode := newSentinelNode()
-		list.tower[index] = sentinelNode
-		if index > 0 {
-			sentinelNode.down = list.tower[index-1]
-		}
 	}
 }
