@@ -7,12 +7,12 @@ import (
 
 func TestCreatesASkipListAndGetsAValueByKey1(t *testing.T) {
 	skipList := skip.NewList(5)
-	skipList.Put(12, 120)
-	skipList.Put(17, 170)
-	skipList.Put(25, 250)
-	skipList.Put(31, 310)
-	skipList.Put(20, 200)
-	skipList.Put(39, 390)
+	skipList.PutNew(12, 120)
+	skipList.PutNew(17, 170)
+	skipList.PutNew(25, 250)
+	skipList.PutNew(31, 310)
+	skipList.PutNew(20, 200)
+	skipList.PutNew(39, 390)
 
 	value, _ := skipList.GetByKey(25)
 	if value != 250 {
@@ -22,12 +22,12 @@ func TestCreatesASkipListAndGetsAValueByKey1(t *testing.T) {
 
 func TestCreatesASkipListAndGetsAValueByKey2(t *testing.T) {
 	skipList := skip.NewList(5)
-	skipList.Put(12, 120)
-	skipList.Put(17, 170)
-	skipList.Put(25, 250)
-	skipList.Put(31, 310)
-	skipList.Put(20, 200)
-	skipList.Put(39, 390)
+	skipList.PutNew(12, 120)
+	skipList.PutNew(17, 170)
+	skipList.PutNew(25, 250)
+	skipList.PutNew(31, 310)
+	skipList.PutNew(20, 200)
+	skipList.PutNew(39, 390)
 
 	value, _ := skipList.GetByKey(12)
 	if value != 120 {
@@ -37,12 +37,12 @@ func TestCreatesASkipListAndGetsAValueByKey2(t *testing.T) {
 
 func TestCreatesASkipListAndGetsAValueByKey3(t *testing.T) {
 	skipList := skip.NewList(5)
-	skipList.Put(12, 120)
-	skipList.Put(17, 170)
-	skipList.Put(25, 250)
-	skipList.Put(31, 310)
-	skipList.Put(20, 200)
-	skipList.Put(39, 390)
+	skipList.PutNew(12, 120)
+	skipList.PutNew(17, 170)
+	skipList.PutNew(25, 250)
+	skipList.PutNew(31, 310)
+	skipList.PutNew(20, 200)
+	skipList.PutNew(39, 390)
 
 	value, _ := skipList.GetByKey(39)
 	if value != 390 {
@@ -52,12 +52,12 @@ func TestCreatesASkipListAndGetsAValueByKey3(t *testing.T) {
 
 func TestCreatesASkipListAndGetsAValueByKeyGivenKeyDoesNotExist(t *testing.T) {
 	skipList := skip.NewList(5)
-	skipList.Put(12, 120)
-	skipList.Put(17, 170)
-	skipList.Put(25, 250)
-	skipList.Put(31, 310)
-	skipList.Put(20, 200)
-	skipList.Put(39, 390)
+	skipList.PutNew(12, 120)
+	skipList.PutNew(17, 170)
+	skipList.PutNew(25, 250)
+	skipList.PutNew(31, 310)
+	skipList.PutNew(20, 200)
+	skipList.PutNew(39, 390)
 
 	value, _ := skipList.GetByKey(90)
 	if value != -1 {

@@ -33,6 +33,16 @@ func (n *node) updateDown(down *node) *node {
 	return n
 }
 
+func addNewNode(key, value int, left *node) *node {
+	node := &node{key: key, value: value}
+	node.updateRight(left.right).updateLeft(left)
+	left.updateRight(node)
+	if node.right != nil {
+		node.right.updateLeft(node)
+	}
+	return node
+}
+
 func newSentinelNode() *node {
 	return &node{}
 }
@@ -57,50 +67,28 @@ func (list *List) GetByKey(key int) (int, bool) {
 	return -1, false
 }
 
-func (list List) Put(key, value int) {
-	var putInner func(*node) (*node, bool)
-	putInner = func(targetNode *node) (*node, bool) {
-		if targetNode == nil {
-			return nil, false
+func (list List) PutNew(key, value int) {
+	var parents []*node
+	targetNode := list.tower[len(list.tower)-1]
+	for ; targetNode != nil; targetNode = targetNode.down {
+		for targetNode.right != nil && targetNode.right.key <= key {
+			targetNode = targetNode.right
 		}
-		if targetNode.down == nil {
-			lowestLevelNode := targetNode
-			for lowestLevelNode.right != nil && lowestLevelNode.right.key <= key {
-				lowestLevelNode = lowestLevelNode.right
+		parents = append(parents, targetNode)
+	}
+	if parents != nil {
+		leftSibling := parents[len(parents)-1]
+		node := addNewNode(key, value, leftSibling)
+		for flipCoin() && len(parents) > 0 { //handle parents empty .. when tower needs to increase
+			parents = parents[0 : len(parents)-1]
+			if len(parents) > 0 {
+				leftSibling = parents[len(parents)-1]
+				newNode := addNewNode(key, value, leftSibling)
+				newNode.updateDown(node)
+				node = newNode
 			}
-			node := &node{key: key, value: value}
-			node.updateLeft(lowestLevelNode).updateRight(lowestLevelNode.right)
-			lowestLevelNode.updateRight(node)
-			if node.right != nil {
-				node.right.updateLeft(node)
-			}
-			return node, flipCoin()
-		}
-		var newNode *node
-		var insertAtHigherLevel bool
-
-		if targetNode.right == nil {
-			newNode, insertAtHigherLevel = putInner(targetNode.down)
-		} else {
-			if targetNode.right.key <= key {
-				newNode, insertAtHigherLevel = putInner(targetNode.right)
-			} else {
-				newNode, insertAtHigherLevel = putInner(targetNode.down)
-			}
-		}
-		if insertAtHigherLevel {
-			copied := newNode.copy()
-			copied.updateRight(targetNode.right).updateLeft(targetNode).updateDown(newNode)
-			targetNode.updateRight(copied)
-			if copied.right != nil {
-				copied.right.updateLeft(copied)
-			}
-			return copied, flipCoin()
-		} else {
-			return nil, false
 		}
 	}
-	putInner(list.tower[len(list.tower)-1])
 }
 
 func flipCoin() bool {
