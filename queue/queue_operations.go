@@ -30,7 +30,7 @@ func (l *LinearQueue) Enqueue(element interface{}) (bool, error) {
 }
 
 func (l *LinearQueue) Dequeue() (interface{}, error) {
-	if l.isEmpty() {
+	if l.IsEmpty() {
 		return false, errors.New("underflow")
 	}
 	l.front = l.front + 1
@@ -46,8 +46,12 @@ func (l *LinearQueue) AllElements() []interface{} {
 	return elements
 }
 
+func (l *LinearQueue) IsEmpty() bool {
+	return l.rear == l.front
+}
+
 func (l *LinearQueue) get() (interface{}, error) {
-	if l.isEmpty() {
+	if l.IsEmpty() {
 		return false, errors.New("underflow")
 	}
 	l.read = l.read + 1
@@ -56,8 +60,4 @@ func (l *LinearQueue) get() (interface{}, error) {
 
 func (l *LinearQueue) isFull() bool {
 	return l.rear == len(l.elements)-1
-}
-
-func (l *LinearQueue) isEmpty() bool {
-	return l.rear == l.front
 }

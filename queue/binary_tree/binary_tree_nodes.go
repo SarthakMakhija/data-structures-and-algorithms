@@ -1,54 +1,52 @@
 package binary_tree
 
 import (
-	"errors"
+	linearQueue "github.com/SarthakMakhija/data-structures-and-algorithms/queue"
 	"github.com/SarthakMakhija/data-structures-and-algorithms/recursion"
 	"github.com/SarthakMakhija/data-structures-and-algorithms/stack"
-	binarytree "github.com/SarthakMakhija/data-structures-and-algorithms/tree/binary"
+	binaryTree "github.com/SarthakMakhija/data-structures-and-algorithms/tree/binary"
 )
 
-func BinaryTreeNodesInOrderOfIncreasingDepth(tree binarytree.IntBinaryTree) []int {
+func BinaryTreeNodesInOrderOfIncreasingDepth(tree binaryTree.IntBinaryTree) []int {
 	if tree.Root == nil {
 		return []int{}
 	}
-	queue := Queue{
-		Size: 100,
-	}
+	queue := linearQueue.NewLinear(100)
 	var nodeValues []int
-	_, _ = queue.enqueue(tree.Root)
+	_, _ = queue.Enqueue(tree.Root)
 
-	for !queue.isEmpty() {
-		node, _ := queue.dequeue()
-		nodeValues = append(nodeValues, node.Value)
+	for !queue.IsEmpty() {
+		node, _ := queue.Dequeue()
+		intNode := node.(*binaryTree.IntNode)
+		nodeValues = append(nodeValues, intNode.Value)
 
-		if node.Left != nil {
-			_, _ = queue.enqueue(node.Left)
+		if intNode.Left != nil {
+			_, _ = queue.Enqueue(intNode.Left)
 		}
-		if node.Right != nil {
-			_, _ = queue.enqueue(node.Right)
+		if intNode.Right != nil {
+			_, _ = queue.Enqueue(intNode.Right)
 		}
 	}
 	return nodeValues
 }
 
-func BinaryTreeNodesTopDownLeftRightAlternating(tree binarytree.IntBinaryTree) []int {
+func BinaryTreeNodesTopDownLeftRightAlternating(tree binaryTree.IntBinaryTree) []int {
 	if tree.Root == nil {
 		return []int{}
 	}
-	queue := Queue{
-		Size: 100,
-	}
+	queue := linearQueue.NewLinear(100)
 	var nodeValues []int
 	direction := 'L'
 
-	nodesInDirection := func(direction rune) ([]int, []*binarytree.IntNode) {
+	nodesInDirection := func(direction rune) ([]int, []*binaryTree.IntNode) {
 		var values []int
-		var nodes []*binarytree.IntNode
+		var nodes []*binaryTree.IntNode
 
-		for !queue.isEmpty() {
-			node, _ := queue.dequeue()
-			values = append(values, node.Value)
-			nodes = append(nodes, node)
+		for !queue.IsEmpty() {
+			node, _ := queue.Dequeue()
+			intNode := node.(*binaryTree.IntNode)
+			values = append(values, intNode.Value)
+			nodes = append(nodes, intNode)
 		}
 		if direction == 'R' {
 			return recursion.Reverse(values), nodes
@@ -56,17 +54,17 @@ func BinaryTreeNodesTopDownLeftRightAlternating(tree binarytree.IntBinaryTree) [
 		return values, nodes
 	}
 
-	_, _ = queue.enqueue(tree.Root)
-	for !queue.isEmpty() {
+	_, _ = queue.Enqueue(tree.Root)
+	for !queue.IsEmpty() {
 		values, levelNodes := nodesInDirection(direction)
 		nodeValues = append(nodeValues, values...)
 
 		for _, node := range levelNodes {
 			if node.Left != nil {
-				_, _ = queue.enqueue(node.Left)
+				_, _ = queue.Enqueue(node.Left)
 			}
 			if node.Right != nil {
-				_, _ = queue.enqueue(node.Right)
+				_, _ = queue.Enqueue(node.Right)
 			}
 		}
 		if direction == 'R' {
@@ -78,25 +76,24 @@ func BinaryTreeNodesTopDownLeftRightAlternating(tree binarytree.IntBinaryTree) [
 	return nodeValues
 }
 
-func BinaryTreeNodesBottomUpLeftRight(tree binarytree.IntBinaryTree) []int {
+func BinaryTreeNodesBottomUpLeftRight(tree binaryTree.IntBinaryTree) []int {
 	if tree.Root == nil {
 		return []int{}
 	}
-	queue := Queue{
-		Size: 100,
-	}
+	queue := linearQueue.NewLinear(100)
 	intStack := stack.IntStack{}
 
-	_, _ = queue.enqueue(tree.Root)
-	for !queue.isEmpty() {
-		node, _ := queue.dequeue()
-		intStack.Push(node.Value)
+	_, _ = queue.Enqueue(tree.Root)
+	for !queue.IsEmpty() {
+		node, _ := queue.Dequeue()
+		intNode := node.(*binaryTree.IntNode)
+		intStack.Push(intNode.Value)
 
-		if node.Right != nil {
-			_, _ = queue.enqueue(node.Right)
+		if intNode.Right != nil {
+			_, _ = queue.Enqueue(intNode.Right)
 		}
-		if node.Left != nil {
-			_, _ = queue.enqueue(node.Left)
+		if intNode.Left != nil {
+			_, _ = queue.Enqueue(intNode.Left)
 		}
 	}
 
@@ -107,83 +104,39 @@ func BinaryTreeNodesBottomUpLeftRight(tree binarytree.IntBinaryTree) []int {
 	return nodeValues
 }
 
-func BinaryTreeNodesAverageAtEachLevel(tree binarytree.IntBinaryTree) []float64 {
+func BinaryTreeNodesAverageAtEachLevel(tree binaryTree.IntBinaryTree) []float64 {
 	if tree.Root == nil {
 		return []float64{}
 	}
-	queue := Queue{
-		Size: 100,
-	}
+	queue := linearQueue.NewLinear(100)
 	var averageValues []float64
-	_, _ = queue.enqueue(tree.Root)
+	_, _ = queue.Enqueue(tree.Root)
 
-	levelAverageWithNodes := func() (float64, []*binarytree.IntNode) {
+	levelAverageWithNodes := func() (float64, []*binaryTree.IntNode) {
 		sum := 0.0
 		count := 0
-		var nodes []*binarytree.IntNode
+		var nodes []*binaryTree.IntNode
 
-		for !queue.isEmpty() {
-			node, _ := queue.dequeue()
+		for !queue.IsEmpty() {
+			node, _ := queue.Dequeue()
+			intNode := node.(*binaryTree.IntNode)
 			count = count + 1
-			sum = sum + float64(node.Value)
-			nodes = append(nodes, node)
+			sum = sum + float64(intNode.Value)
+			nodes = append(nodes, intNode)
 		}
 		return sum / float64(count), nodes
 	}
-	for !queue.isEmpty() {
+	for !queue.IsEmpty() {
 		average, levelNodes := levelAverageWithNodes()
 		for _, node := range levelNodes {
 			if node.Left != nil {
-				_, _ = queue.enqueue(node.Left)
+				_, _ = queue.Enqueue(node.Left)
 			}
 			if node.Right != nil {
-				_, _ = queue.enqueue(node.Right)
+				_, _ = queue.Enqueue(node.Right)
 			}
 		}
 		averageValues = append(averageValues, average)
 	}
 	return averageValues
-}
-
-type Queue struct {
-	elements []*binarytree.IntNode
-	front    int
-	rear     int
-	Size     int
-}
-
-func (l *Queue) enqueue(element *binarytree.IntNode) (bool, error) {
-	const fixedSize = 5
-	if l.isEmpty() {
-		var size = l.Size
-		if l.Size == 0 {
-			size = fixedSize
-		}
-		l.elements = make([]*binarytree.IntNode, size)
-		l.front = 0
-		l.rear = -1
-		l.Size = size
-	} else if l.isFull() {
-		return false, errors.New("OVERFLOW")
-	}
-	l.rear = l.rear + 1
-	l.elements[l.rear] = element
-	return true, nil
-}
-
-func (l *Queue) dequeue() (*binarytree.IntNode, error) {
-	if l.isEmpty() {
-		return nil, errors.New("EMPTY")
-	}
-	element := l.elements[l.front]
-	l.front = l.front + 1
-	return element, nil
-}
-
-func (l *Queue) isEmpty() bool {
-	return len(l.elements) == 0 || l.front > l.rear
-}
-
-func (l *Queue) isFull() bool {
-	return l.rear == l.Size-1
 }
