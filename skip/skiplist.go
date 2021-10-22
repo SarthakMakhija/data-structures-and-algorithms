@@ -10,8 +10,8 @@ type List struct {
 }
 
 type node struct {
-	key, value        int
-	left, right, down *node
+	key, value  int
+	right, down *node
 }
 
 type parentNodes struct {
@@ -37,11 +37,6 @@ func (n *node) updateRight(right *node) *node {
 	return n
 }
 
-func (n *node) updateLeft(left *node) *node {
-	n.left = left
-	return n
-}
-
 func (n *node) updateDown(down *node) *node {
 	n.down = down
 	return n
@@ -49,11 +44,8 @@ func (n *node) updateDown(down *node) *node {
 
 func addNewNode(key, value int, left *node) *node {
 	node := &node{key: key, value: value}
-	node.updateRight(left.right).updateLeft(left)
+	node.updateRight(left.right)
 	left.updateRight(node)
-	if node.right != nil {
-		node.right.updateLeft(node)
-	}
 	return node
 }
 
